@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: digitrinity-App
+Implementation-Version: 1.0-SNAPSHOT
+Built-By: sachin_deshpande1
+Implementation-Vendor-Id: com.digitrinity
+Build-Jdk: 1.8.0_191
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/digitrinity-App
+Created-By: Maven Integration for Eclipse
+
