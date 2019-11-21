@@ -1,7 +1,7 @@
 <script src="${contextPath}/resources/js/jquery-3.4.1.min.js" type="text/javascript"></script>
 <script src='${contextPath}/resources/bootstrap/js/bootstrap.min.js'></script>
 <script src="${contextPath}/resources/bootstrap/js/jquery.datetimepicker.full.min.js" type="text/javascript"></script>
-<script src="https://kit.fontawesome.com/f9b25981d1.js" crossorigin="anonymous"></script>
+<script src="${contextPath}/resources/bootstrap/js/all.js" type="text/javascript"></script>
 <script type="text/javascript">
 var Dashboard = function () {
 	var global = {

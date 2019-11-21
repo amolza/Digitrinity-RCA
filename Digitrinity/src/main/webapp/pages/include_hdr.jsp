@@ -10,3 +10,4 @@
 <link href="${contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="${contextPath}/resources/bootstrap/css/jquery.datetimepicker.css" rel="stylesheet">
 <link href="${contextPath}/resources/css/dashboard.css" rel="stylesheet">
+<link href="${contextPath}/resources/css/all.css" rel="stylesheet">

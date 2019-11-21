@@ -8,6 +8,9 @@ body {
 /*==============================*/
 /*====== Recently connected  heading =====*/
 /*==============================*/
+.padding-left-20{
+	padding-left: 20px !important;
+}
 .memberblock {
 	width: 100%;
 	float: left;
