@@ -64,7 +64,7 @@ public class RCAController {
 		getRcaFormData(model);
 		List<RcaReport> rcaReportList = rcaReportRepository.findAll();
 		model.addAttribute("rcaReportList", rcaReportList);
-		return "pages/rca";
+		return "rca";
 	}
 
 	@PostMapping("/create_rca")

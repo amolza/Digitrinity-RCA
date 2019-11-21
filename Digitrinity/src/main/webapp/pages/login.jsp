@@ -9,7 +9,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Log in with your account</title>
-		<link href="${contextPath}/resources/css/login.css" rel="stylesheet">
+		<link href="${contextPath}/resources/css/login.css" rel="stylesheet" />
+		<link href="${contextPath}/resources/bootstrap/css/all.css" rel="stylesheet" />
+		<script src="${contextPath}/resources/bootstrap/js/all.js" type="text/javascript"></script>
 	</head>
 	<body class="bg-default">
 		<div class="main-content">
@@ -44,7 +46,7 @@
 									<div class="form-group mb-3">
 										<div class="input-group input-group-alternative">
 											<div class="input-group-prepend">
-												<span class="input-group-text"><i class="ni ni-email-83"></i></span>
+												<span class="input-group-text"><i class="fas fa-user"></i></span>
 											</div>
 											<input class="form-control" placeholder="Username" type="text" name="username" />
 										</div>
@@ -52,7 +54,7 @@
 									<div class="form-group">
 										<div class="input-group input-group-alternative">
 											<div class="input-group-prepend">
-												<span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+												<span class="input-group-text"><i class="fas fa-key"></i></span>
 											</div>
 											<input class="form-control" placeholder="Password" type="password" name="password" />
 										</div>
