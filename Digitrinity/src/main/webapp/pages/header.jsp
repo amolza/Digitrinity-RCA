@@ -5,7 +5,7 @@
 		</div>
 	</div>
 	<div class="c-header-icon has-dropdown">
-		<span class="c-badge c-badge--header-icon animated shake">12</span><i class="fa fa-bell"></i>
+		<span class="c-badge c-badge--header-icon animated shake">1</span><i class="fa fa-bell"></i>
 		<div class="c-dropdown c-dropdown--notifications">
 			<div class="c-dropdown__header"></div>
 			<div class="c-dropdown__content"></div>

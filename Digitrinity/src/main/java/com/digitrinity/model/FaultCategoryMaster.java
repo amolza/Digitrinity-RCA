@@ -12,16 +12,16 @@ import javax.persistence.Table;
 public class FaultCategoryMaster {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String faultID;
+	private Long faultID=0L;
 	
 	@Column(name = "FaultCategory")
-	private String faultCategory;
+	private String faultCategory="";
 
-	public String getFaultID() {
+	public Long getFaultID() {
 		return faultID;
 	}
 
-	public void setFaultID(String faultID) {
+	public void setFaultID(Long faultID) {
 		this.faultID = faultID;
 	}
 

@@ -12,17 +12,13 @@ import javax.persistence.Table;
 public class IssueCategoryMaster {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String issueCatID;
+	private Long issueCatID =0L;
 	
 	@Column(name = "Issuename")
-	private String issuename;
+	private String issuename="";
 
-	public String getIssueCatID() {
+	public Long getIssueCatID() {
 		return issueCatID;
-	}
-
-	public void setIssueCatID(String issueCatID) {
-		this.issueCatID = issueCatID;
 	}
 
 	public String getIssuename() {
@@ -33,6 +29,11 @@ public class IssueCategoryMaster {
 		this.issuename = issuename;
 	}
 
+	public void setIssueCatID(Long issueCatID) {
+		this.issueCatID = issueCatID;
+	}
+
+	
 	
 
 	

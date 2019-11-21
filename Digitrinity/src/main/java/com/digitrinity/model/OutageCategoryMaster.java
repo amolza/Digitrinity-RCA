@@ -12,16 +12,16 @@ import javax.persistence.Table;
 public class OutageCategoryMaster{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int outageCatID;
+	private Long outageCatID=0L;
 	
 	@Column(name = "OutageCategory")
-	private String outageCategory;
+	private String outageCategory="";
 
-	public int getOutageCatID() {
+	public Long getOutageCatID() {
 		return outageCatID;
 	}
 
-	public void setOutageCatID(int outageCatID) {
+	public void setOutageCatID(Long outageCatID) {
 		this.outageCatID = outageCatID;
 	}
 

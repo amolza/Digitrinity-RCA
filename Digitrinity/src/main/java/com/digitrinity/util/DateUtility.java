@@ -1194,14 +1194,14 @@ public class DateUtility
 		return checkDate = matcher.matches();
 	}
 
-	public static String convertStringToDate(java.sql.Date indate)
+	public static String convertStringToDate(java.util.Date date)
 	{
 		String dateString = null;
 		SimpleDateFormat sdfr = new SimpleDateFormat("dd/MM/yyyy");
 
 		try
 		{
-			dateString = sdfr.format(indate);
+			dateString = sdfr.format(date);
 		}
 		catch (Exception ex)
 		{
