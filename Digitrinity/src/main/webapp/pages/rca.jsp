@@ -415,10 +415,7 @@
 		
 		$(document).ready(function() {
 		    var table = $('#headerTable').DataTable( {
-		        responsive: true,
-		        buttons: [
-		            'csv'
-		        ]
+		        responsive: true
 		    } );
 		 
 		    new $.fn.dataTable.FixedHeader( table );
