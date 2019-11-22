@@ -110,21 +110,21 @@
 	<script type="text/javascript">
 		function submitOutageCategory() {
 			document.outageCategoryFormBean.method = "POST";
-			document.outageCategoryFormBean.action = "<c:url value='/master_data/outage_category'/>";
+			document.outageCategoryFormBean.action = "<c:url value='${contextPath}/master_data/outage_category'/>";
 			document.outageCategoryFormBean.submit();
 		}
 		function viewEditOutageCat(outageCatID)
 		{ 
 			$("#outageCatID").val(outageCatID);
 			document.outageCategoryFormBean.method = "POST";
-			document.outageCategoryFormBean.action = "<c:url value='/master_data/get_outageCategory_details'/>";
+			document.outageCategoryFormBean.action = "<c:url value='${contextPath}/master_data/get_outageCategory_details'/>";
 			document.outageCategoryFormBean.submit();
 		}
 		function deleteOutageCat(outageCatID)
 		{ 
 			$("#outageCatID").val(outageCatID);
 			document.outageCategoryFormBean.method = "POST";
-			document.outageCategoryFormBean.action = "<c:url value='/master_data/delete_outageCategory_details'/>";
+			document.outageCategoryFormBean.action = "<c:url value='${contextPath}/master_data/delete_outageCategory_details'/>";
 			document.outageCategoryFormBean.submit();
 		}
 		

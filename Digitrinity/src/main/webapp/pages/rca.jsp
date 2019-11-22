@@ -305,12 +305,12 @@
 		$('#tabAddDetails').addClass('is-active');
 		function submitData() {
 			document.rcaReportForm.method = "POST";
-			document.rcaReportForm.action = "<c:url value='/rca/view_rca_form'/>";
+			document.rcaReportForm.action = "<c:url value='${contextPath}/rca/view_rca_form'/>";
 			document.rcaReportForm.submit();
 		}
 		function submitRCA() {
 			document.rcaReportForm.method = "POST";
-			document.rcaReportForm.action = "<c:url value='/rca/create_rca'/>";
+			document.rcaReportForm.action = "<c:url value='${contextPath}/rca/create_rca'/>";
 			document.rcaReportForm.submit();
 		}
 		function calculateDiffereneceInTime(){
@@ -328,14 +328,14 @@
 		{ 
 			$("#rcaid").val(rcaid);
 			document.rcaReportForm.method = "POST";
-			document.rcaReportForm.action = "<c:url value='/rca/get_rca_details'/>";
+			document.rcaReportForm.action = "<c:url value='${contextPath}/rca/get_rca_details'/>";
 			document.rcaReportForm.submit();
 		}
 		function deleteRCAForm(rcaid)
 		{ 
 			$("#rcaid").val(rcaid);
 			document.rcaReportForm.method = "POST";
-			document.rcaReportForm.action = "<c:url value='/rca/delete_rca_details'/>";
+			document.rcaReportForm.action = "<c:url value='${contextPath}/rca/delete_rca_details'/>";
 			document.rcaReportForm.submit();
 		}
 		

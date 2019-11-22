@@ -117,21 +117,21 @@
 	<script type="text/javascript">
 		function submitFaultCategory() {
 			document.faultCategoryFormBean.method = "POST";
-			document.faultCategoryFormBean.action = "<c:url value='/master_data/fault_category'/>";
+			document.faultCategoryFormBean.action = "<c:url value='${contextPath}/master_data/fault_category'/>";
 			document.faultCategoryFormBean.submit();
 		}
 		function viewEditfaultCategoryForm(faultID)
 		{ 
 			$("#faultID").val(faultID);
 			document.faultCategoryFormBean.method = "POST";
-			document.faultCategoryFormBean.action = "<c:url value='/master_data/get_faultCategory_details'/>";
+			document.faultCategoryFormBean.action = "<c:url value='${contextPath}/master_data/get_faultCategory_details'/>";
 			document.faultCategoryFormBean.submit();
 		}
 		function deletefaultCategory(faultID)
 		{ 
 			$("#faultID").val(faultID);
 			document.faultCategoryFormBean.method = "POST";
-			document.faultCategoryFormBean.action = "<c:url value='/master_data/delete_faultCategory_details'/>";
+			document.faultCategoryFormBean.action = "<c:url value='${contextPath}/master_data/delete_faultCategory_details'/>";
 			document.faultCategoryFormBean.submit();
 		}
 		
