@@ -101,7 +101,7 @@ public class RCAController {
 		RcaReport rcaReport =null;
 		String rcaidStr =request.getParameter("rcaid");// model.get("rcaid");
 		Long rcaidLong = 0L;
-		if (!StringUtil.isNullOrEmpty(rcaidStr)) {
+		if (!StringUtil.isNullOrEmpty(rcaidStr) && !rcaidStr.equals("0")) {
 			rcaidLong = Long.parseLong(rcaidStr);
 		 rcaReport = rcaReportRepository.getOne(rcaidLong);
 		}

@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "outagecategorymaster")
+@Table(name = "OutageCategoryMaster")
 public class OutageCategoryMaster{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

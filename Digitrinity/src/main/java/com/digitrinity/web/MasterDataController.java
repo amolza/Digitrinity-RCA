@@ -93,7 +93,7 @@ public class MasterDataController {
 		IssueCategoryMaster categoryMaster=null;
 		String issueCatIDStr =request.getParameter("issueCatID");
 		Long issueCatIDLong = 0L;
-		if (!StringUtil.isNullOrEmpty(issueCatIDStr)) {
+		if (!StringUtil.isNullOrEmpty(issueCatIDStr)&& !issueCatIDStr.equals("0")) {
 			issueCatIDLong = Long.parseLong(issueCatIDStr);
 			categoryMaster= issueCategoryMasterRepository.getOne(issueCatIDLong);
 		}else
@@ -114,7 +114,7 @@ public class MasterDataController {
 		String outageCatIDStr =request.getParameter("outageCatID");
 		String outageCatID =outageCategoryFormBean.getOutageCatID();
 		Long outageCatIDLong =0L;
-		if (!StringUtil.isNullOrEmpty(outageCatIDStr)) {
+		if (!StringUtil.isNullOrEmpty(outageCatIDStr) && !outageCatIDStr.equals("0")) {
 			outageCatIDLong = Long.parseLong(outageCatIDStr);
 		 outageCategoryMaster= outageCategoryMasterRepository.getOne(outageCatIDLong);
 		}else
@@ -134,7 +134,7 @@ public class MasterDataController {
 		String faultIDStr =request.getParameter("faultID");
 		String faultID =faultCategoryFormBean.getFaultID();
 		Long faultIDLong =0L;
-		if (!StringUtil.isNullOrEmpty(faultIDStr)) {
+		if (!StringUtil.isNullOrEmpty(faultIDStr) && !faultIDStr.equals("0")) {
 			faultIDLong = Long.parseLong(faultIDStr);
 		 faultCategoryMaster= faultCategoryMasterRepository.getOne(faultIDLong);
 		}else
