@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <script src="${contextPath}/resources/js/jquery-3.4.1.min.js" type="text/javascript"></script>
 <script src='${contextPath}/resources/bootstrap/js/bootstrap.min.js'></script>
 <script src="${contextPath}/resources/bootstrap/js/jquery.datetimepicker.full.min.js" type="text/javascript"></script>

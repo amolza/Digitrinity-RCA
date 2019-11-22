@@ -1,9 +1,5 @@
 package com.digitrinity.web;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -22,20 +17,15 @@ import com.digitrinity.formBeans.FaultCategoryFormBean;
 import com.digitrinity.formBeans.IssueCategoryFormBean;
 import com.digitrinity.formBeans.JsonResponse;
 import com.digitrinity.formBeans.OutageCategoryFormBean;
-import com.digitrinity.formBeans.RCAReportFormBean;
 import com.digitrinity.model.FaultCategoryMaster;
 import com.digitrinity.model.IssueCategoryMaster;
 import com.digitrinity.model.OutageCategoryMaster;
-import com.digitrinity.model.RcaReport;
-import com.digitrinity.model.RegionMaster;
-import com.digitrinity.model.SiteMaster;
 import com.digitrinity.repository.FaultCategoryMasterRepository;
 import com.digitrinity.repository.IssueCategoryMasterRepository;
 import com.digitrinity.repository.OutageCategoryMasterRepository;
 import com.digitrinity.repository.RcaReportRepository;
 import com.digitrinity.repository.RegionMasterRepository;
 import com.digitrinity.repository.SiteMasterRepository;
-import com.digitrinity.util.DateUtility;
 import com.digitrinity.util.StringUtil;
 
 @Controller
