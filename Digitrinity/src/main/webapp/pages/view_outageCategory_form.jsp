@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" >
 	<head>
-			<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+		<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 		<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 		<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 		
@@ -105,26 +105,26 @@
 			</div>
 		</div>
 	</main>
-<jsp:include page="include_ftr.jsp"></jsp:include>
+	<jsp:include page="include_ftr.jsp"></jsp:include>
 	</body>
 	<script type="text/javascript">
 		function submitOutageCategory() {
 			document.outageCategoryFormBean.method = "POST";
-			document.outageCategoryFormBean.action = "<c:url value='${contextPath}/master_data/outage_category'/>";
+			document.outageCategoryFormBean.action = "<c:url value='/master_data/outage_category'/>";
 			document.outageCategoryFormBean.submit();
 		}
 		function viewEditOutageCat(outageCatID)
 		{ 
 			$("#outageCatID").val(outageCatID);
 			document.outageCategoryFormBean.method = "POST";
-			document.outageCategoryFormBean.action = "<c:url value='${contextPath}/master_data/get_outageCategory_details'/>";
+			document.outageCategoryFormBean.action = "<c:url value='/master_data/get_outageCategory_details'/>";
 			document.outageCategoryFormBean.submit();
 		}
 		function deleteOutageCat(outageCatID)
 		{ 
 			$("#outageCatID").val(outageCatID);
 			document.outageCategoryFormBean.method = "POST";
-			document.outageCategoryFormBean.action = "<c:url value='${contextPath}/master_data/delete_outageCategory_details'/>";
+			document.outageCategoryFormBean.action = "<c:url value='/master_data/delete_outageCategory_details'/>";
 			document.outageCategoryFormBean.submit();
 		}
 		

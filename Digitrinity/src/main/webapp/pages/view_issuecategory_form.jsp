@@ -105,21 +105,21 @@
 <script type="text/javascript">
 		function submitIssueCategory() {
 			document.issueCategoryFormBean.method = "POST";
-			document.issueCategoryFormBean.action = "<c:url value='${contextPath}/master_data/issue_category'/>";
+			document.issueCategoryFormBean.action = "<c:url value='/master_data/issue_category'/>";
 			document.issueCategoryFormBean.submit();
 		}
 		function viewEditIssueCatForm(issueCatID)
 		{ 
 			$("#issueCatID").val(issueCatID);
 			document.issueCategoryFormBean.method = "POST";
-			document.issueCategoryFormBean.action = "<c:url value='${contextPath}/master_data/get_issueCategory_details'/>";
+			document.issueCategoryFormBean.action = "<c:url value='/master_data/get_issueCategory_details'/>";
 			document.issueCategoryFormBean.submit();
 		}
 		function deleteIssueCatForm(issueCatID)
 		{ 
 			$("#issueCatID").val(issueCatID);
 			document.issueCategoryFormBean.method = "POST";
-			document.issueCategoryFormBean.action = "<c:url value='${contextPath}/master_data/delete_issueCategory_details'/>";
+			document.issueCategoryFormBean.action = "<c:url value='/master_data/delete_issueCategory_details'/>";
 			document.issueCategoryFormBean.submit();
 		}
 		function downloadCSV(csv, filename) {

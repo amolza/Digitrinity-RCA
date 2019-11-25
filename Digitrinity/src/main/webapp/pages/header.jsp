@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <div class="l-header__inner clearfix">
 	<div class="c-header-icon js-hamburger">
 		<div class="hamburger-toggle">
