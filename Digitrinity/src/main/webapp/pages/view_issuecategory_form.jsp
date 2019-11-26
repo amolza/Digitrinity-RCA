@@ -15,111 +15,98 @@
 <jsp:include page="include_hdr.jsp"></jsp:include>
 </head>
 
-<body class="sidebar-is-reduced overflow-hidden">
-	<header class="l-header">
-		<jsp:include page="header.jsp"></jsp:include>
-	</header>
-	<div class="l-sidebar">
-		<jsp:include page="sidebar.jsp"></jsp:include>
-	</div>
-	<main class="l-main">
-		<div class="content-wrapper content-wrapper--with-bg" style="overflow-x: hidden; overflow-y: auto;">
-			<div class="list-group">
-				<form:form method="POST" modelAttribute="issueCategoryFormBean"
-					name="issueCategoryFormBean">
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
-					<input type="hidden" id="issueCatID" name="issueCatID" value="${issueCategoryFormBean.issueCatID}" />
-					<div class="container">
-						<div class="row">
+<body>
+	<jsp:include page="header.jsp"></jsp:include>
+	<div class="container">
+		<div class="form-group mt-5">
+			<div class="row">
+				<p>
+ 					<a class="btn btn-outline-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Search By Category Name</a>
+ 				</p>
+			</div>
+			<form:form method="POST" modelAttribute="issueCategoryFormBean"	name="issueCategoryFormBean">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
+				<input type="hidden" id="issueCatID" name="issueCatID" value="${issueCategoryFormBean.issueCatID}" />
+				<div class="container">
+					<div class="collapse multi-collapse" id="multiCollapseExample1">
+						<div class="row mb-5">
 							<div class='col-lg-4 col-md-4 col-sm-3 col-xs-3 text-right'>
 								<span>Enter Issue Category Name</span>
 							</div>
-							<div class='col-lg-8 col-md-8 col-sm-9 col-xs-9'>
-								<form:input class="form-control"
-									placeholder="Enter Issue Category Name" id="issuename"
-									path="issuename" name="issuename" required="required"
-									pattern="(?!^ +$)^.+$" value="${issueCategoryFormBean.issuename}" maxlength="100" />
+							<div class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
+								<form:input class="form-control" placeholder="Enter Issue Category Name" id="issuename"	path="issuename" name="issuename" required="required" pattern="(?!^ +$)^.+$" value="${issueCategoryFormBean.issuename}" maxlength="100" />
 							</div>
-						</div>
-							<div class="row">
-								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
-									align="center">
-									<button class="btn btn-primary" title="SUBMIT"	onclick="submitIssueCategory(); return false;" type="button">SUBMIT</button>
-								</div>
-							</div>
-						
-						
-					</div>
-				</form:form>
-				<div class="form-group">
-					<div class="row">
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-12" align="right">
-							<button type="button" class="btn btn-primary" id="btnExport" onclick="fnExcelReport();"> EXPORT to Excel </button>
-							<button type="button" class="btn btn-primary" id="btnExport" onclick="exportTableToCSV('details.csv')"> EXPORT to CSV </button>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-12">
-							<c:if test="${not empty issueCategoryMasterList}">
-								<%
-									int count = 1;
-								%>
-								<table id="categoryTable" class="table table-striped table-bordered nowrap">
-									<thead>
-										<tr>
-											<th>Sr.No</th>
-											<th>Issue Name</th>
-											<th>Edit</th>
-											<th>Delete</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="rcaReport" items="${issueCategoryMasterList}">
-											<tr>
-												<td align="center" class="width-3"><%=count%></td>
-												<td align="center" class="width-5"><p>${rcaReport.issuename}</p></td>
-												<td><i class="fas fa-edit fa-lg  margin-left-20" title="Click for edit" onclick="javascript:viewEditIssueCatForm('${rcaReport.issueCatID}');"></i></td>
-												<td><i style="color: #f95414fa;" class="fas fa-trash-alt fa-lg  margin-left-20" title="Click for delete" onclick="javascript:deleteIssueCatForm('${rcaReport.issueCatID}');"></i></td>
-											</tr>
-											<%
-											count++;
-											%>
-										</c:forEach>
-									</tbody>
-									<tfoot>
-										<th>Sr.No</th>
-										<th>Issue Name</th>
-										<th>Edit</th>
-										<th>Delete</th>
-									</tfoot>
-								</table>
-							</c:if>
+							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3"><button class="btn btn-outline-success" title="SUBMIT"	onclick="submitIssueCategory(); return false;" type="button">SUBMIT</button></div>
 						</div>
 					</div>
 				</div>
+			</form:form>
+			<div class="row">
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-12" align="right">
+					<!-- <button type="button" class="btn btn-outline-success" id="btnExport" onclick="fnExcelReport();"> EXPORT to Excel </button> -->
+					<button type="button" class="btn btn-outline-primary" id="btnExport" onclick="exportTableToCSV('details.csv')"> EXPORT to CSV </button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-12">
+					<c:if test="${not empty issueCategoryMasterList}">
+						<%
+							int count = 1;
+						%>
+						<table id="categoryTable" class="table table-striped table-bordered nowrap">
+							<thead>
+								<tr>
+									<th>Sr.No</th>
+									<th>Issue Name</th>
+									<th>Edit</th>
+									<th>Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="rcaReport" items="${issueCategoryMasterList}">
+									<tr>
+										<td align="left" class="width-3"><%=count%></td>
+										<td align="left" class="width-5">${rcaReport.issuename}</td>
+										<td align="center"><i class="fas fa-edit fa-lg" title="Click for edit" onclick="javascript:viewEditIssueCatForm('${rcaReport.issueCatID}');"></i></td>
+										<td align="center"><i style="color: #f95414fa;" class="fas fa-trash-alt fa-lg" title="Click for delete" onclick="javascript:deleteIssueCatForm('${rcaReport.issueCatID}');"></i></td>
+									</tr>
+									<%
+									count++;
+									%>
+								</c:forEach>
+							</tbody>
+							<tfoot>
+								<th>Sr.No</th>
+								<th>Issue Name</th>
+								<th>Edit</th>
+								<th>Delete</th>
+							</tfoot>
+						</table>
+					</c:if>
+				</div>
 			</div>
 		</div>
-	</main>
+	</div>
 	<jsp:include page="include_ftr.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
 		function submitIssueCategory() {
 			document.issueCategoryFormBean.method = "POST";
-			document.issueCategoryFormBean.action = "<c:url value='/master_data/issue_category'/>";
+			document.issueCategoryFormBean.action = "<c:url value='${contextPath}/master_data/issue_category'/>";
 			document.issueCategoryFormBean.submit();
 		}
 		function viewEditIssueCatForm(issueCatID)
 		{ 
 			$("#issueCatID").val(issueCatID);
 			document.issueCategoryFormBean.method = "POST";
-			document.issueCategoryFormBean.action = "<c:url value='/master_data/get_issueCategory_details'/>";
+			document.issueCategoryFormBean.action = "<c:url value='${contextPath}/master_data/get_issueCategory_details'/>";
 			document.issueCategoryFormBean.submit();
 		}
 		function deleteIssueCatForm(issueCatID)
 		{ 
 			$("#issueCatID").val(issueCatID);
 			document.issueCategoryFormBean.method = "POST";
-			document.issueCategoryFormBean.action = "<c:url value='/master_data/delete_issueCategory_details'/>";
+			document.issueCategoryFormBean.action = "<c:url value='${contextPath}/master_data/delete_issueCategory_details'/>";
 			document.issueCategoryFormBean.submit();
 		}
 		function downloadCSV(csv, filename) {
