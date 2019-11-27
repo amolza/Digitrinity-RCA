@@ -82,7 +82,7 @@
 								<!-- <a href="#" class="text-light"><small>Forgot password?</small></a> -->
 							</div>
 							<div class="col-6 text-right">
-								<a href="${contextPath}/login" class="text-light"><small>Login</small></a>
+								<a href="${contextPath}/login" class="text-light">Login</a>
 							</div>
 						</div>
 					</div>

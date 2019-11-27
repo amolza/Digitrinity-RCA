@@ -19,17 +19,12 @@
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="container">
 		<div class="form-group mt-5">
-			<div class="row">
-				<p>
- 					<a class="btn btn-outline-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Search By Category Name</a>
- 				</p>
-			</div>
 			<form:form method="POST" modelAttribute="issueCategoryFormBean"	name="issueCategoryFormBean">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 				<input type="hidden" id="issueCatID" name="issueCatID" value="${issueCategoryFormBean.issueCatID}" />
-				<div class="container">
-					<div class="collapse multi-collapse" id="multiCollapseExample1">
-						<div class="row mb-5">
+				<div class="collapse multi-collapse" id="multiCollapseExample1">
+					<div class="card card-body">
+						<div class="row">
 							<div class='col-lg-4 col-md-4 col-sm-3 col-xs-3 text-right'>
 								<span>Enter Issue Category Name</span>
 							</div>
@@ -41,8 +36,11 @@
 					</div>
 				</div>
 			</form:form>
-			<div class="row">
-				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-12" align="right">
+			<div class="row mt-3 mb-3">
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+ 					<a class="btn btn-outline-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Search By Category Name</a>
+ 				</div>
+ 				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" align="right">
 					<!-- <button type="button" class="btn btn-outline-success" id="btnExport" onclick="fnExcelReport();"> EXPORT to Excel </button> -->
 					<button type="button" class="btn btn-outline-primary" id="btnExport" onclick="exportTableToCSV('details.csv')"> EXPORT to CSV </button>
 				</div>
@@ -75,12 +73,6 @@
 									%>
 								</c:forEach>
 							</tbody>
-							<tfoot>
-								<th>Sr.No</th>
-								<th>Issue Name</th>
-								<th>Edit</th>
-								<th>Delete</th>
-							</tfoot>
 						</table>
 					</c:if>
 				</div>

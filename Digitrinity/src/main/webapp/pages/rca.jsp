@@ -17,192 +17,199 @@
 		<jsp:include page="header.jsp"></jsp:include>
 		<div class="container">
 			<div class="form-group mt-5">
-				<form:form method="POST" modelAttribute="rcaReportForm"	name="rcaReportForm">
-					<input type="hidden" id="rcaid" name="rcaid" value="${rcaReportForm.rcaid}" />
-					<div class="row">
-						<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
-							<span class="control-label">Select Date</span>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-							<div class="form-group">
-								<div class="input-group date" data-provide="datepicker">
-									<form:input path="rcaDate" class="form-control"
-										placeholder="Select Date" id="datetimepicker1" value="${rcaReportForm.rcaDate}" />
-									<div class="input-group-append">
-										<span class="input-group-text"> <span
-											class="fa fa-calendar-alt"></span>
-										</span>
+				<div class="collapse multi-collapse" id="multiCollapseExample1">
+					<div class="card card-body">
+						<form:form method="POST" modelAttribute="rcaReportForm"	name="rcaReportForm">
+							<input type="hidden" id="rcaid" name="rcaid" value="${rcaReportForm.rcaid}" />
+							<div class="row">
+								<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
+									<span class="control-label">Select Date</span>
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+									<div class="form-group">
+										<div class="input-group date" data-provide="datepicker">
+											<form:input path="rcaDate" class="form-control"
+												placeholder="Select Date" id="datetimepicker1" value="${rcaReportForm.rcaDate}" />
+											<div class="input-group-append">
+												<span class="input-group-text"> <span
+													class="fa fa-calendar-alt"></span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
+									<span>Select Site Name</span>
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+									<div class="form-group">
+										<form:select class="form-control" path="smSiteID"
+											items="${siteMasters}" itemLabel="smSitename"
+											itemValue="smSiteID" />
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
-							<span>Select Site Name</span>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-							<div class="form-group">
-								<form:select class="form-control" path="smSiteID"
-									items="${siteMasters}" itemLabel="smSitename"
-									itemValue="smSiteID" />
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
-							<span class="control-label">Select Region Name</span>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-							<div class="form-group">
-								<form:select class="form-control" path="rgRegionID"
-									items="${regionMasters}" itemLabel="rgRegion"
-									itemValue="rgRegionID" />
-							</div>
-						</div>
-						<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
-							<span>Enter AnhorOprtr</span>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-							<div class="form-group">
-								<form:input class="form-control" placeholder="Enter AnchorOprtr"
-									id="anchorOprtr" path="anchorOprtr" name="anchorOprtr"
-									required="required" pattern="(?!^ +$)^.+$" value="${rcaReportForm.anchorOprtr}"
-									maxlength="100" />
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
-							<span class="control-label">Enter OPCOID</span>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-							<div class="form-group">
-								<form:input class="form-control" placeholder="Enter OPCOID"
-									id="opcoId" path="opcoId" name="opcoId" required="required"
-									pattern="(?!^ +$)^.+$" value="${rcaReportForm.opcoId}" maxlength="100" />
-							</div>
-						</div>
-						<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
-							<span>Input Site Down Time</span>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-							<div class="form-group">
-								<div class="input-group date" data-provide="datepicker">
-									<form:input path="siteDownTime" class="form-control"
-										placeholder="Select Date" id="datetimepicker2"
-										onchange="calculateDiffereneceInTime(this); return false;" value="${rcaReportForm.siteDownTime}"/>
-									<div class="input-group-append">
-										<span class="input-group-text"> <span
-											class="fa fa-calendar-alt"></span>
-										</span>
+							<div class="row">
+								<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
+									<span class="control-label">Select Region Name</span>
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+									<div class="form-group">
+										<form:select class="form-control" path="rgRegionID"
+											items="${regionMasters}" itemLabel="rgRegion"
+											itemValue="rgRegionID" />
+									</div>
+								</div>
+								<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
+									<span>Enter AnhorOprtr</span>
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+									<div class="form-group">
+										<form:input class="form-control" placeholder="Enter AnchorOprtr"
+											id="anchorOprtr" path="anchorOprtr" name="anchorOprtr"
+											required="required" pattern="(?!^ +$)^.+$" value="${rcaReportForm.anchorOprtr}"
+											maxlength="100" />
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
-							<span class="control-label">Input Restored Time</span>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-							<div class="form-group">
-								<div class="input-group date" data-provide="datepicker">
-									<form:input path="restoredTime" class="form-control"
-										placeholder="Select Date" id="datetimepicker3"
-										onchange="calculateDiffereneceInTime(this); return false;" value="${rcaReportForm.restoredTime}" />
-									<div class="input-group-append">
-										<span class="input-group-text"> <span
-											class="fa fa-calendar-alt"></span>
-										</span>
+							<div class="row">
+								<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
+									<span class="control-label">Enter OPCOID</span>
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+									<div class="form-group">
+										<form:input class="form-control" placeholder="Enter OPCOID"
+											id="opcoId" path="opcoId" name="opcoId" required="required"
+											pattern="(?!^ +$)^.+$" value="${rcaReportForm.opcoId}" maxlength="100" />
+									</div>
+								</div>
+								<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
+									<span>Input Site Down Time</span>
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+									<div class="form-group">
+										<div class="input-group date" data-provide="datepicker">
+											<form:input path="siteDownTime" class="form-control"
+												placeholder="Select Date" id="datetimepicker2"
+												onchange="calculateDiffereneceInTime(this); return false;" value="${rcaReportForm.siteDownTime}"/>
+											<div class="input-group-append">
+												<span class="input-group-text"> <span
+													class="fa fa-calendar-alt"></span>
+												</span>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
-							<span>Site Down Duration </span>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-							<div class="form-group">
-								<form:input id="input-time" class="form-control"
-									path="siteDownDuration" value="${rcaReportForm.siteDownDuration}" />
-								<!-- type="time" value="00:00:01" -->
+							<div class="row">
+								<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
+									<span class="control-label">Input Restored Time</span>
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+									<div class="form-group">
+										<div class="input-group date" data-provide="datepicker">
+											<form:input path="restoredTime" class="form-control"
+												placeholder="Select Date" id="datetimepicker3"
+												onchange="calculateDiffereneceInTime(this); return false;" value="${rcaReportForm.restoredTime}" />
+											<div class="input-group-append">
+												<span class="input-group-text"> <span
+													class="fa fa-calendar-alt"></span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
+									<span>Site Down Duration </span>
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+									<div class="form-group">
+										<form:input id="input-time" class="form-control"
+											path="siteDownDuration" value="${rcaReportForm.siteDownDuration}" />
+										<!-- type="time" value="00:00:01" -->
+									</div>
+								</div>
 							</div>
-						</div>
+							<div class="row">
+								<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
+									<span class="control-label">Select Issue Name</span>
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+									<div class="form-group">
+										<form:select path="issueCatID" items="${issueCategoryMasters}"
+											class="form-control" itemLabel="issuename"
+											itemValue="issueCatID" />
+									</div>
+								</div>
+								<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
+									<span>Select Outage Category</span>
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+									<div class="form-group">
+										<form:select path="outageCatID" class="form-control"
+											items="${outageCategoryMasters}" itemLabel="outageCategory"
+											itemValue="outageCatID" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
+									<span class="control-label">Select Fault Category</span>
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+									<div class="form-group">
+										<form:select path="faultID" items="${faultCategoryMasters}"
+											class="form-control" itemLabel="faultCategory"
+											itemValue="faultID" />
+									</div>
+								</div>
+								<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
+									<span>Enter RCA</span>
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+									<div class="form-group">
+										<form:input class="form-control" placeholder="Enter RCA" id=""
+											path="rca" name="" required="required" pattern="(?!^ +$)^.+$"
+											value="${rcaReportForm.rca}"  maxlength="100" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
+									<span class="control-label">Enter Outage In Minutes</span>
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+									<div class="form-group">
+										<form:input class="form-control" placeholder="Enter Title" id=""
+											path="outageInMinutes" name="" required="required"
+											pattern="(?!^ +$)^.+$" value="${rcaReportForm.outageInMinutes}"  maxlength="100" />
+									</div>
+								</div>
+								<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
+									<span>Enter SLA</span>
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+									<div class="form-group">
+										<form:input class="form-control" placeholder="Enter Title" id=""
+											path="sla" name="" required="required" pattern="(?!^ +$)^.+$"
+											value="${rcaReportForm.outageInMinutes}" maxlength="100" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
+									align="center">
+									<button class="btn btn-outline-primary" title="SUBMIT"	onclick="submitRCA(); return false;" type="button">SUBMIT</button>
+								</div>
+							</div>
+						</form:form>
 					</div>
-					<div class="row">
-						<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
-							<span class="control-label">Select Issue Name</span>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-							<div class="form-group">
-								<form:select path="issueCatID" items="${issueCategoryMasters}"
-									class="form-control" itemLabel="issuename"
-									itemValue="issueCatID" />
-							</div>
-						</div>
-						<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
-							<span>Select Outage Category</span>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-							<div class="form-group">
-								<form:select path="outageCatID" class="form-control"
-									items="${outageCategoryMasters}" itemLabel="outageCategory"
-									itemValue="outageCatID" />
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
-							<span class="control-label">Select Fault Category</span>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-							<div class="form-group">
-								<form:select path="faultID" items="${faultCategoryMasters}"
-									class="form-control" itemLabel="faultCategory"
-									itemValue="faultID" />
-							</div>
-						</div>
-						<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
-							<span>Enter RCA</span>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-							<div class="form-group">
-								<form:input class="form-control" placeholder="Enter RCA" id=""
-									path="rca" name="" required="required" pattern="(?!^ +$)^.+$"
-									value="${rcaReportForm.rca}"  maxlength="100" />
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
-							<span class="control-label">Enter Outage In Minutes</span>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-							<div class="form-group">
-								<form:input class="form-control" placeholder="Enter Title" id=""
-									path="outageInMinutes" name="" required="required"
-									pattern="(?!^ +$)^.+$" value="${rcaReportForm.outageInMinutes}"  maxlength="100" />
-							</div>
-						</div>
-						<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
-							<span>Enter SLA</span>
-						</div>
-						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-							<div class="form-group">
-								<form:input class="form-control" placeholder="Enter Title" id=""
-									path="sla" name="" required="required" pattern="(?!^ +$)^.+$"
-									value="${rcaReportForm.outageInMinutes}" maxlength="100" />
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
-							align="center">
-							<button class="btn btn-outline-primary" title="SUBMIT"	onclick="submitRCA(); return false;" type="button">SUBMIT</button>
-						</div>
-					</div>
-				</form:form>
-				<div class="row">
-					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-12" align="right">
+				</div>
+				<div class="row mt-3 mb-3">
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+	 					<a class="btn btn-outline-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Add RCA Details</a>
+	 				</div>
+	 				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" align="right">
 						<button type="button" class="btn btn-outline-primary" id="btnExport" onclick="fnExcelReport();"> EXPORT to Excel </button>
 						<button type="button" class="btn btn-outline-primary" id="btnExport" onclick="exportTableToCSV('details.csv')"> EXPORT to CSV </button>
 					</div>
@@ -212,7 +219,7 @@
 						<%
 							int count = 1;
 						%>
-						<table id="headerTable" class="table table-striped table-bordered nowrap">
+						<table id="rcaReportTable" class="table table-striped table-bordered nowrap">
 							<thead>
 								<tr>
 									<th>Sr.No</th>
@@ -252,21 +259,6 @@
 								%>
 								</c:forEach>
 							</tbody>
-							<tfoot>
-								<th>Sr.No</th>
-								<th>Site ID</th>
-								<th>Site Name</th>
-								<th>AnchorOprtr</th>
-								<th>Opco ID</th>
-								<th>Site Down Time</th>
-								<th>Restored Time</th>
-								<th>Site Down Duration</th>
-								<th>Rca</th>
-								<th>Outage In Minutes</th>
-								<th>Sla</th>
-								<th>Edit</th>
-								<th>Delete</th>
-							</tfoot>
 						</table>
 					</c:if>
 				</div>
@@ -330,7 +322,7 @@
 		{
 		    var tab_text="<table border='2px'><tr bgcolor='#87AFC6'>";
 		    var textRange; var j=0;
-		    tab = document.getElementById('headerTable'); // id of table
+		    tab = document.getElementById('rcaReportTable'); // id of table
 
 		    for(j = 0 ; j < tab.rows.length ; j++) 
 		    {     
@@ -388,7 +380,7 @@
 
 		function exportTableToCSV(filename) {
 		    var csv = [];
-			var rows = document.getElementById("headerTable").rows;
+			var rows = document.getElementById("rcaReportTable").rows;
 		    for (var i = 0; i < rows.length; i++) {
 				var row = [], cols = rows[i].querySelectorAll("td, th");
 		        for (var j = 0; j < cols.length; j++) 
@@ -401,9 +393,11 @@
 		}
 		
 		$(document).ready(function() {
-		    var table = $('#headerTable').DataTable( {
+		    var table = $('#rcaReportTable').DataTable( {
 		        responsive: true
 		    } );
+		 
+		    new $.fn.dataTable.FixedHeader( table );
 		} );
 	</script>
 </html>

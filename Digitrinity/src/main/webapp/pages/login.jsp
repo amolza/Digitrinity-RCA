@@ -12,6 +12,7 @@
 		<link href="${contextPath}/resources/css/login.css" rel="stylesheet" />
 		<link href="${contextPath}/resources/bootstrap/css/all.css" rel="stylesheet" />
 		<script src="${contextPath}/resources/bootstrap/js/all.js" type="text/javascript"></script>
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
 	</head>
 	<body class="bg-default">
 		<div class="main-content">
@@ -74,8 +75,8 @@
 						</div>
 						<div class="row mt-3">
 							<div class="col-6">
-								<span class="pull-left"><a href="#" class="text-light"><small>Forgot password?</small></a></span>
-								<span class="pull-right float-right"><a href="${contextPath}/registration" class="text-light"><small>Create new account</small></a></span>
+								<span class="pull-left"><a href="#" class="text-light">Forgot password?</a></span>
+								<span class="pull-right float-right"><a href="${contextPath}/registration" class="text-light">Create new account</a></span>
 							</div>
 						</div>
 					</div>

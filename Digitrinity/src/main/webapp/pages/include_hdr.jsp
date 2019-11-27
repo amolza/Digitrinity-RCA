@@ -5,8 +5,6 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<style class="cp-pen-styles">@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700&subset=latin-ext");</style>
-
 <link href="${contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="${contextPath}/resources/bootstrap/css/bootstrap-grid.min.css" rel="stylesheet"> 
 <link href="${contextPath}/resources/bootstrap/css/bootstrap-reboot.min.css" rel="stylesheet">
@@ -14,5 +12,9 @@
 <link href="${contextPath}/resources/bootstrap/css/animate.min.css" rel="stylesheet">
 <link href="${contextPath}/resources/bootstrap/css/bootnavbar.css" rel="stylesheet">
 <link href="${contextPath}/resources/bootstrap/css/all.css" rel="stylesheet" />
+	
+<link href="${contextPath}/resources/css/custom_styles.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
 
-<link href="${contextPath}/resources/css/bootstrap/datatables.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css  " rel="stylesheet">

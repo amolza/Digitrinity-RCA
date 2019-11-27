@@ -7,19 +7,38 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active">
+			<li class="nav-item ml-3 active">
 				<a class="nav-link" href="${contextPath}">Home <span class="sr-only">(current)</span></a>
 			</li>
-			<li class="nav-item dropdown">
+			<li class="nav-item ml-3">
+				<a class="nav-link" href="${contextPath}/rca/view_rca_form">RCA Report</a>
+			</li>
+			<li class="nav-item ml-3 dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					RCA Details
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<li class="nav-item dropdown">
+					<a class="dropdown-item dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown"	aria-haspopup="true" aria-expanded="false">
+						RCA Details
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+						<li><a class="dropdown-item" href="${contextPath}/master_data/view_issuecategory_form">Add Issue Category</a></li>
+						<li><a class="dropdown-item" href="${contextPath}/master_data/view_outageCategory_form">Add Outage Category</a></li>
+						<li><a class="dropdown-item" href="${contextPath}/master_data/view_faultCategory_form">Add Fault Category</a></li>
+					</ul>
+				</ul>
+			</li>
+			<%-- <li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Manage Details
 				</a>
 				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<li><a class="dropdown-item" href="${contextPath}/rca/view_rca_form">Add Details</a></li>
+					<li><a class="dropdown-item" href="${contextPath}/rca/view_rca_form">RCA Report</a></li>
 					<div class="dropdown-divider"></div>
 					<li class="nav-item dropdown">
 					<a class="dropdown-item dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown"	aria-haspopup="true" aria-expanded="false">
-						Add Category Details
+						RCA Details
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
 						<li><a class="dropdown-item" href="${contextPath}/master_data/view_issuecategory_form">Add Issue Category</a></li>
@@ -39,12 +58,12 @@
 						</li>          
 					</ul>
 				</ul>
-			</li>
+			</li> --%>
 		</ul>
-		<form class="form-inline my-2 my-lg-0">
+		<!-- <form class="form-inline my-2 my-lg-0">
 			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-		</form>
+		</form> -->
 		<ul class="navbar-nav ml-auto nav-flex-icons ">
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
