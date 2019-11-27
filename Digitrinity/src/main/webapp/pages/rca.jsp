@@ -214,54 +214,52 @@
 						<button type="button" class="btn btn-outline-primary" id="btnExport" onclick="exportTableToCSV('details.csv')"> EXPORT to CSV </button>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row" style="overflow-x: scroll;">
 					<c:if test="${not empty rcaReportList}">
 						<%
 							int count = 1;
 						%>
-					  	<div class="table-responsive">
-							<table id="rcaReportTable" class="table table-striped table-bordered nowrap">
-								<thead>
+						<table id="rcaReportTable" class="table table-striped table-bordered nowrap">
+							<thead>
+								<tr>
+									<th>Sr.No</th>
+									<th>Site ID</th>
+									<th>Site Name</th>
+									<th>AnchorOprtr</th>
+									<th>Opco ID</th>
+									<th>Site Down Time</th>
+									<th>Restored Time</th>
+									<th>Site Down Duration</th>
+									<th>Rca</th>
+									<th>Outage In Minutes</th>
+									<th>Sla</th>
+									<th>Edit</th>
+									<th>Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="rcaReport" items="${rcaReportList}">
 									<tr>
-										<th>Sr.No</th>
-										<th>Site ID</th>
-										<th>Site Name</th>
-										<th>AnchorOprtr</th>
-										<th>Opco ID</th>
-										<th>Site Down Time</th>
-										<th>Restored Time</th>
-										<th>Site Down Duration</th>
-										<th>Rca</th>
-										<th>Outage In Minutes</th>
-										<th>Sla</th>
-										<th>Edit</th>
-										<th>Delete</th>
+										<td><%=count%></td>
+										<td>${rcaReport.smSiteID}</td>
+										<td>${rcaReport.smSitename}</td>
+										<td>${rcaReport.anchorOprtr}</td>
+										<td>${rcaReport.opcoID}</td>
+										<td>${rcaReport.siteDownTime}</td>
+										<td>${rcaReport.restoredTime}</td>
+										<td>${rcaReport.siteDownDuration}</td>
+										<td>${rcaReport.rca}</td>
+										<td>${rcaReport.outageInMinutes}</td>
+										<td>${rcaReport.sla}</td>
+										<td><i class="fas fa-edit fa-lg  margin-left-20" title="Click for edit" onclick="javascript:viewEditRCAForm('${rcaReport.rcaid}');"></i></td>
+										<td><i style="color: #f95414fa;" class="fas fa-trash-alt fa-lg  margin-left-20" title="Click for delete" onclick="javascript:deleteRCAForm('${rcaReport.rcaid}');"></i></td>
 									</tr>
-								</thead>
-								<tbody>
-									<c:forEach var="rcaReport" items="${rcaReportList}">
-										<tr>
-											<td><%=count%></td>
-											<td>${rcaReport.smSiteID}</td>
-											<td>${rcaReport.smSitename}</td>
-											<td>${rcaReport.anchorOprtr}</td>
-											<td>${rcaReport.opcoID}</td>
-											<td>${rcaReport.siteDownTime}</td>
-											<td>${rcaReport.restoredTime}</td>
-											<td>${rcaReport.siteDownDuration}</td>
-											<td>${rcaReport.rca}</td>
-											<td>${rcaReport.outageInMinutes}</td>
-											<td>${rcaReport.sla}</td>
-											<td><i class="fas fa-edit fa-lg  margin-left-20" title="Click for edit" onclick="javascript:viewEditRCAForm('${rcaReport.rcaid}');"></i></td>
-											<td><i style="color: #f95414fa;" class="fas fa-trash-alt fa-lg  margin-left-20" title="Click for delete" onclick="javascript:deleteRCAForm('${rcaReport.rcaid}');"></i></td>
-										</tr>
-									<%
-										count++;
-									%>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
+								<%
+									count++;
+								%>
+								</c:forEach>
+							</tbody>
+						</table>
 					</c:if>
 				</div>
 			</div>
@@ -399,7 +397,7 @@
 		        responsive: true
 		    } );
 		 
-		    new $.fn.dataTable.FixedHeader( table );
+		    // new $.fn.dataTable.FixedHeader( table );
 		} );
 	</script>
 </html>
