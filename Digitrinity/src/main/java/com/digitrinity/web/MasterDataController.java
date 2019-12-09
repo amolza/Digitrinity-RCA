@@ -91,6 +91,7 @@ public class MasterDataController {
 		categoryMaster.setIssuename(issueCategoryFormBean.getIssuename());
 		
 		issueCategoryMasterRepository.save(categoryMaster);
+		issueCategoryFormBean.setIssueCatID("");
 		issueCategoryFormBean.setIssuename("");
 		List<IssueCategoryMaster> issueCategoryMasterList =issueCategoryMasterRepository.findAll();
 		model.addAttribute("issueCategoryMasterList", issueCategoryMasterList);
@@ -112,6 +113,7 @@ public class MasterDataController {
 		outageCategoryMaster.setOutageCategory(outageCategoryFormBean.getOutageCategory());
 		
 		outageCategoryMasterRepository.save(outageCategoryMaster);
+		outageCategoryFormBean.setOutageCatID("");
 		outageCategoryFormBean.setOutageCategory("");
 		List<OutageCategoryMaster> outageCategoryMasterList =outageCategoryMasterRepository.findAll();
 		model.addAttribute("outageCategoryMasterList", outageCategoryMasterList);
@@ -132,6 +134,7 @@ public class MasterDataController {
 		faultCategoryMaster.setFaultCategory(faultCategoryFormBean.getFaultCategory());
 		
 		faultCategoryMasterRepository.save(faultCategoryMaster);
+		faultCategoryFormBean.setFaultID("");
 		faultCategoryFormBean.setFaultCategory("");
 		List<FaultCategoryMaster> faultCategoryMasterList =faultCategoryMasterRepository.findAll();
 		model.addAttribute("faultCategoryMasterList", faultCategoryMasterList);

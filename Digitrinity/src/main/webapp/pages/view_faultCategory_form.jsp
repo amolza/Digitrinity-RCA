@@ -33,7 +33,7 @@
 											required="required" pattern="(?!^ +$)^.+$" value="${faultCategoryFormBean.faultCategory}" maxlength="100" />
 									</div>
 									<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
-										<button class="btn btn-outline-success" title="SUBMIT"	onclick="submitFaultCategory(); return false;" type="button">SUBMIT</button>
+										<button class="btn btn-outline-success" title="SAVE"	onclick="submitFaultCategory(); return false;" type="button">SAVE</button>
 									</div>
 								</div>
 							</div>
@@ -42,11 +42,11 @@
 				</div>
 				<div class="row mt-3 mb-3">
 					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-	 					<a class="btn btn-outline-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Search By Fault Category Name</a>
+	 					<a class="btn btn-outline-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Add Fault Category Name</a>
 	 				</div>
 	 				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" align="right">
 						<!-- <button type="button" class="btn btn-outline-primary" id="btnExport" onclick="fnExcelReport();"> EXPORT to Excel </button> -->
-						<button type="button" class="btn btn-outline-primary" id="btnExport" onclick="exportTableToCSV('details.csv')"> EXPORT to CSV </button>
+						<button type="button" class="btn btn-outline-primary" id="btnExport" onclick="exportTableToCSV('Fault Category Details.csv')"> EXPORT to CSV </button>
 					</div>
 				</div>
 				<div class="row">
@@ -87,22 +87,28 @@
 	</body>
 	<script type="text/javascript">
 		function submitFaultCategory() {
-			document.faultCategoryFormBean.method = "POST";
-			document.faultCategoryFormBean.action = "<c:url value='${contextPath}/master_data/fault_category'/>";
-			document.faultCategoryFormBean.submit();
+		
+			var faultCategoryValue = $ID('faultCategory').value;
+			if (checkNullOrEmpty(faultCategoryValue)) {
+				document.faultCategoryFormBean.method = "POST";
+				document.faultCategoryFormBean.action = "<c:url value='/master_data/fault_category'/>";
+				document.faultCategoryFormBean.submit();
+				
+			}else
+				alert("Please enter Fault Category Name.");
 		}
 		function viewEditfaultCategoryForm(faultID)
 		{ 
 			$("#faultID").val(faultID);
 			document.faultCategoryFormBean.method = "POST";
-			document.faultCategoryFormBean.action = "<c:url value='${contextPath}/master_data/get_faultCategory_details'/>";
+			document.faultCategoryFormBean.action = "<c:url value='/master_data/get_faultCategory_details'/>";
 			document.faultCategoryFormBean.submit();
 		}
 		function deletefaultCategory(faultID)
 		{ 
 			$("#faultID").val(faultID);
 			document.faultCategoryFormBean.method = "POST";
-			document.faultCategoryFormBean.action = "<c:url value='${contextPath}/master_data/delete_faultCategory_details'/>";
+			document.faultCategoryFormBean.action = "<c:url value='/master_data/delete_faultCategory_details'/>";
 			document.faultCategoryFormBean.submit();
 		}
 		

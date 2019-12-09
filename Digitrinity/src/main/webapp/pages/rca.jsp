@@ -21,6 +21,7 @@
 					<div class="card card-body">
 						<form:form method="POST" modelAttribute="rcaReportForm"	name="rcaReportForm">
 							<input type="hidden" id="rcaid" name="rcaid" value="${rcaReportForm.rcaid}" />
+								
 							<div class="row">
 								<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 text-right">
 									<span class="control-label">Select Date</span>
@@ -43,10 +44,11 @@
 								</div>
 								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
 									<div class="form-group">
-										<form:select class="form-control" path="smSiteID"
-											items="${siteMasters}" itemLabel="smSitename"
-											itemValue="smSiteID" />
-									</div>
+										<form:select class="form-control" path="smSitecode"
+											items="${siteMasters}" itemLabel="smSitecode"
+											itemValue="smSitecode" data-status="smSitename" />
+											<input type="hidden" id="smSitename" name="smSitename" value="${smSitename}"  />
+								</div>
 								</div>
 							</div>
 							<div class="row">
@@ -199,7 +201,7 @@
 							<div class="row">
 								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
 									align="center">
-									<button class="btn btn-outline-primary" title="SUBMIT"	onclick="submitRCA(); return false;" type="button">SUBMIT</button>
+									<button class="btn btn-outline-primary" title="SAVE"	onclick="submitRCA(); return false;" type="button">SAVE</button>
 								</div>
 							</div>
 						</form:form>
@@ -211,7 +213,7 @@
 	 				</div>
 	 				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" align="right">
 						<button type="button" class="btn btn-outline-primary" id="btnExport" onclick="fnExcelReport();"> EXPORT to Excel </button>
-						<button type="button" class="btn btn-outline-primary" id="btnExport" onclick="exportTableToCSV('details.csv')"> EXPORT to CSV </button>
+						<button type="button" class="btn btn-outline-primary" id="btnExport" onclick="exportTableToCSV('RCAReport.csv')"> EXPORT to CSV </button>
 					</div>
 				</div>
 				<div class="row" style="overflow-x: scroll;">
@@ -222,37 +224,37 @@
 						<table id="rcaReportTable" class="table table-striped table-bordered nowrap">
 							<thead>
 								<tr>
-									<th>Sr.No</th>
-									<th>Site ID</th>
-									<th>Site Name</th>
-									<th>AnchorOprtr</th>
-									<th>Opco ID</th>
-									<th>Site Down Time</th>
-									<th>Restored Time</th>
-									<th>Site Down Duration</th>
-									<th>Rca</th>
-									<th>Outage In Minutes</th>
-									<th>Sla</th>
-									<th>Edit</th>
-									<th>Delete</th>
+									<th width=200px; style='text-align:center; font-size:15px;'>Sr.No</th>
+									<th width=200px; style='text-align:center; font-size:15px;'>Site ID</th>
+									<th width=200px; style='text-align:center; font-size:15px;'>Site Name</th>
+									<th width=200px; style='text-align:center; font-size:15px;'>AnchorOprtr</th>
+									<th width=200px; style='text-align:center; font-size:15px;'>Opco ID</th>
+									<th width=200px; style='text-align:center; font-size:15px;'>Site Down Time</th>
+									<th width=200px; style='text-align:center; font-size:15px;'>Restored Time</th>
+									<th width=200px; style='text-align:center; font-size:15px;'>Site Down Duration</th>
+									<th width=200px; style='text-align:center; font-size:15px;'>Rca</th>
+									<th width=200px; style='text-align:center; font-size:15px;'>Outage In Minutes</th>
+									<th width=200px; style='text-align:center; font-size:15px;'>Sla</th>
+									<th width=200px; style='text-align:center; font-size:15px;'>Edit</th>
+									<th width=200px; style='text-align:center; font-size:15px;'>Delete</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach var="rcaReport" items="${rcaReportList}">
 									<tr>
-										<td><%=count%></td>
-										<td>${rcaReport.smSiteID}</td>
-										<td>${rcaReport.smSitename}</td>
-										<td>${rcaReport.anchorOprtr}</td>
-										<td>${rcaReport.opcoID}</td>
-										<td>${rcaReport.siteDownTime}</td>
-										<td>${rcaReport.restoredTime}</td>
-										<td>${rcaReport.siteDownDuration}</td>
-										<td>${rcaReport.rca}</td>
-										<td>${rcaReport.outageInMinutes}</td>
-										<td>${rcaReport.sla}</td>
-										<td><i class="fas fa-edit fa-lg  margin-left-20" title="Click for edit" onclick="javascript:viewEditRCAForm('${rcaReport.rcaid}');"></i></td>
-										<td><i style="color: #f95414fa;" class="fas fa-trash-alt fa-lg  margin-left-20" title="Click for delete" onclick="javascript:deleteRCAForm('${rcaReport.rcaid}');"></i></td>
+										<td width=200px; style='text-align:right; font-size:15px;'><%=count%></td>
+										<td width=200px; style='text-align:right; font-size:15px;'>${rcaReport.smSiteID}</td>
+										<td width=200px; style='text-align:right; font-size:15px;'>${rcaReport.smSitename}</td>
+										<td width=200px; style='text-align:right; font-size:15px;'>${rcaReport.anchorOprtr}</td>
+										<td width=200px; style='text-align:right; font-size:15px;'>${rcaReport.opcoID}</td>
+										<td width=200px; style='text-align:right; font-size:15px;'>${rcaReport.siteDownTime}</td>
+										<td width=200px; style='text-align:right; font-size:15px;'>${rcaReport.restoredTime}</td>
+										<td width=200px; style='text-align:right; font-size:15px;'>${rcaReport.siteDownDuration}</td>
+										<td width=200px; style='text-align:right; font-size:15px;'>${rcaReport.rca}</td>
+										<td width=200px; style='text-align:right; font-size:15px;'>${rcaReport.outageInMinutes}</td>
+										<td width=200px; style='text-align:right; font-size:15px;'>${rcaReport.sla}</td>
+										<td width=200px; style='text-align:right; font-size:15px;'><i class="fas fa-edit fa-lg  margin-left-20" title="Click for edit" onclick="javascript:viewEditRCAForm('${rcaReport.rcaid}');"></i></td>
+										<td width=200px; style='text-align:right; font-size:15px;'><i style="color: #f95414fa;" class="fas fa-trash-alt fa-lg  margin-left-20" title="Click for delete" onclick="javascript:deleteRCAForm('${rcaReport.rcaid}');"></i></td>
 									</tr>
 								<%
 									count++;
@@ -267,6 +269,9 @@
 		<jsp:include page="include_ftr.jsp"></jsp:include>
 	</body>
 	<script type="text/javascript">
+	
+
+	
 		jQuery(document).ready(function () {
 	        'use strict';
 	        jQuery('#datetimepicker1').datetimepicker({
@@ -288,9 +293,15 @@
 			document.rcaReportForm.submit();
 		}
 		function submitRCA() {
+			var smSitecodeValue = $ID('smSitecode').value;
+			var smSitenameValue = $ID('smSitename').value;
+			
+			if (checkNullOrEmpty(smSitecodeValue)) {
 			document.rcaReportForm.method = "POST";
 			document.rcaReportForm.action = "<c:url value='${contextPath}/rca/create_rca'/>";
 			document.rcaReportForm.submit();
+			}else
+				alert("Please Select atleast one Site Code.");
 		}
 		function calculateDiffereneceInTime(){
 			var today = new Date();
@@ -320,16 +331,22 @@
 		
 		function fnExcelReport()
 		{
-		    var tab_text="<table border='2px'><tr bgcolor='#87AFC6'>";
+		   
+		   var tab_text="<table border='2px'>"; 
+			var tab_text=tab_text+"<tr  height='50'><th colspan='11' style='text-align:center; font-size:20px;'>RCA Report</th></tr>"; 
+		   
 		    var textRange; var j=0;
 		    tab = document.getElementById('rcaReportTable'); // id of table
 
-		    for(j = 0 ; j < tab.rows.length ; j++) 
-		    {     
-		        tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
-		        //tab_text=tab_text+"</tr>";
+		    var lines = tab.rows.length;
+			 // the first headline of the table
+		    if (lines > 0) {
+		        tab_text = tab_text + '<tr > <th width=200px; style=text-align:center; font-size:20px;>' + tab.rows[0].innerHTML + '</th></tr>';
 		    }
-
+			    for(i=1 ; i < lines-2 ; i++) 
+			    { 
+			    tab_text = tab_text + '<tr>  <td width=200px; style=text-align:right; font-size:15px;>' + tab.rows[i].innerHTML + '</td></tr>';
+			    }
 		    tab_text=tab_text+"</table>";
 		    tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
 		    tab_text= tab_text.replace(/<img[^>]*>/gi,""); // remove if u want images in your table
@@ -344,12 +361,22 @@
 		        txtArea1.document.write(tab_text);
 		        txtArea1.document.close();
 		        txtArea1.focus(); 
-		        sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xls");
+		        sa=txtArea1.document.execCommand("SaveAs",true,"RCAReport.xls");
 		    }  
-		    else                 //other browser not tested on IE 11
-		        sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));  
+		    else   {              //other browser not tested on IE 11
+		       /*  sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));   */
 
-		    return (sa);
+		    	  let a = $("<a />", {
+		              href: 'data:application/vnd.ms-excel,' + encodeURIComponent(tab_text),
+		              download: "RCAReport.xls"
+		          })
+		          .appendTo("body")
+		          .get(0)
+		          .click();
+		          e.preventDefault();
+		      }
+
+		      return (sa);
 		}
 		
 		function downloadCSV(csv, filename) {

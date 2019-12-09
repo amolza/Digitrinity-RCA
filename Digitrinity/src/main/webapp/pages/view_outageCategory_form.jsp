@@ -32,7 +32,7 @@
 											required="required" pattern="(?!^ +$)^.+$" value="${outageCategoryFormBean.outageCategory}"	maxlength="100" />
 									</div>
 									<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
-										<button class="btn btn-outline-success" title="SUBMIT" onclick="submitOutageCategory(); return false;" type="button">SUBMIT</button>
+										<button class="btn btn-outline-success" title="SAVE" onclick="submitOutageCategory(); return false;" type="button">SAVE</button>
 									</div>
 								</div>
 							</div>
@@ -41,11 +41,11 @@
 				</div>
 				<div class="row mt-3 mb-3">
 					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-	 					<a class="btn btn-outline-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Search By Outage Category Name</a>
+	 					<a class="btn btn-outline-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Add Outage Category Name</a>
 	 				</div>
 	 				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" align="right">
 						<!-- <button type="button" class="btn btn-outline-primary" id="btnExport" onclick="fnExcelReport();"> EXPORT to Excel </button> -->
-						<button type="button" class="btn btn-outline-primary" id="btnExport" onclick="exportTableToCSV('details.csv')"> EXPORT to CSV </button>
+						<button type="button" class="btn btn-outline-primary" id="btnExport" onclick="exportTableToCSV('Outage Category Details.csv')"> EXPORT to CSV </button>
 					</div>
 				</div>
 				<div class="row">
@@ -87,22 +87,26 @@
 	</body>
 	<script type="text/javascript">
 		function submitOutageCategory() {
-			document.outageCategoryFormBean.method = "POST";
-			document.outageCategoryFormBean.action = "<c:url value='${contextPath}/master_data/outage_category'/>";
-			document.outageCategoryFormBean.submit();
+			var outageCategoryValue = $ID('outageCategory').value;
+			if (checkNullOrEmpty(outageCategoryValue)) {
+				document.outageCategoryFormBean.method = "POST";
+				document.outageCategoryFormBean.action = "<c:url value='/master_data/outage_category'/>";
+				document.outageCategoryFormBean.submit();
+			}else
+				alert("Please enter Outage Category Name.");
 		}
 		function viewEditOutageCat(outageCatID)
 		{ 
 			$("#outageCatID").val(outageCatID);
 			document.outageCategoryFormBean.method = "POST";
-			document.outageCategoryFormBean.action = "<c:url value='${contextPath}/master_data/get_outageCategory_details'/>";
+			document.outageCategoryFormBean.action = "<c:url value='/master_data/get_outageCategory_details'/>";
 			document.outageCategoryFormBean.submit();
 		}
 		function deleteOutageCat(outageCatID)
 		{ 
 			$("#outageCatID").val(outageCatID);
 			document.outageCategoryFormBean.method = "POST";
-			document.outageCategoryFormBean.action = "<c:url value='${contextPath}/master_data/delete_outageCategory_details'/>";
+			document.outageCategoryFormBean.action = "<c:url value='/master_data/delete_outageCategory_details'/>";
 			document.outageCategoryFormBean.submit();
 		}
 		

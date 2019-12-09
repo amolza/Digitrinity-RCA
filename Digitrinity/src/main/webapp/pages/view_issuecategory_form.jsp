@@ -31,18 +31,18 @@
 							<div class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
 								<form:input class="form-control" placeholder="Enter Issue Category Name" id="issuename"	path="issuename" name="issuename" required="required" pattern="(?!^ +$)^.+$" value="${issueCategoryFormBean.issuename}" maxlength="100" />
 							</div>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3"><button class="btn btn-outline-success" title="SUBMIT"	onclick="submitIssueCategory(); return false;" type="button">SUBMIT</button></div>
+							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3"><button class="btn btn-outline-success" title="SAVE"	onclick="submitIssueCategory(); return false;" type="button">SAVE</button></div>
 						</div>
 					</div>
 				</div>
 			</form:form>
 			<div class="row mt-3 mb-3">
 				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
- 					<a class="btn btn-outline-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Search By Category Name</a>
+ 					<a class="btn btn-outline-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Add Category Name</a>
  				</div>
  				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" align="right">
 					<!-- <button type="button" class="btn btn-outline-success" id="btnExport" onclick="fnExcelReport();"> EXPORT to Excel </button> -->
-					<button type="button" class="btn btn-outline-primary" id="btnExport" onclick="exportTableToCSV('details.csv')"> EXPORT to CSV </button>
+					<button type="button" class="btn btn-outline-primary" id="btnExport" onclick="exportTableToCSV('Issue Category Details.csv')"> EXPORT to CSV </button>
 				</div>
 			</div>
 			<div class="row">
@@ -83,22 +83,27 @@
 </body>
 <script type="text/javascript">
 		function submitIssueCategory() {
-			document.issueCategoryFormBean.method = "POST";
-			document.issueCategoryFormBean.action = "<c:url value='${contextPath}/master_data/issue_category'/>";
-			document.issueCategoryFormBean.submit();
+			var issuenameValue = $ID('issuename').value;
+			if (checkNullOrEmpty(issuenameValue)) {
+				document.issueCategoryFormBean.method = "POST";
+				document.issueCategoryFormBean.action = "<c:url value='/master_data/issue_category'/>";
+				document.issueCategoryFormBean.submit();
+				
+			}else
+				alert("Please enter Issue Category Name.");
 		}
 		function viewEditIssueCatForm(issueCatID)
 		{ 
 			$("#issueCatID").val(issueCatID);
 			document.issueCategoryFormBean.method = "POST";
-			document.issueCategoryFormBean.action = "<c:url value='${contextPath}/master_data/get_issueCategory_details'/>";
+			document.issueCategoryFormBean.action = "<c:url value='/master_data/get_issueCategory_details'/>";
 			document.issueCategoryFormBean.submit();
 		}
 		function deleteIssueCatForm(issueCatID)
 		{ 
 			$("#issueCatID").val(issueCatID);
 			document.issueCategoryFormBean.method = "POST";
-			document.issueCategoryFormBean.action = "<c:url value='${contextPath}/master_data/delete_issueCategory_details'/>";
+			document.issueCategoryFormBean.action = "<c:url value='/master_data/delete_issueCategory_details'/>";
 			document.issueCategoryFormBean.submit();
 		}
 		function downloadCSV(csv, filename) {

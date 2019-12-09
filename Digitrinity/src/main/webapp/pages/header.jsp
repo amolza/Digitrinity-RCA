@@ -15,18 +15,21 @@
 			</li>
 			<li class="nav-item ml-3 dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					RCA Details
+					RCA Master
 				</a>
 				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<li class="nav-item dropdown">
+					<%-- <li class="nav-item dropdown">
 					<a class="dropdown-item dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown"	aria-haspopup="true" aria-expanded="false">
-						RCA Details
+						RCA Master
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
 						<li><a class="dropdown-item" href="${contextPath}/master_data/view_issuecategory_form">Add Issue Category</a></li>
 						<li><a class="dropdown-item" href="${contextPath}/master_data/view_outageCategory_form">Add Outage Category</a></li>
 						<li><a class="dropdown-item" href="${contextPath}/master_data/view_faultCategory_form">Add Fault Category</a></li>
-					</ul>
+					</ul> --%>
+					<li><a class="dropdown-item" href="${contextPath}/master_data/view_issuecategory_form">Add Issue Category</a></li>
+						<li><a class="dropdown-item" href="${contextPath}/master_data/view_outageCategory_form">Add Outage Category</a></li>
+						<li><a class="dropdown-item" href="${contextPath}/master_data/view_faultCategory_form">Add Fault Category</a></li>
 				</ul>
 			</li>
 			<%-- <li class="nav-item dropdown">

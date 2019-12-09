@@ -4,8 +4,10 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -35,6 +37,7 @@ import com.digitrinity.repository.OutageCategoryMasterRepository;
 import com.digitrinity.repository.RcaReportRepository;
 import com.digitrinity.repository.RegionMasterRepository;
 import com.digitrinity.repository.SiteMasterRepository;
+import com.digitrinity.util.CollectionUtils;
 import com.digitrinity.util.DateUtility;
 import com.digitrinity.util.StringUtil;
 
@@ -57,6 +60,8 @@ public class RCAController {
 	@Autowired
 	private IssueCategoryMasterRepository issueCategoryMasterRepository;
 
+	private Set<SiteMaster> siteMasterSet=new HashSet<>();
+	
 	@GetMapping("/view_rca_form")
 	public String viewRcaForm(@ModelAttribute("rcaReportForm") RCAReportFormBean rcaReportForm, Model model,
 			BindingResult bindingResult) {
@@ -64,6 +69,7 @@ public class RCAController {
 		getRcaFormData(model);
 		List<RcaReport> rcaReportList = rcaReportRepository.findAll();
 		model.addAttribute("rcaReportList", rcaReportList);
+		rcaReportForm.clear();
 		return "rca";
 	}
 
@@ -108,8 +114,13 @@ public class RCAController {
 		else
 		 rcaReport = new RcaReport();
 		rcaReport.setRcaDate(rcaDate);
-		rcaReport.setSmSiteID(rcaReportForm.getSmSiteID() + "");
-		rcaReport.setSmSitename(rcaReportForm.getSmSitename());
+		rcaReport.setSmSiteID(rcaReportForm.getSmSitecode());
+		if(CollectionUtils.isCollectionNullOrEmpty(siteMasterSet))
+		for (SiteMaster master : siteMasterSet) {
+			if(master.getSmSitecode().equalsIgnoreCase(rcaReportForm.getSmSitecode()))
+				rcaReport.setSmSitename(master.getSmSitename());
+		}
+		
 		rcaReport.setRgRegionID(rcaReportForm.getRgRegionID());
 		rcaReport.setAnchorOprtr(rcaReportForm.getAnchorOprtr());
 		rcaReport.setOpcoID(rcaReportForm.getOpcoId());
@@ -124,7 +135,6 @@ public class RCAController {
 		rcaReport.setSla(rcaReportForm.getSla());
 
 		rcaReportRepository.save(rcaReport);
-
 		List<RcaReport> rcaReportList = rcaReportRepository.findAll();
 		rcaReportForm.clear();
 		getRcaFormData(model);
@@ -204,7 +214,9 @@ public class RCAController {
 
 		List<SiteMaster> siteMasters = siteMasterRepository.findAll();
 		model.addAttribute("siteMasters", siteMasters);
-
+		siteMasterSet.addAll(siteMasters);
+		
+		
 		List<IssueCategoryMaster> issueCategoryMasters = issueCategoryMasterRepository.findAll();
 		model.addAttribute("issueCategoryMasters", issueCategoryMasters);
 	}
