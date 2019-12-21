@@ -3,10 +3,13 @@ package com.digitrinity.service;
 import java.util.List;
 
 import com.digitrinity.dto.CustomerDto;
+import com.digitrinity.dto.HourlyReportDto;
 import com.digitrinity.dto.LatestReportDto;
 import com.digitrinity.dto.SiteCodeDto;
 import com.digitrinity.dto.SiteTypeDto;
 import com.digitrinity.model.ClusterMaster;
+import com.digitrinity.model.DeviceTypeView;
+import com.digitrinity.model.HourlyReportGroup;
 import com.digitrinity.model.LatestDataReport;
 import com.digitrinity.model.RegionMaster;
 import com.digitrinity.model.SiteMaster;
@@ -31,5 +34,9 @@ public interface IDashboardReportService {
 	public List<ZoneMaster> getZones();
 	
 	public List<RegionMaster> getRegions();
+	
+	public List<HourlyReportGroup> getLatestHourlReportData(HourlyReportDto requestDto);
+	
+	public List<String> fetchDeviceTypes();
 	
 }

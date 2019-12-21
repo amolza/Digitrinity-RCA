@@ -13,7 +13,7 @@ import com.digitrinity.model.LatestDataReport;
 public interface LatestDataReportRepository extends JpaRepository<LatestDataReport, Date> {
 
 	@Query(value = "SELECT ldr FROM LatestDataReport ldr WHERE ((:siteTypeAll) is null or ldr.siteTypeId IN (:siteTypes)) AND ((:zonesAll) is null or ldr.zone IN (:zones)) AND "
-			+ "((:clustersAll) is null or ldr.clusterName IN (:clustersAll)) AND ((:sitesAll) is null or ldr.smSiteCode IN (:siteids)) "
+			+ "((:clustersAll) is null or ldr.clusterName IN (:customers)) AND ((:sitesAll) is null or ldr.smSiteCode IN (:siteids)) "
 			+ " AND ((:customersAll) is null or ldr.customerName IN (:customers)) AND ((:regionsAll) is null or ldr.region IN (:regions))")
 	List<LatestDataReport> findLatestReport(@Param("regions") Collection<String> regions
 			,@Param("zones") Collection<String> zones
