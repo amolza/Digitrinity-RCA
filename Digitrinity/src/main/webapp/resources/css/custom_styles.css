@@ -21,11 +21,40 @@ body {
 }
 
 td.highlight-red {
-        font-weight: bold;
-        color: red;
+        font-weight: bold !important;
+        color: red !important;
     }
 td.highlight-red-back {
-        font-weight: bold;
-        background: red;
-        color:white;
+        font-weight: bold !important;
+        background: red !important;
+        color:white !important;
     }
+    
+#latestDataReportTable {
+  table-layout: fixed;
+  width: 100% !important;
+  margin: 0 auto;
+  clear: both;
+  border-collapse: collapse;
+  word-wrap:break-word; 
+}
+#latestDataReportTable td,
+#latestDataReportTable th{
+  width: auto !important;
+  white-space: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  
+}
+
+#latestDataReportTable td.details-control {
+    background: url('https://cdn.rawgit.com/DataTables/DataTables/6c7ada53ebc228ea9bc28b1b216e793b1825d188/examples/resources/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+#latestDataReportTable tr.shown td.details-control {
+    background: url('https://cdn.rawgit.com/DataTables/DataTables/6c7ada53ebc228ea9bc28b1b216e793b1825d188/examples/resources/details_close.png') no-repeat center center;
+}
+
+#latestDataReportTable td {
+    padding: .2em .2em !important;
+  }

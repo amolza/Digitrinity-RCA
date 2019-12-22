@@ -39,24 +39,22 @@ function renderLatestReportDataTable(){
 					return JSON.stringify(buildDataTableAjaxData())
 				}
 			},
-			"order": [[ 0, 'desc' ]],        
-         "columns": [
+			"columns": [
+        	 {
+                 'className':      'details-control',
+                 'orderable':      false,
+                 'data':           null,
+                 'defaultContent': ''
+             },
             { "data": "lastUpdated" },
             { "data": "smSiteCode" },
-            { "data": "siteName" },
-            { "data": "powerSource" },		            
+            { "data": "siteName" },            	            
             { "data": "customerName" },
-            { "data": "batterySOC" },
-            { "data": "dcLoad" },
             { "data": "dcVoltage" },
-            { "data": "fuelLevel" },
-            { "data": "solarKw" },
-            { "data": "critical" },
+            { "data": "critical" },            
             { "data": "major" },
-            { "data": "minor" },
-            { "data": "age" },
-            { "data": "engineerName" } /* ,
-            { "data": "location" }, */
+            { "data": "age" }
+            
         ],
         initComplete: function () {
             this.api().columns().every( function () {
@@ -81,17 +79,17 @@ function renderLatestReportDataTable(){
         'createdRow': function(row, data, index){
         	console.log(data[2]);
         	console.log(data);
-            if(data.age > "4"){            	
-            	$('td', row).eq(13).addClass('highlight-red');                
+            if(data.age > 4){            	
+            	$('td', row).eq(8).addClass('highlight-red');                
             }
-            if(data.critical > "0"){            	
-            	$('td', row).eq(10).addClass('highlight-red');                
+            if(data.critical > 0){            	
+            	$('td', row).eq(6).addClass('highlight-red');                
             }
-            if(data.major > "0"){            	
-            	$('td', row).eq(11).addClass('highlight-red');                
+            if(data.major > 0){            	
+            	$('td', row).eq(7).addClass('highlight-red');                
             }
-            if(data.dcVoltage > "48.5"){            	
-            	$('td', row).eq(7).addClass('highlight-red-back');                
+            if(parseFloat(data.dcVoltage) > 48.5){            	
+            	$('td', row).eq(5).addClass('highlight-red-back');                
             }
             
             
@@ -99,7 +97,62 @@ function renderLatestReportDataTable(){
     } );
 	
 	 new $.fn.dataTable.FixedHeader( table );
+	 
+	 
+	 $('#latestDataReportTable tbody').on('click', 'td.details-control', function(){
+	        var tr = $(this).closest('tr');
+	        var row = table.row( tr );
+
+	        if(row.child.isShown()){
+	            // This row is already open - close it
+	            row.child.hide();
+	            tr.removeClass('shown');
+	        } else {
+	            // Open this row
+	            row.child(format(row.data())).show();
+	            tr.addClass('shown');
+	        }
+	    });
 }
+
+function format ( d ) {
+    // `d` is the original data object for the row
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+        '<tr>'+
+            '<td>Power Source</td>'+
+            '<td>'+d.powerSource+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Battery SOC</td>'+
+            '<td>'+d.batterySOC+'</td>'+
+        '</tr>'+
+        '<tr>'+
+	        '<td>DC Load</td>'+
+	        '<td>'+d.dcLoad+'</td>'+
+        '</tr>'+
+        '<tr>'+
+	        '<td>Fuel Level (%)</td>'+
+	        '<td>'+d.fuelLevel+'</td>'+
+	    '</tr>'+
+	    '<tr>'+
+		    '<td>Solar (Kw)</td>'+
+		    '<td>'+d.solarKw+'</td>'+
+		'</tr>'+
+		'<tr>'+
+		    '<td>Minor</td>'+
+		    '<td>'+d.minor+'</td>'+
+	    '</tr>'+
+		'<tr>'+
+		    '<td>Engineer Name</td>'+
+		    '<td>'+d.engineerName+'</td>'+
+	    '</tr>'+
+         '<tr>'+
+            '<td>Location</td>'+
+            '<td>'+d.location+'</td>'+
+        '</tr>'+
+    '</table>';
+}
+
 
 function buildDataTableAjaxData()
 {
