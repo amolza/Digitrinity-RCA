@@ -21,110 +21,108 @@
 		crossorigin="anonymous" />
 	<div class="container-fluid">
 		<div class="row-12 m-2">
-		<div class="row p-3 text-center" style="background-color: white">
-					<div class="col-sm">
-						<div class="alert alert-primary" role="alert">
-							<span class="font-weight-bold" style="font-size: 15px;">Total
-								Sites</span>
-							<h5>
-								<span class="font-weight-bold" style="font-size: 25px;">300</span>
-							</h5>
-						</div>
-					</div>
-					<div class="col-sm">
-						<div class="alert alert-success" role="alert">
-							<span class="font-weight-bold" style="font-size: 15px;">Online</span>
-							<h5>
-								<span class="font-weight-bold" style="font-size: 25px;">250</span>
-							</h5>
-						</div>
-					</div>
-					<div class="col-sm">
-						<div class="alert alert-danger" role="alert">
-							<span class="font-weight-bold" style="font-size: 15px;">Offline</span>
-							<h5>
-								<span class="font-weight-bold" style="font-size: 25px;">50</span>
-							</h5>
-						</div>
+			<div class="row p-3 text-center" style="background-color: white">
+				<div class="col-sm">
+					<div class="alert alert-primary" role="alert">
+						<span class="font-weight-bold" style="font-size: 15px;">Total
+							Sites</span>
+						<h5>
+							<span class="font-weight-bold" style="font-size: 25px;">300</span>
+						</h5>
 					</div>
 				</div>
-		</div>	
+				<div class="col-sm">
+					<div class="alert alert-success" role="alert">
+						<span class="font-weight-bold" style="font-size: 15px;">Online</span>
+						<h5>
+							<span class="font-weight-bold" style="font-size: 25px;">250</span>
+						</h5>
+					</div>
+				</div>
+				<div class="col-sm">
+					<div class="alert alert-danger" role="alert">
+						<span class="font-weight-bold" style="font-size: 15px;">Offline</span>
+						<h5>
+							<span class="font-weight-bold" style="font-size: 25px;">50</span>
+						</h5>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="row-12 m-2">
-			<div class="row">	
-			<div class="col-8">
-				<div class="row p-2" style="background-color: white;">
-					<form class="form-inline pt-3">
-						<div class="form-group">
-							<label class='control-label mr-2' for="hourly-site-id-select"><strong>Region</strong></label>
-							<select id="region-select" name="region-select"
-								class="selectpicker form-control" data-live-search="true"
-								multiple title="Region" data-width="150px"
-								style="background-color: #5cb85c; color: #fff;">
-								<option value="All" selected="selected">All</option>
-							</select>
-						</div>
-						<div class="form-group m-2">
-						<label class='control-label mr-2' for="hourly-site-id-select"><strong>Zone</strong></label>
-						<select id="zone-select" name="zone-select" class="selectpicker"
+			<div class="row">
+				<div class="col-8">
+					<div class="row p-2" style="background-color: white;">
+						<form class="form-inline pt-3">
+							<div class="form-group mr-2">
+								<label class='control-label mr-2' for="hourly-site-id-select"><strong>Region</strong></label>
+								<select id="region-select" name="region-select"
+									class="selectpicker form-control" data-live-search="true"
+									multiple title="Region" data-width="150px"
+									style="background-color: #5cb85c; color: #fff;">
+									<option value="All" selected="selected">All</option>
+								</select>
+							</div>
+							<div class="form-group mr-2">
+								<label class='control-label mr-2' for="hourly-site-id-select"><strong>Zone</strong></label>
+								<select id="zone-select" name="zone-select" class="selectpicker"
 									data-live-search="true" multiple title="Zone"
 									data-width="150px" data-all="false">
 									<option value="All" selected="selected">All</option>
 								</select>
-						</div>
-						<div class="form-group m-2">
-						<label class='control-label mr-2' for="hourly-site-id-select"><strong>Cluster</strong></label>
-						<select id="cluster-select" name="cluster-select"
+							</div>
+							<div class="form-group mr-2">
+								<label class='control-label mr-2' for="hourly-site-id-select"><strong>Cluster</strong></label>
+								<select id="cluster-select" name="cluster-select"
 									class="selectpicker" data-live-search="true" multiple
 									title="Cluster" data-width="150px">
 									<option value="All" selected="selected">All</option>
 								</select>
-						</div>
-						<div class="form-group m-2">
-						<label class='control-label mr-2' for="hourly-site-id-select"><strong>Site ID</strong></label>
-						<select id="siteId" name="siteId" class="selectpicker"
+							</div>
+							<div class="form-group mr-2">
+								<label class='control-label mr-2' for="hourly-site-id-select"><strong>Site
+										ID</strong></label> <select id="siteId" name="siteId" class="selectpicker"
 									data-live-search="true" multiple title="Site ID"
 									data-width="150px">
 									<option value="All" selected="selected">All</option>
 								</select>
-						</div>
-						<div class="form-group m-2">
-						<label class='control-label mr-2' for="hourly-site-id-select"><strong>Customer</strong></label>
-						<select id="customer" name="customer" class="selectpicker"
+							</div>
+							<div class="form-group mr-2">
+								<label class='control-label mr-2' for="hourly-site-id-select"><strong>Customer</strong></label>
+								<select id="customer" name="customer" class="selectpicker"
 									data-live-search="true" multiple title="Customer"
 									data-width="150px">
 									<option value="All" selected="selected">All</option>
 								</select>
-						</div>
-						<div class="form-group m-2">
-						<label class='control-label mr-2' for="hourly-site-id-select"><strong>Site Type</strong></label>
-						<select id="siteType" name="siteType" class="selectpicker"
-									data-live-search="true" multiple title="Site Type"
-									data-width="150px">
+							</div>
+							<div class="form-group mr-2 mb-2 mt-2">
+								<label class='control-label mr-2' for="hourly-site-id-select"><strong>Site
+										Type</strong></label> <select id="siteType" name="siteType"
+									class="selectpicker" data-live-search="true" multiple
+									title="Site Type" data-width="150px">
 									<option value="All" selected="selected">All</option>
 								</select>
-						</div>
-
-					</form>
-					<table id="latestDataReportTable"
-						class="table table-bordered compact nowrap"
-						style="width: 100%">
-						<!-- <thead style="background-color: #343a40;color: #fff;"> -->
-						<thead class="text-center"
-							style="background-color: #343a40; color: #fff;">
-							<tr>
-								<th></th>
-								<th>Last Updated</th>
-								<th>Site ID</th>
-								<th>Site Name</th>
-								<th>Customer</th>
-								<th>DC Voltage (Kw)</th>
-								<th>Critical</th>
-								<th>Major</th>								
-								<th>Offline Duration</th>								
-							</tr>
-						</thead>
-						<tbody class="text-center"></tbody>
-						<!-- <tfoot class="text-center">
+							</div>
+						</form>						
+						<table id="latestDataReportTable"
+							class="table table-bordered compact nowrap" style="width: 100%">
+							<!-- <thead style="background-color: #343a40;color: #fff;"> -->
+							<thead class="text-center"
+								style="background-color: #343a40; color: #fff;">
+								<tr>
+									<th></th>
+									<th>Last Updated</th>
+									<th>Site ID</th>
+									<th>Site Name</th>
+									<th>Customer</th>
+									<th>DC Voltage (Kw)</th>
+									<th>Critical</th>
+									<th>Major</th>
+									<th>Offline Duration</th>
+								</tr>
+							</thead>
+							<tbody class="text-center"></tbody>
+							<!-- <tfoot class="text-center">
 							<tr>
 								
 								<th>Last Updated</th>
@@ -138,10 +136,71 @@
 								<th>Offline Duration</th>
 							</tr>
 						</tfoot> -->
-					</table>
+						</table>
+					</div>
+				</div>
+				<div class="col-4">
+					<div class="row p-2 ml-1" style="background-color: white;">
+					
+					<form class="form-inline pt-3">
+							<div class="form-group mr-2">
+								<label class='control-label mr-2' for="hourly-site-id-select"><strong>Alarm category</strong></label>
+								<select id="alarm-category-select" name="region-select"
+									class="selectpicker form-control" data-live-search="true"
+									multiple title="Alarm Category" data-width="150px"
+									style="background-color: #5cb85c; color: #fff;">
+									<option value="All" selected="selected">All</option>
+								</select>
+							</div>
+							<div class="form-group mr-2">
+								<label class='control-label mr-2' for="hourly-site-id-select"><strong>Site ID</strong></label>
+								<select id="alarm-site-id-select" name="alarm-site-id-select" class="selectpicker"
+									data-live-search="true" multiple title="Site ID"
+									data-width="150px" data-all="false">
+									<option value="All" selected="selected">All</option>
+								</select>
+							</div>							
+							<div class="form-group mr-2 mb-2 mt-2">
+								<label class='control-label mr-2' for="hourly-site-id-select"><strong>Severity</strong></label> <select id="alarm-severity-select" name="alarm-severity-select"
+									class="selectpicker" data-live-search="true" multiple
+									title="Site Type" data-width="150px">
+									<option value="All" selected="selected">All</option>
+								</select>
+							</div>
+						</form>	
+					
+					<table id="alarmTable"
+							class="table table-bordered compact nowrap" style="width: 100%">
+							<!-- <thead style="background-color: #343a40;color: #fff;"> -->
+							<thead class="text-center"
+								style="background-color: #343a40; color: #fff;">
+								<tr>									
+									<th>Site ID</th>
+									<th>Alarm Name</th>
+									<th>Alarm Open Time</th>
+									<th>Elapsed Time</th>									
+								</tr>
+							</thead>
+							<tbody class="text-center"></tbody>
+							<!-- <tfoot class="text-center">
+							<tr>
+								
+								<th>Last Updated</th>
+								<th>Site ID</th>
+								<th>Site Name</th>
+								<th>Customer</th>
+								<th>DC Load</th>
+								<th>Critical</th>
+								<th>Major</th>
+								<th>Minor</th>
+								<th>Offline Duration</th>
+							</tr>
+						</tfoot> -->
+						</table>
+					
+					</div>
 				</div>
 			</div>
-			</div>	
 
 		</div>
 		<div class="row-12 m-2">
@@ -181,11 +240,11 @@
 						</select>
 					</div>
 
-				</form>				
+				</form>
 			</div>
 			<div class="row" style="background-color: white">
-					<canvas id="bar-chart" width="800" height="200"></canvas>
-				</div>
+				<canvas id="bar-chart" width="800" height="200"></canvas>
+			</div>
 		</div>
 	</div>
 	<jsp:include page="include_ftr.jsp"></jsp:include>
