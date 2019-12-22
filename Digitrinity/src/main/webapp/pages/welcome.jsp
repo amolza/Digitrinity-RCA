@@ -20,9 +20,8 @@
 		integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E="
 		crossorigin="anonymous" />
 	<div class="container-fluid">
-		<div class="row-12">
-			<div class="col-9">
-				<div class="row p-3 m-2 text-center" style="background-color: white">
+		<div class="row-12 m-2">
+		<div class="row p-3 text-center" style="background-color: white">
 					<div class="col-sm">
 						<div class="alert alert-primary" role="alert">
 							<span class="font-weight-bold" style="font-size: 15px;">Total
@@ -49,11 +48,13 @@
 						</div>
 					</div>
 				</div>
-
-				
-				<div class="row m-2 p-2" style="background-color: white;">
+		</div>	
+		<div class="row-12 m-2">
+			<div class="row">	
+			<div class="col-8">
+				<div class="row p-2" style="background-color: white;">
 					<form class="form-inline pt-3">
-						<div class="form-group m-2">
+						<div class="form-group">
 							<label class='control-label mr-2' for="hourly-site-id-select"><strong>Region</strong></label>
 							<select id="region-select" name="region-select"
 								class="selectpicker form-control" data-live-search="true"
@@ -140,13 +141,14 @@
 					</table>
 				</div>
 			</div>
+			</div>	
 
 		</div>
-		<div class="row p-3 m-1">
-			<div class="col" style="background-color: white">
-				<form class="form-inline pt-3">
+		<div class="row-12 m-2">
+			<div class="row p-2" style="background-color: white">
+				<form class="form-inline">
 
-					<div class="form-group m-2 p-2">
+					<div class="form-group m-2">
 						<label class='control-label mr-2'><strong>Date</strong></label> <input
 							id="datetimepicker" class="form-control" type="text"
 							style="width: 280px">
@@ -179,11 +181,11 @@
 						</select>
 					</div>
 
-				</form>
-				<div class="row">
+				</form>				
+			</div>
+			<div class="row" style="background-color: white">
 					<canvas id="bar-chart" width="800" height="200"></canvas>
 				</div>
-			</div>
 		</div>
 	</div>
 	<jsp:include page="include_ftr.jsp"></jsp:include>

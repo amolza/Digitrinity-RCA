@@ -39,6 +39,7 @@ function renderLatestReportDataTable(){
 					return JSON.stringify(buildDataTableAjaxData())
 				}
 			},
+			"order": [[ 1, "desc" ]],
 			"columns": [
         	 {
                  'className':      'details-control',
