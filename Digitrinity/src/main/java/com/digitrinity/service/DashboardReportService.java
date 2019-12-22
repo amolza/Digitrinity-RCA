@@ -9,17 +9,23 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.digitrinity.dto.AlarmCategoryDto;
+import com.digitrinity.dto.AlarmSeverityDto;
+import com.digitrinity.dto.AlarmStatusDto;
 import com.digitrinity.dto.CustomerDto;
 import com.digitrinity.dto.HourlyReportDto;
 import com.digitrinity.dto.LatestReportDto;
+import com.digitrinity.dto.LatestReportStatusDto;
 import com.digitrinity.dto.SiteCodeDto;
 import com.digitrinity.dto.SiteTypeDto;
+import com.digitrinity.model.AlarmStatus;
 import com.digitrinity.model.ClusterMaster;
 import com.digitrinity.model.HourlyReportGroup;
 import com.digitrinity.model.LatestDataReport;
 import com.digitrinity.model.RegionMaster;
 import com.digitrinity.model.SiteMaster;
 import com.digitrinity.model.ZoneMaster;
+import com.digitrinity.repository.AlarmStatusRepository;
 import com.digitrinity.repository.ClusterMasterRepository;
 import com.digitrinity.repository.HourlyReportRepository;
 import com.digitrinity.repository.LatestDataReportRepository;
@@ -49,6 +55,9 @@ public class DashboardReportService implements IDashboardReportService {
 	
 	@Autowired
 	private HourlyReportRepository hourlyReportRepository;
+	
+	@Autowired
+	private AlarmStatusRepository alarmStatusRepository;
 	
 	@Override
 	public List<LatestDataReport> getLatestReportData() {
@@ -92,7 +101,6 @@ public class DashboardReportService implements IDashboardReportService {
 
 	@Override
 	public List<LatestDataReport> getFilteredLatestReportData(LatestReportDto latestReportDto) {
-		System.out.println(latestReportDto);
 		List<LatestDataReport> dataReports = new ArrayList<LatestDataReport>();
 		if(latestReportDto.isAnyFilterEmpty()) {
 			return dataReports;
@@ -115,6 +123,7 @@ public class DashboardReportService implements IDashboardReportService {
 					latestReportDto.isAllRegions() ? null : ALL
 					);
 		}
+		
 		return dataReports;
 	}
 
@@ -123,7 +132,7 @@ public class DashboardReportService implements IDashboardReportService {
 		String date = requestDto.getDate();
 		String startDate = date.split("-")[0].trim().replaceAll("/", "-");
 		String endDate = date.split("-")[1].trim().replaceAll("/", "-");
-
+		
 		if(requestDto.isAnyFilterEmpty()) {
 			return new ArrayList<HourlyReportGroup>();
 		}
@@ -146,6 +155,40 @@ public class DashboardReportService implements IDashboardReportService {
 	public List<String> fetchDeviceTypes() {
 		List<String> deviceTypes = hourlyReportRepository.fetchDeviceTypes();
 		return deviceTypes;
+	}
+
+	@Override
+	public LatestReportStatusDto getLatestReportStatus() {
+		long total = latestDataReportRepository.countByAge("-1");
+		long offline = latestDataReportRepository.countByAge("4");
+		return new LatestReportStatusDto(total, total-offline, offline);
+	}
+
+	@Override
+	public List<AlarmCategoryDto> getAlarmCategory() {
+		return AlarmCategoryDto.generate(alarmStatusRepository.fetchAlarmCategory());
+	}
+
+	@Override
+	public List<AlarmSeverityDto> getAlarmSeverity() {
+		return AlarmSeverityDto.generate(alarmStatusRepository.fetchAlarmSeverity());
+	}
+
+	@Override
+	public List<AlarmStatus> getAlarmStatus(AlarmStatusDto alarmStatusDto) {
+		
+		List<AlarmStatus> alarmStatus;
+		
+		if(alarmStatusDto.isAnyFilterEmpty()) {
+			alarmStatus = new ArrayList<AlarmStatus>();
+		}
+		else if(alarmStatusDto.isAllCategory() && alarmStatusDto.isAllSeverity() && alarmStatusDto.isAllSiteId()) {
+			alarmStatus = (List<AlarmStatus>) alarmStatusRepository.findAll();
+		} else {
+			alarmStatus = alarmStatusRepository.fetchAlarmStatus(alarmStatusDto.getSiteId(), alarmStatusDto.getCategories(), alarmStatusDto.getSeverities(), 
+					alarmStatusDto.isAllSiteId() ? null : ALL, alarmStatusDto.isAllCategory() ? null : ALL, alarmStatusDto.isAllSeverity() ? null : ALL);
+		}
+		return alarmStatus;
 	}
 
 }

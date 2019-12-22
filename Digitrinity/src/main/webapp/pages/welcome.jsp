@@ -27,7 +27,7 @@
 						<span class="font-weight-bold" style="font-size: 15px;">Total
 							Sites</span>
 						<h5>
-							<span class="font-weight-bold" style="font-size: 25px;">300</span>
+							<span id="totalSite" class="font-weight-bold" style="font-size: 25px;">##</span>
 						</h5>
 					</div>
 				</div>
@@ -35,7 +35,7 @@
 					<div class="alert alert-success" role="alert">
 						<span class="font-weight-bold" style="font-size: 15px;">Online</span>
 						<h5>
-							<span class="font-weight-bold" style="font-size: 25px;">250</span>
+							<span id="onlineSite" class="font-weight-bold" style="font-size: 25px;">##</span>
 						</h5>
 					</div>
 				</div>
@@ -43,7 +43,7 @@
 					<div class="alert alert-danger" role="alert">
 						<span class="font-weight-bold" style="font-size: 15px;">Offline</span>
 						<h5>
-							<span class="font-weight-bold" style="font-size: 25px;">50</span>
+							<span id="offlineSite" class="font-weight-bold" style="font-size: 25px;">##</span>
 						</h5>
 					</div>
 				</div>
@@ -51,7 +51,8 @@
 		</div>
 		<div class="row-12 m-2">
 			<div class="row">
-				<div class="col-8">
+				<div class="col-md-8 col-sm-6">
+				<div class="footer-widget">
 					<div class="row p-2" style="background-color: white;">
 						<form class="form-inline pt-3">
 							<div class="form-group mr-2">
@@ -138,9 +139,11 @@
 						</tfoot> -->
 						</table>
 					</div>
+					</div>
 				</div>
-				<div class="col-4">
-					<div class="row p-2 ml-1" style="background-color: white;">
+				<div class="col-md-4 col-sm-6">
+				<div class="footer-widget">
+					<div class="row p-2 ml-1" style="background-color: white; height:100%">
 					
 					<form class="form-inline pt-3">
 							<div class="form-group mr-2">
@@ -198,6 +201,7 @@
 						</tfoot> -->
 						</table>
 					
+					</div>
 					</div>
 				</div>
 			</div>

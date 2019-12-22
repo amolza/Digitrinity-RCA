@@ -7,6 +7,7 @@ $(document).ready(function() {
  	loadZones();
  	loadRegions(); 	
  	renderLatestReportDataTable();
+ 	loadLatestReportStatus();
  	loadDeviceType();
  	jQuery('#datetimepicker').daterangepicker({
  	  opens: 'right',
@@ -24,6 +25,10 @@ $(document).ready(function() {
  	  }, function(start, end, label) {});
  	hourlyReportDateApply();
  	renderChart();
+ 	
+ 	loadAlarmCategory();
+ 	loadAlarmSeverity();
+ 	renderAlarmStatusDataTable();
 } );
 
 
@@ -40,6 +45,7 @@ function renderLatestReportDataTable(){
 				}
 			},
 			"order": [[ 1, "desc" ]],
+			"bLengthChange": false,
 			"columns": [
         	 {
                  'className':      'details-control',
@@ -78,8 +84,6 @@ function renderLatestReportDataTable(){
             } );
         },
         'createdRow': function(row, data, index){
-        	console.log(data[2]);
-        	console.log(data);
             if(data.age > 4){            	
             	$('td', row).eq(8).addClass('highlight-red');                
             }
@@ -115,6 +119,53 @@ function renderLatestReportDataTable(){
 	        }
 	    });
 }
+
+
+function renderAlarmStatusDataTable(){
+	var alarmTable = $('#alarmTable').DataTable( {
+		responsive: true,
+			"ajax" : {
+				"url":"dashboard/alarm-status",
+				"type": "POST",
+				"dataType": 'json',
+				"contentType": "application/json",
+				"data": function ( d ) {
+					return JSON.stringify(buildAlarmStatusDataTableAjaxData())
+				}
+			},
+			"bLengthChange": false,
+			"order": [[ 2, "desc" ]],
+			"columns": [
+            { "data": "smSiteCode" },
+            { "data": "alName" },            	            
+            { "data": "alOpentime" },
+            { "data": "age" }
+            
+        ],
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
+    } );
+	 new $.fn.dataTable.FixedHeader( alarmTable );
+}
+
 
 function format ( d ) {
     // `d` is the original data object for the row
@@ -169,6 +220,17 @@ function buildDataTableAjaxData()
 	
 }
 
+function buildAlarmStatusDataTableAjaxData()
+{
+	var obj = {
+			"categories" : $("#alarm-category-select").val(),
+			"siteId" : $("#alarm-site-id-select").val(),
+			"severities" : $("#alarm-severity-select").val(),
+	}
+	return obj;
+	
+}
+
 function buildHourlyReportAjaxData()
 {
 	var obj = {
@@ -177,11 +239,23 @@ function buildHourlyReportAjaxData()
 			"deviceType" : $("#hourly-device-type-select").val(),
 			"date" : $("#datetimepicker").val()					
 	}
-	console.log(JSON.stringify(obj));
 	return JSON.stringify(obj);
 	
 }
 
+
+function loadLatestReportStatus()
+{
+	$.ajax('dashboard/latest-report-status',   // request url
+    	    {
+    	        success: function (data, status, xhr) {// success callback function
+    	        $("#totalSite").text(data.totalSite);
+    	        $("#onlineSite").text(data.onlineSite);
+    	        $("#offlineSite").text(data.offlineSite);
+    	       
+    	    }
+    	});
+}
 
 function loadCustomers()
 {
@@ -200,6 +274,41 @@ function loadCustomers()
     	});
 }
 
+
+function loadAlarmCategory()
+{
+	$.ajax('dashboard/alarm-category',   // request url
+    	    {
+    	        success: function (data, status, xhr) {// success callback function
+    	        $.each(data, function(index,jsonObject){
+    	            $.each(jsonObject, function(key,val){    	                
+    	                $("#alarm-category-select").append('<option value="'+val+'">'+val+'</option>');
+    	            });
+    	        });    	        
+    	        $("#alarm-category-select").selectpicker("refresh");
+    	        $("#alarm-category-select").selectpicker("selectAll");
+    	        registerAlarmStatusReload($("#alarm-category-select"));
+    	    }
+    	});
+}
+
+function loadAlarmSeverity()
+{
+	$.ajax('dashboard/alarm-severity',   // request url
+    	    {
+    	        success: function (data, status, xhr) {// success callback function
+    	        $.each(data, function(index,jsonObject){
+    	            $.each(jsonObject, function(key,val){    	                
+    	                $("#alarm-severity-select").append('<option value="'+val+'">'+val+'</option>');
+    	            });
+    	        });    	        
+    	        $("#alarm-severity-select").selectpicker("refresh");
+    	        $("#alarm-severity-select").selectpicker("selectAll");
+    	        registerAlarmStatusReload($("#alarm-severity-select"));
+    	    }
+    	});
+}
+
 function loadSiteIds()
 {
 	$.ajax('dashboard/site-code-master',   // request url
@@ -210,14 +319,22 @@ function loadSiteIds()
     	                
     	                $("#siteId").append('<option value="'+val+'">'+val+'</option>');
     	                $("#hourly-site-id-select").append('<option value="'+val+'">'+val+'</option>');
+    	                $("#alarm-site-id-select").append('<option value="'+val+'">'+val+'</option>');
+    	                
     	            });
     	        });    	        
     	        $("#siteId").selectpicker("refresh");
     	        $("#siteId").selectpicker("selectAll");
     	        $("#hourly-site-id-select").selectpicker("refresh");
     	        $("#hourly-site-id-select").selectpicker("selectAll");
+    	        
+    	        $("#alarm-site-id-select").selectpicker("refresh");
+    	        $("#alarm-site-id-select").selectpicker("selectAll");
+    	        
     	        registerLatestReportReload($("#siteId"));
     	        registerHourlyReportReload($("#hourly-site-id-select"));
+    	        
+    	        registerAlarmStatusReload($("#alarm-site-id-select"));
     	    }
     	});
 }
@@ -373,6 +490,47 @@ function registerLatestReportReload(selectObj){
 		$(this).data('all', isAllSelected);
 		
 		$('#latestDataReportTable').DataTable().ajax.reload();		
+		
+	});
+
+	
+}
+
+
+
+function registerAlarmStatusReload(selectObj){
+	selectObj.on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+		var thisObj = $(this);
+	    var isAllSelected = thisObj.find('option[value="All"]').prop('selected');
+	    var lastAllSelected = $(this).data('all');
+	    var selectedOptions = (thisObj.val())?thisObj.val():[];
+	    var allOptionsLength = thisObj.find('option[value!="All"]').length;
+	     
+	     
+	    var selectedOptionsLength = selectedOptions.length;
+	     
+	    if(isAllSelected == lastAllSelected){
+	    
+	    if($.inArray("All", selectedOptions) >= 0){
+	    	selectedOptionsLength -= 1;      
+	    }
+	        	
+	    if(allOptionsLength <= selectedOptionsLength){
+	    
+	    thisObj.find('option[value="All"]').prop('selected', true).parent().selectpicker('refresh');
+	    isAllSelected = true;
+	    }else{       
+	    	thisObj.find('option[value="All"]').prop('selected', false).parent().selectpicker('refresh');
+	       isAllSelected = false;
+	    }
+	      
+	    }else{   		
+	    	thisObj.find('option').prop('selected', isAllSelected).parent().selectpicker('refresh');
+	    }
+	   
+		$(this).data('all', isAllSelected);
+		
+		$('#alarmTable').DataTable().ajax.reload();		
 		
 	});
 

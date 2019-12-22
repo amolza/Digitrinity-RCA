@@ -58,3 +58,29 @@ td.highlight-red-back {
 #latestDataReportTable td {
     padding: .2em .2em !important;
   }
+  
+#alarmTable td {
+    padding: .2em .2em !important;
+  }
+  
+#alarmTable {
+  table-layout: fixed;
+  width: 100% !important;
+  margin: 0 auto;
+  clear: both;
+  border-collapse: collapse;
+  word-wrap:break-word; 
+}
+#alarmTable td,
+#alarmTable th{
+  width: auto !important;
+  white-space: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  
+}
+
+.footer-widget {
+    height: 100%;
+    width: 100%;
+}

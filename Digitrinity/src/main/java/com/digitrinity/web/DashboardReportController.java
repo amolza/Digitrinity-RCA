@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.digitrinity.dto.AlarmCategoryDto;
+import com.digitrinity.dto.AlarmSeverityDto;
+import com.digitrinity.dto.AlarmStatusDto;
 import com.digitrinity.dto.ClusterDto;
 import com.digitrinity.dto.CustomerDto;
 import com.digitrinity.dto.DataSet;
 import com.digitrinity.dto.DeviceTypeDto;
 import com.digitrinity.dto.HourlyReportDto;
 import com.digitrinity.dto.LatestReportDto;
+import com.digitrinity.dto.LatestReportStatusDto;
 import com.digitrinity.dto.RegionDto;
 import com.digitrinity.dto.SiteCodeDto;
 import com.digitrinity.dto.SiteTypeDto;
@@ -141,4 +145,25 @@ public class DashboardReportController {
 			return new DeviceTypeDto(obj);
 		}).collect(Collectors.toList());
 	}
+	
+	@GetMapping(path = "/latest-report-status", produces = "application/json")
+	public LatestReportStatusDto getLatestReportStatus() {
+		return dashboardReportService.getLatestReportStatus();
+	}
+	
+	@GetMapping(path = "/alarm-category", produces = "application/json")
+	public List<AlarmCategoryDto> getAlarmCategory() {
+		return dashboardReportService.getAlarmCategory();
+	}
+	
+	@GetMapping(path = "/alarm-severity", produces = "application/json")
+	public List<AlarmSeverityDto> getAlarmSeverity() {
+		return dashboardReportService.getAlarmSeverity();
+	}
+	
+	@PostMapping(path = "/alarm-status", produces = "application/json")
+	public DataTableResponse getAlarmStatus(@RequestBody AlarmStatusDto latestReportDto) {
+		return new DataTableResponse(dashboardReportService.getAlarmStatus(latestReportDto));
+	}
+	
 }
