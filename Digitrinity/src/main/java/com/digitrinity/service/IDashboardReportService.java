@@ -8,7 +8,6 @@ import com.digitrinity.dto.LatestReportDto;
 import com.digitrinity.dto.SiteCodeDto;
 import com.digitrinity.dto.SiteTypeDto;
 import com.digitrinity.model.ClusterMaster;
-import com.digitrinity.model.DeviceTypeView;
 import com.digitrinity.model.HourlyReportGroup;
 import com.digitrinity.model.LatestDataReport;
 import com.digitrinity.model.RegionMaster;

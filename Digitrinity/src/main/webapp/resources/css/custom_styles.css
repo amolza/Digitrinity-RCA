@@ -19,3 +19,13 @@ body {
 .btn, .navbar-brand, .dropdown-menu, .form-control{
 	font-size: 13px;
 }
+
+td.highlight-red {
+        font-weight: bold;
+        color: red;
+    }
+td.highlight-red-back {
+        font-weight: bold;
+        background: red;
+        color:white;
+    }

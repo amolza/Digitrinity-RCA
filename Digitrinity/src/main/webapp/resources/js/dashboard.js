@@ -77,8 +77,28 @@ function renderLatestReportDataTable(){
                     select.append( '<option value="'+d+'">'+d+'</option>' )
                 } );
             } );
-        }
+        },
+        'createdRow': function(row, data, index){
+        	console.log(data[2]);
+        	console.log(data);
+            if(data.age > "4"){            	
+            	$('td', row).eq(13).addClass('highlight-red');                
+            }
+            if(data.critical > "0"){            	
+            	$('td', row).eq(10).addClass('highlight-red');                
+            }
+            if(data.major > "0"){            	
+            	$('td', row).eq(11).addClass('highlight-red');                
+            }
+            if(data.dcVoltage > "48.5"){            	
+            	$('td', row).eq(7).addClass('highlight-red-back');                
+            }
+            
+            
+          }
     } );
+	
+	 new $.fn.dataTable.FixedHeader( table );
 }
 
 function buildDataTableAjaxData()

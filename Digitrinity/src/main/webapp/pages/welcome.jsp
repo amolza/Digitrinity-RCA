@@ -139,8 +139,7 @@
 				</div>
 				<div class="row m-2 p-2" style="background-color: white;">
 					<table id="latestDataReportTable"
-						class="table table-striped table-bordered nowrap responsive "
-						style="width: 100%">
+						class="table table-striped table-bordered nowrap" style="width:100%">
 						<!-- <thead style="background-color: #343a40;color: #fff;"> -->
 						<thead class="text-center"
 							style="background-color: #343a40; color: #fff;">
