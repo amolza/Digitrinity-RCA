@@ -57,7 +57,7 @@
 				<div class="col-md-8 col-sm-6">
 					<div class="footer-widget">
 						<div class="row p-2" style="background-color: white;">
-							<table cellspacing="10" cellpadding="10">
+							<table cellspacing="5" cellpadding="5">
 								<tr>
 									<td><label class='control-label mr-2'
 										for="hourly-site-id-select"><strong>Region</strong></label></td>
@@ -88,8 +88,6 @@
 										data-width="150px">
 											<option value="All" selected="selected">All</option>
 									</select></td>
-								</tr>
-								<tr>
 									<td><label class='control-label mr-2'
 										for="hourly-site-id-select"><strong>Customer</strong></label></td>
 									<td><select id="customer" name="customer"
@@ -97,6 +95,7 @@
 										title="Customer" data-width="150px">
 											<option value="All" selected="selected">All</option>
 									</select></td>
+									
 									<td><label class='control-label mr-2'
 										for="hourly-site-id-select"><strong>Site Type</strong></label></td>
 									<td><select id="siteType" name="siteType"
@@ -104,6 +103,10 @@
 										title="Site Type" data-width="150px">
 											<option value="All" selected="selected">All</option>
 									</select></td>
+								</tr>
+								<tr>
+									
+									
 								</tr>
 							</table>
 							<table id="latestDataReportTable"
@@ -146,7 +149,7 @@
 					<div class="footer-widget">
 						<div class="row p-2 ml-1"
 							style="background-color: white; height: 100%">
-							<table cellspacing="10" cellpadding="10">
+							<table cellspacing="5" cellpadding="5">
 								<tr>
 									<td><label class='control-label mr-2'
 										for="hourly-site-id-select"><strong>Alarm
@@ -166,8 +169,6 @@
 										data-width="150px" data-all="false">
 											<option value="All" selected="selected">All</option>
 									</select></td>
-								</tr>
-								<tr>
 									<td><label class='control-label mr-2'
 										for="hourly-site-id-select"><strong>Severity</strong></label></td>
 									<td><select id="alarm-severity-select"
@@ -176,6 +177,9 @@
 										data-width="150px">
 											<option value="All" selected="selected">All</option>
 									</select></td>
+								</tr>
+								<tr>
+									
 								</tr>
 							</table>
 
@@ -255,7 +259,7 @@
 				</form>
 			</div>
 			<div class="row" style="background-color: white">
-				<canvas id="bar-chart" width="800" height="200"></canvas>
+				<canvas id="bar-chart" width="800" height="190"></canvas>
 			</div>
 		</div>
 	</div>
