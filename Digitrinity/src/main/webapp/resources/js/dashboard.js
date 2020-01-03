@@ -1,4 +1,5 @@
 var barChart;
+var latestReportTable;
 $(document).ready(function() { 
 	loadCustomers();
  	loadSiteIds();
@@ -29,11 +30,12 @@ $(document).ready(function() {
  	loadAlarmCategory();
  	loadAlarmSeverity();
  	renderAlarmStatusDataTable();
+ 	registerLatestReportDataOnClickEvent();
 } );
 
 
 function renderLatestReportDataTable(){
-	var table = $('#latestDataReportTable').DataTable( {		
+	latestReportTable = $('#latestDataReportTable').DataTable( {		
 			"ajax" : {
 				"url":"dashboard/latest-data1",
 				"type": "POST",
@@ -107,7 +109,7 @@ function renderLatestReportDataTable(){
           "<'row'<'col-sm-4'i><'col-sm-4 text-center'l><'col-sm-4'p>>"
     } );
 	
-	 new $.fn.dataTable.FixedHeader( table );
+	 new $.fn.dataTable.FixedHeader( latestReportTable );
 }
 
 
@@ -568,3 +570,25 @@ function hourlyReportDateApply(){
 		renderChart();
 	});
 }
+
+function registerLatestReportDataOnClickEvent(){
+	$('#latestDataReportTable tbody').on( 'click', 'tr', function () {
+	    console.log( latestReportTable.row( this ).data() );
+	    console.log( latestReportTable.row( this ).data().smSiteCode );
+	    
+	    if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        }
+        else {
+        	latestReportTable.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+	    
+	    //$('#alarm-site-id-select').selectpicker('val', [1]);
+	    $('#alarm-site-id-select').selectpicker('val', latestReportTable.row( this ).data().smSiteCode);
+	    //$('#alarm-site-id-select[name=selValue]').val(latestReportTable.row( this ).data().smSiteCode);
+	    $('#alarm-site-id-select').selectpicker('refresh')
+	    
+	} );	
+	
+}	

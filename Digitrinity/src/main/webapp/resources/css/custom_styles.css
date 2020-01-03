@@ -143,3 +143,8 @@ td.highlight-red-back {
 .box .inner {
    background-color:white;
 }
+
+table.dataTable tbody tr.selected {
+    color: white !important;;
+    background-color: #acbad4 !important;;
+}
