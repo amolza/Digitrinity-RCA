@@ -30,7 +30,7 @@ td.highlight-red-back {
         color:white !important;
     }
     
-#latestDataReportTable {
+/* #latestDataReportTable {
   table-layout: fixed;
   width: 100% !important;
   margin: 0 auto;
@@ -45,7 +45,44 @@ td.highlight-red-back {
   text-overflow: ellipsis;
   overflow: hidden;
   
+} */
+
+.bg-c-green {
+    background: -webkit-gradient(linear, left top, right top, from(#0ac282), to(#0df3a3));
+    background: linear-gradient(to right, #0ac282, #0df3a3);
 }
+
+.m-b-0 {
+    margin-bottom: 0px;
+}
+
+.bg-c-pink {
+    background: -webkit-gradient(linear, left top, right top, from(#fe5d70), to(#fe909d));
+    background: linear-gradient(to right, #fe5d70, #fe909d);
+}
+
+
+.bg-c-lite-green {
+    background: -webkit-gradient(linear, left top, right top, from(#01a9ac), to(#01dbdf));
+    background: linear-gradient(to right, #01a9ac, #01dbdf);
+}
+
+.card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
+    box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
+    border: none;
+    margin-bottom: 5px;
+}
+
+.card-block {
+    padding: 0.7rem;
+}
+
+.update-card {
+    color: #fff;
+}
+
 
 #latestDataReportTable td.details-control {
     background: url('https://cdn.rawgit.com/DataTables/DataTables/6c7ada53ebc228ea9bc28b1b216e793b1825d188/examples/resources/details_open.png') no-repeat center center;
@@ -83,4 +120,26 @@ td.highlight-red-back {
 .footer-widget {
     height: 100%;
     width: 100%;
+}
+
+
+.top5 { margin-top:5px; }
+.top7 { margin-top:7px; }
+.top10 { margin-top:10px; }
+.top15 { margin-top:15px; }
+.top17 { margin-top:17px; }
+.top30 { margin-top:30px; }
+
+.left5 { margin-left:3px; }
+
+.latest-report-container  {
+  overflow-x: auto;  
+}
+
+.box {
+    padding: 0 5px 0 5px;
+     
+}
+.box .inner {
+   background-color:white;
 }

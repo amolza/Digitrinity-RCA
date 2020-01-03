@@ -33,8 +33,7 @@ $(document).ready(function() {
 
 
 function renderLatestReportDataTable(){
-	var table = $('#latestDataReportTable').DataTable( {
-		responsive: true,
+	var table = $('#latestDataReportTable').DataTable( {		
 			"ajax" : {
 				"url":"dashboard/latest-data1",
 				"type": "POST",
@@ -44,23 +43,27 @@ function renderLatestReportDataTable(){
 					return JSON.stringify(buildDataTableAjaxData())
 				}
 			},
-			"order": [[ 1, "desc" ]],
+			"order": [[ 0, "desc" ]],
 			"bLengthChange": false,
-			"columns": [
-        	 {
-                 'className':      'details-control',
-                 'orderable':      false,
-                 'data':           null,
-                 'defaultContent': ''
-             },
+			"columns": [        	 
             { "data": "lastUpdated" },
             { "data": "smSiteCode" },
-            { "data": "siteName" },            	            
+            { "data": "siteName" },
+            { "data":"powerSource"},
             { "data": "customerName" },
+            { "data" : "batterySOC"},
+            { "data" : "dcLoad"},
             { "data": "dcVoltage" },
+            { "data" : "dgPower" },
+            { "data" : "fuelLevel"},
+            { "data" : "solarKw"},
             { "data": "critical" },            
             { "data": "major" },
-            { "data": "age" }
+            { "data" : "minor"},
+            { "data": "age" },
+            { "data" : "engineerName"},
+            {"data" : "location"}
+            
             
         ],
         initComplete: function () {
@@ -85,39 +88,26 @@ function renderLatestReportDataTable(){
         },
         'createdRow': function(row, data, index){
             if(data.age > 4){            	
-            	$('td', row).eq(8).addClass('highlight-red');                
+            	$('td', row).eq(14).addClass('highlight-red');                
             }
             if(data.critical > 0){            	
-            	$('td', row).eq(6).addClass('highlight-red');                
+            	$('td', row).eq(11).addClass('highlight-red');                
             }
             if(data.major > 0){            	
-            	$('td', row).eq(7).addClass('highlight-red');                
+            	$('td', row).eq(12).addClass('highlight-red');                
             }
             if(parseFloat(data.dcVoltage) > 48.5){            	
-            	$('td', row).eq(5).addClass('highlight-red-back');                
+            	$('td', row).eq(7).addClass('highlight-red-back');                
             }
             
             
-          }
+          },
+          "dom": "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
+          "<'row'<'col-sm-12'tr>>" +
+          "<'row'<'col-sm-4'i><'col-sm-4 text-center'l><'col-sm-4'p>>"
     } );
 	
 	 new $.fn.dataTable.FixedHeader( table );
-	 
-	 
-	 $('#latestDataReportTable tbody').on('click', 'td.details-control', function(){
-	        var tr = $(this).closest('tr');
-	        var row = table.row( tr );
-
-	        if(row.child.isShown()){
-	            // This row is already open - close it
-	            row.child.hide();
-	            tr.removeClass('shown');
-	        } else {
-	            // Open this row
-	            row.child(format(row.data())).show();
-	            tr.addClass('shown');
-	        }
-	    });
 }
 
 
@@ -161,9 +151,13 @@ function renderAlarmStatusDataTable(){
                     select.append( '<option value="'+d+'">'+d+'</option>' )
                 } );
             } );
-        }
+        },
+        
+        "dom": "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
+        "<'row'<'col-sm-12'tr>>" +
+        "<'row'<'col-sm-4'i><'col-sm-4 text-center'l><'col-sm-4'p>>"
     } );
-	 new $.fn.dataTable.FixedHeader( alarmTable );
+	 //new $.fn.dataTable.FixedHeader( alarmTable );
 }
 
 
@@ -490,10 +484,7 @@ function registerLatestReportReload(selectObj){
 		$(this).data('all', isAllSelected);
 		
 		$('#latestDataReportTable').DataTable().ajax.reload();		
-		
 	});
-
-	
 }
 
 

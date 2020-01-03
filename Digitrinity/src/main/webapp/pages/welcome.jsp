@@ -10,145 +10,149 @@
 <%@page import="java.util.Map"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Welcome</title>
 <jsp:include page="include_hdr.jsp"></jsp:include>
 </head>
-<body style="background-color: #e9e9e9" data-spy="scroll">
+<body style="background-color: #e9e9e9; font-size: .88rem;" data-spy="scroll">
 	<jsp:include page="header.jsp"></jsp:include>
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"
 		integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E="
 		crossorigin="anonymous" />
 	<div class="container-fluid">
-		<div class="row-12 m-2">
-			<div class="row p-3 text-center" style="background-color: white">
-				<div class="col-sm">
-					<div class="alert alert-primary" role="alert">
-						<span class="font-weight-bold" style="font-size: 15px;">Total
-							Sites</span>
-						<h5>
-							<span id="totalSite" class="font-weight-bold"
-								style="font-size: 25px;">##</span>
-						</h5>
+		<div class="row-12 top7">
+			<div class="row p-2" style="background-color: white">
+				<div class="col" style="max-width: 18rem;">
+					<div class="card bg-c-lite-green update-card">
+						<div class="card-block">
+							<div class="row align-items-end">
+								<div class="col-8">
+									<h4 class="text-white"><span id="totalSite" class="font-weight-bold" style="font-size: 25px;">##</span></h4>
+									<h6 class="text-white m-b-0">Total</h6>
+								</div>
+								<div class="col-4 text-right">
+									<h2><i class="fas fa-signal"></i></h2>
+								</div>
+							</div>
+						</div>						
 					</div>
 				</div>
-				<div class="col-sm">
-					<div class="alert alert-success" role="alert">
-						<span class="font-weight-bold" style="font-size: 15px;">Online</span>
-						<h5>
-							<span id="onlineSite" class="font-weight-bold"
-								style="font-size: 25px;">##</span>
-						</h5>
+				<div class="col" style="max-width: 18rem;">
+					<div class="card bg-c-green update-card">
+						<div class="card-block">
+							<div class="row align-items-end">
+								<div class="col-8">
+									<h4 class="text-white"><span id="onlineSite" class="font-weight-bold" style="font-size: 25px;">##</span></h4>
+									<h6 class="text-white m-b-0">Online</h6>
+								</div>
+								<div class="col-4 text-right">
+									<h2><i class="fas fa-signal"></i></h2>
+								</div>
+							</div>
+						</div>						
 					</div>
 				</div>
-				<div class="col-sm">
-					<div class="alert alert-danger" role="alert">
-						<span class="font-weight-bold" style="font-size: 15px;">Offline</span>
-						<h5>
-							<span id="offlineSite" class="font-weight-bold"
-								style="font-size: 25px;">##</span>
-						</h5>
+				<div class="col" style="max-width: 18rem;">
+					<div class="card bg-c-pink update-card">
+						<div class="card-block">
+							<div class="row align-items-end">
+								<div class="col-8">
+									<h4 class="text-white"><span id="offlineSite" class="font-weight-bold" style="font-size: 25px;">##</span></h4>
+									<h6 class="text-white m-b-0">Offline</h6>
+								</div>
+								<div class="col-4 text-right">
+									<h2><i class="fas fa-signal"></i></h2>
+								</div>
+							</div>
+						</div>						
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="row-12 m-2">
-			<div class="row">
-				<div class="col-md-8 col-sm-6">
-					<div class="footer-widget">
-						<div class="row p-2" style="background-color: white;">
-							<table cellspacing="5" cellpadding="5">
-								<tr>
-									<td><label class='control-label mr-2'
-										for="hourly-site-id-select"><strong>Region</strong></label></td>
-									<td><select id="region-select" name="region-select"
-										class="selectpicker form-control" data-live-search="true"
-										multiple title="Region" data-width="150px"
-										style="background-color: #5cb85c; color: #fff;">
-											<option value="All" selected="selected">All</option>
-									</select></td>
-									<td><label class='control-label mr-2'
-										for="hourly-site-id-select"><strong>Zone</strong></label></td>
-									<td><select id="zone-select" name="zone-select"
-										class="selectpicker" data-live-search="true" multiple
-										title="Zone" data-width="150px" data-all="false">
-											<option value="All" selected="selected">All</option>
-									</select></td>
-									<td><label class='control-label mr-2'
-										for="hourly-site-id-select"><strong>Cluster</strong></label></td>
-									<td><select id="cluster-select" name="cluster-select"
-										class="selectpicker" data-live-search="true" multiple
-										title="Cluster" data-width="150px">
-											<option value="All" selected="selected">All</option>
-									</select></td>
-									<td><label class='control-label mr-2'
-										for="hourly-site-id-select"><strong>Site ID</strong></label></td>
-									<td><select id="siteId" name="siteId" class="selectpicker"
-										data-live-search="true" multiple title="Site ID"
-										data-width="150px">
-											<option value="All" selected="selected">All</option>
-									</select></td>
-									<td><label class='control-label mr-2'
-										for="hourly-site-id-select"><strong>Customer</strong></label></td>
-									<td><select id="customer" name="customer"
-										class="selectpicker" data-live-search="true" multiple
-										title="Customer" data-width="150px">
-											<option value="All" selected="selected">All</option>
-									</select></td>
-									
-									<td><label class='control-label mr-2'
-										for="hourly-site-id-select"><strong>Site Type</strong></label></td>
-									<td><select id="siteType" name="siteType"
-										class="selectpicker" data-live-search="true" multiple
-										title="Site Type" data-width="150px">
-											<option value="All" selected="selected">All</option>
-									</select></td>
-								</tr>
-								<tr>
-									
-									
-								</tr>
-							</table>
-							<table id="latestDataReportTable"
-								class="table table-bordered compact nowrap" style="width: 100%">
-								<!-- <thead style="background-color: #343a40;color: #fff;"> -->
-								<thead class="text-center"
-									style="background-color: #343a40; color: #fff;">
+		
+		<div class="row top7" style="background-color:#e9e9e9;">
+			<div class="col-md-8 mx-auto box p-3" style="background-color: white;overflow-x:auto;white-space: nowrap;">
+			<div class="inner">
+				<table cellspacing="5" cellpadding="5">
+					<tr>
+						<td><label class='control-label mr-2'
+							for="hourly-site-id-select"><strong>Region</strong></label></td>
+						<td><select id="region-select" name="region-select"
+							class="selectpicker form-control" data-live-search="true"
+							multiple title="Region" data-width="150px"
+							style="background-color: #5cb85c; color: #fff;">
+								<option value="All" selected="selected">All</option>
+						</select></td>
+						<td><label class='control-label mr-2'
+							for="hourly-site-id-select"><strong>Zone</strong></label></td>
+						<td><select id="zone-select" name="zone-select"
+							class="selectpicker" data-live-search="true" multiple
+							title="Zone" data-width="150px" data-all="false">
+								<option value="All" selected="selected">All</option>
+						</select></td>
+						<td><label class='control-label mr-2'
+							for="hourly-site-id-select"><strong>Cluster</strong></label></td>
+						<td><select id="cluster-select" name="cluster-select"
+							class="selectpicker" data-live-search="true" multiple
+							title="Cluster" data-width="150px">
+								<option value="All" selected="selected">All</option>
+						</select></td>
+						<td><label class='control-label mr-2'
+							for="hourly-site-id-select"><strong>Site ID</strong></label></td>
+						<td><select id="siteId" name="siteId" class="selectpicker"
+							data-live-search="true" multiple title="Site ID"
+							data-width="150px">
+								<option value="All" selected="selected">All</option>
+						</select></td>
+						<td><label class='control-label mr-2'
+							for="hourly-site-id-select"><strong>Customer</strong></label></td>
+						<td><select id="customer" name="customer"
+							class="selectpicker" data-live-search="true" multiple
+							title="Customer" data-width="150px">
+								<option value="All" selected="selected">All</option>
+						</select></td>
+
+						<td><label class='control-label mr-2'
+							for="hourly-site-id-select"><strong>Site Type</strong></label></td>
+						<td><select id="siteType" name="siteType"
+							class="selectpicker" data-live-search="true" multiple
+							title="Site Type" data-width="150px">
+								<option value="All" selected="selected">All</option>
+						</select></td>
+					</tr>
+				</table>
+				<table id="latestDataReportTable" class="table table-striped table-bordered table-fixed table-hover table-condensed" style="width: 100%">					
+						<thead class="text-center" style="background-color: #343a40; color: #fff;">
 									<tr>
-										<th></th>
 										<th>Last Updated</th>
 										<th>Site ID</th>
 										<th>Site Name</th>
+										<th>Power Source</th>										
 										<th>Customer</th>
+										<th>Battery SOC</th>
+										<th>DC Load</th>
 										<th>DC Voltage (Kw)</th>
+										<th>DG Power (Kw)</th>
+										<th>Fuel Level (Ltrs)</th>
+										<th>Solar (Kw)</th>
 										<th>Critical</th>
 										<th>Major</th>
+										<th>Minor</th>
 										<th>Offline Duration</th>
+										<th>Engineer Name</th>
+										<th>Location</th>
 									</tr>
 								</thead>
-								<tbody class="text-center"></tbody>
-								<!-- <tfoot class="text-center">
-							<tr>
-								
-								<th>Last Updated</th>
-								<th>Site ID</th>
-								<th>Site Name</th>
-								<th>Customer</th>
-								<th>DC Load</th>
-								<th>Critical</th>
-								<th>Major</th>
-								<th>Minor</th>
-								<th>Offline Duration</th>
-							</tr>
-						</tfoot> -->
+								<tbody class="text-center"></tbody>							
 							</table>
-						</div>
-					</div>
+							
+							</div>
+							
 				</div>
-				<div class="col-md-4 col-sm-6">
-					<div class="footer-widget">
-						<div class="row p-2 ml-1"
-							style="background-color: white; height: 100%">
+					
+				<div class="col-md-4 mx-auto p-3" style="background-color: white;overflow-x:auto;white-space: nowrap;border-left: 5px solid #e9e9e9;">
+				<div class="inner">
 							<table cellspacing="5" cellpadding="5">
 								<tr>
 									<td><label class='control-label mr-2'
@@ -185,8 +189,7 @@
 
 
 							<table id="alarmTable"
-								class="table table-bordered compact nowrap" style="width: 100%">
-								<!-- <thead style="background-color: #343a40;color: #fff;"> -->
+								class="table table-striped table-bordered table-fixed table-hover table-condensed" style="width: 100%">								
 								<thead class="text-center"
 									style="background-color: #343a40; color: #fff;">
 									<tr>
@@ -197,29 +200,13 @@
 									</tr>
 								</thead>
 								<tbody class="text-center"></tbody>
-								<!-- <tfoot class="text-center">
-							<tr>
-								
-								<th>Last Updated</th>
-								<th>Site ID</th>
-								<th>Site Name</th>
-								<th>Customer</th>
-								<th>DC Load</th>
-								<th>Critical</th>
-								<th>Major</th>
-								<th>Minor</th>
-								<th>Offline Duration</th>
-							</tr>
-						</tfoot> -->
 							</table>
-
-						</div>
-					</div>
+							</div>
 				</div>
-			</div>
-
-		</div>
-		<div class="row-12 m-2">
+				
+				</div>
+					
+		 <div class="row-12 m-2">
 			<div class="row p-2" style="background-color: white">
 				<form class="form-inline">
 
