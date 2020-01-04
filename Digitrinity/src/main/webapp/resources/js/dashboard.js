@@ -162,46 +162,6 @@ function renderAlarmStatusDataTable(){
 	 //new $.fn.dataTable.FixedHeader( alarmTable );
 }
 
-
-function format ( d ) {
-    // `d` is the original data object for the row
-    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
-        '<tr>'+
-            '<td>Power Source</td>'+
-            '<td>'+d.powerSource+'</td>'+
-        '</tr>'+
-        '<tr>'+
-            '<td>Battery SOC</td>'+
-            '<td>'+d.batterySOC+'</td>'+
-        '</tr>'+
-        '<tr>'+
-	        '<td>DC Load</td>'+
-	        '<td>'+d.dcLoad+'</td>'+
-        '</tr>'+
-        '<tr>'+
-	        '<td>Fuel Level (%)</td>'+
-	        '<td>'+d.fuelLevel+'</td>'+
-	    '</tr>'+
-	    '<tr>'+
-		    '<td>Solar (Kw)</td>'+
-		    '<td>'+d.solarKw+'</td>'+
-		'</tr>'+
-		'<tr>'+
-		    '<td>Minor</td>'+
-		    '<td>'+d.minor+'</td>'+
-	    '</tr>'+
-		'<tr>'+
-		    '<td>Engineer Name</td>'+
-		    '<td>'+d.engineerName+'</td>'+
-	    '</tr>'+
-         '<tr>'+
-            '<td>Location</td>'+
-            '<td>'+d.location+'</td>'+
-        '</tr>'+
-    '</table>';
-}
-
-
 function buildDataTableAjaxData()
 {
 	var obj = {
@@ -573,21 +533,24 @@ function hourlyReportDateApply(){
 
 function registerLatestReportDataOnClickEvent(){
 	$('#latestDataReportTable tbody').on( 'click', 'tr', function () {
-	    console.log( latestReportTable.row( this ).data() );
-	    console.log( latestReportTable.row( this ).data().smSiteCode );
 	    
-	    if ( $(this).hasClass('selected') ) {
-            $(this).removeClass('selected');
+	    /*if ( $(this).hasClass('selected') ) {
+           // $(this).removeClass('selected');
         }
         else {
         	latestReportTable.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
-        }
+        }*/
+		latestReportTable.$('tr.selected').removeClass('selected');
+        $(this).addClass('selected');
+		
+	    var siteId = latestReportTable.row( this ).data().smSiteCode;
 	    
-	    //$('#alarm-site-id-select').selectpicker('val', [1]);
-	    $('#alarm-site-id-select').selectpicker('val', latestReportTable.row( this ).data().smSiteCode);
-	    //$('#alarm-site-id-select[name=selValue]').val(latestReportTable.row( this ).data().smSiteCode);
+	    $('#alarm-site-id-select').selectpicker('val', siteId);
 	    $('#alarm-site-id-select').selectpicker('refresh')
+	    
+	    $('#hourly-site-id-select').selectpicker('val', siteId);
+	    $('#hourly-site-id-select').selectpicker('refresh')
 	    
 	} );	
 	

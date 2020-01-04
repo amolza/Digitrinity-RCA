@@ -32,6 +32,14 @@
 						<li><a class="dropdown-item" href="${contextPath}/master_data/view_faultCategory_form">Add Fault Category</a></li>
 				</ul>
 			</li>
+			<li class="nav-item ml-3 dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Reports
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">					
+					<li><a class="dropdown-item" href="${contextPath}/report/rawreport">Raw Data Report</a></li>						
+				</ul>
+			</li>
 			<%-- <li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Manage Details

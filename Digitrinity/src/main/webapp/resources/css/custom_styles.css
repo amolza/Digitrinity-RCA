@@ -148,3 +148,7 @@ table.dataTable tbody tr.selected {
     color: white !important;;
     background-color: #acbad4 !important;;
 }
+
+#latestDataReportTable tr:hover {
+cursor: pointer;
+}
