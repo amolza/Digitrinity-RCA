@@ -6,6 +6,7 @@ body {
 	font-size: 13px;
 	font-weight: 400;
 	line-height: 1.5;
+	height: 100%;
 }
  
 /* Increase all font sizes on mobile */
@@ -16,7 +17,7 @@ body {
 	}
 }
 
-.btn, .navbar-brand, .dropdown-menu, .form-control{
+.btn, .form-control{
 	font-size: 13px;
 }
 
@@ -151,4 +152,43 @@ table.dataTable tbody tr.selected {
 
 #latestDataReportTable tr:hover {
 cursor: pointer;
+}
+
+
+.filter-table{
+	margin-bottom : 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	
+}
+
+
+.filter-table tr{
+	background-color: #347B98;
+    border-radius: 5px;
+    text-align: center;
+    vertical-align: sub;
+    -webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	margin-bottom : 5px;
+	color: #E4F1F6;
+}
+
+#main_navbar.navbar{
+	background-color : #67AFCB !important;
+	color : #1A3E4C !important;
+}
+
+#main_navbar.navbar a{
+	
+	color : #1A3E4C !important;
+	font-size: 1.1rem !important;
+    font-weight: 500;
+}
+
+.datatable-header{
+	background-color: #67AFCB;
+    color: #1A3E4C;
+}
 }

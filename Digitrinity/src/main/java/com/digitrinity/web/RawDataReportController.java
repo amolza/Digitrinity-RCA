@@ -1,6 +1,6 @@
 package com.digitrinity.web;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,7 +23,12 @@ public class RawDataReportController {
 	
 	@PostMapping(path = "/raw-data", produces = "application/json")
 	public ServerSideDataTableResponse getLatestReportData(@RequestBody RawDataReportReqDto dataReportReqDto) {
-		Page<RawDataReport> fetchFilteredAndPaginatedReport = rawDataReportService.fetchFilteredAndPaginatedReport(dataReportReqDto);
-		return new ServerSideDataTableResponse(fetchFilteredAndPaginatedReport.getContent(),fetchFilteredAndPaginatedReport.getTotalElements(), fetchFilteredAndPaginatedReport.getTotalElements(),dataReportReqDto.getDraw());
+		Page<RawDataReport> rawDataReport = rawDataReportService.fetchFilteredAndPaginatedReport(dataReportReqDto);
+		if(rawDataReport != null) {
+			return new ServerSideDataTableResponse(rawDataReport.getContent(),rawDataReport.getTotalElements(), rawDataReport.getTotalElements(),dataReportReqDto.getDraw());
+		}else {
+			return new ServerSideDataTableResponse(new ArrayList<String>(),0,0,dataReportReqDto.getDraw());
+		}
+		
 	}
 }

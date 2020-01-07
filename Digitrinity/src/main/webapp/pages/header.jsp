@@ -1,7 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="main_navbar">
-	<a class="navbar-brand" href="#">Digi Trinity</a>
+<nav class="navbar navbar-expand-lg" id="main_navbar">
+	<img src="${contextPath}/resources/assets/images/logo.png" alt="" style="width:40px; padding:0 5px;">
+	<a class="navbar-brand" href="${contextPath}"><strong>Digi Trinity</strong></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>

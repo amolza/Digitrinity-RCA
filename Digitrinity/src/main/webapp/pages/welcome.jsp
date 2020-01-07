@@ -74,7 +74,7 @@
 		<div class="row top7" style="background-color:#e9e9e9;">
 			<div class="col-md-8 mx-auto box p-3" style="background-color: white;overflow-x:auto;white-space: nowrap;">
 			<div class="inner">
-				<table cellspacing="5" cellpadding="5">
+				<table cellspacing="5" cellpadding="5" class="filter-table">
 					<tr>
 						<td><label class='control-label mr-2'
 							for="hourly-site-id-select"><strong>Region</strong></label></td>
@@ -101,7 +101,7 @@
 						<td><label class='control-label mr-2'
 							for="hourly-site-id-select"><strong>Site ID</strong></label></td>
 						<td><select id="siteId" name="siteId" class="selectpicker"
-							data-live-search="true" multiple title="Site ID"
+							data-live-search="true" data-size="10" multiple title="Site ID"
 							data-width="150px">
 								<option value="All" selected="selected">All</option>
 						</select></td>
@@ -123,7 +123,7 @@
 					</tr>
 				</table>
 				<table id="latestDataReportTable" class="table table-striped table-bordered table-fixed table-hover table-condensed" style="width: 100%">					
-						<thead class="text-center" style="background-color: #343a40; color: #fff;">
+						<thead class="text-center datatable-header">
 									<tr>
 										<th>Last Updated</th>
 										<th>Site ID</th>
@@ -153,7 +153,7 @@
 					
 				<div class="col-md-4 mx-auto p-3" style="background-color: white;overflow-x:auto;white-space: nowrap;border-left: 5px solid #e9e9e9;">
 				<div class="inner">
-							<table cellspacing="5" cellpadding="5">
+							<table cellspacing="5" cellpadding="5" class="filter-table">
 								<tr>
 									<td><label class='control-label mr-2'
 										for="hourly-site-id-select"><strong>Alarm
@@ -170,7 +170,7 @@
 									<td><select id="alarm-site-id-select"
 										name="alarm-site-id-select" class="selectpicker"
 										data-live-search="true" multiple title="Site ID"
-										data-width="150px" data-all="false">
+										data-width="150px" data-all="false" data-size="10">
 											<option value="All" selected="selected">All</option>
 									</select></td>
 									<td><label class='control-label mr-2'
@@ -190,8 +190,7 @@
 
 							<table id="alarmTable"
 								class="table table-striped table-bordered table-fixed table-hover table-condensed" style="width: 100%">								
-								<thead class="text-center"
-									style="background-color: #343a40; color: #fff;">
+								<thead class="text-center datatable-header">
 									<tr>
 										<th>Site ID</th>
 										<th>Alarm Name</th>
@@ -208,42 +207,36 @@
 					
 		 <div class="row-12 m-2">
 			<div class="row p-2" style="background-color: white">
-				<form class="form-inline">
-
-					<div class="form-group m-2">
-						<label class='control-label mr-2'><strong>Date</strong></label> <input
-							id="datetimepicker" class="form-control" type="text"
-							style="width: 280px">
-					</div>
-					<div class="form-group m-2">
-						<label class='control-label mr-2' for="hourly-site-id-select"><strong>Site
-								ID</strong></label> <select id="hourly-site-id-select"
+				<table cellspacing="5" cellpadding="5" class="filter-table">
+				<tr>
+					<td><label class='control-label mr-2'><strong>Date</strong></label></td>
+					<td><input id="datetimepicker" class="form-control" type="text" style="width: 280px"/></td>
+					<td><label class='control-label mr-2' for="hourly-site-id-select"><strong>Site ID</strong></label></td>
+					<td><select id="hourly-site-id-select"
 							name="hourly-site-id-select" class="selectpicker form-control"
 							data-live-search="true" multiple title="Site Id"
 							data-width="150px">
 							<option value="All" selected="selected">All</option>
 						</select>
-					</div>
-					<div class="form-group m-2">
-						<label class='control-label mr-2' for="hourly-site-type-select"><strong>Site
-								ID</strong></label> <select id="hourly-site-type-select" class="form-control"
+					</td>
+					<td><label class='control-label mr-2' for="hourly-site-type-select"><strong>Site ID</strong></label></td>
+					<td><select id="hourly-site-type-select" class="form-control"
 							name="hourly-site-type-select" class="selectpicker"
 							data-live-search="true" multiple title="Site Type"
 							data-width="150px">
 							<option value="All" selected="selected">All</option>
 						</select>
-					</div>
-					<div class="form-group m-2">
-						<label class='control-label mr-2' for="hourly-device-type-select"><strong>Device
-								Type</strong></label> <select id="hourly-device-type-select" class="form-control"
+					</td>
+					<td><label class='control-label mr-2' for="hourly-device-type-select"><strong>Device Type</strong></label></td>
+					<td><select id="hourly-device-type-select" class="form-control"
 							name="hourly-device-type-select" class="selectpicker"
 							data-live-search="true" multiple title="Device Type"
 							data-width="150px">
 							<option value="All" selected="selected">All</option>
 						</select>
-					</div>
-
-				</form>
+					</td>
+				</tr>
+				</table>
 			</div>
 			<div class="row" style="background-color: white">
 				<canvas id="bar-chart" width="800" height="190"></canvas>

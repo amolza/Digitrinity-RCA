@@ -1,7 +1,15 @@
 var rawDataReportDataTable;
-$(document).ready(function() { 
+$(document).ready(function() {
+	
+	loadRegions();
+	loadZones();
+	loadClusters();
+	loadSiteTypes();
+	loadSiteIds();
+	loadDeviceType();
 	renderRawDataReportDataTable();
 } );
+
 
 
 
@@ -23,6 +31,7 @@ function renderRawDataReportDataTable(){
 		            var info = (rawDataReportDataTable == null) ? { "start": 0, "length": 50, "page": 0 } : rawDataReportDataTable.page.info();
 		            $.extend(form, info);
 		            $.extend(form, d);
+		            $.extend(form, buildDataTableAjaxData());
 		            return JSON.stringify(form);
 		        },
 				"error": function(){  // error handling code
@@ -392,4 +401,149 @@ function renderRawDataReportDataTable(){
     } );
 	
 	 new $.fn.dataTable.FixedHeader( rawDataReportDataTable );
+}
+
+function loadZones()
+{
+	$.ajax('../dashboard/zone-master',   // request url
+    	    {
+    	        success: function (data, status, xhr) {// success callback function   
+	    	        $.each(data, function(index,jsonObject){
+	    	        	$("#zone-select").append('<option value="'+jsonObject.znZone+'">'+jsonObject.znZone+'</option>');    	            
+	    	        });    	        
+	    	        $("#zone-select").selectpicker("refresh");
+	    	        $("#zone-select").selectpicker("selectAll");	    	        
+	    	        registerRawDataReload($("#zone-select"));
+    	    }
+    	});
+}
+
+function loadRegions()
+{
+	$.ajax('../dashboard/region-master',   // request url
+    	    {
+    	        success: function (data, status, xhr) {// success callback function    	        	
+	    	        $.each(data, function(index,jsonObject){
+	    	        	$("#region-select").append('<option value="'+jsonObject.rgRegion+'">'+jsonObject.rgRegion+'</option>');    	            
+	    	        });    	        
+	    	        $("#region-select").selectpicker("refresh");
+	    	        $("#region-select").selectpicker("selectAll");	    	        
+	    	        registerRawDataReload($("#region-select"));
+    	    }
+    	});
+}
+
+function loadClusters()
+{
+	$.ajax('../dashboard/cluster-master',   // request url
+    	    {
+    	        success: function (data, status, xhr) {// success callback function    	        	
+	    	        $.each(data, function(index,jsonObject){
+	    	        	$("#cluster-select").append('<option value="'+jsonObject.crName+'">'+jsonObject.crName+'</option>');    	            
+	    	        });    	        
+	    	        $("#cluster-select").selectpicker("refresh");
+	    	        $("#cluster-select").selectpicker("selectAll");	    	        
+	    	        registerRawDataReload($("#cluster-select"));
+    	    }
+    	});
+}
+
+function loadSiteTypes()
+{
+	$.ajax('../dashboard/site-type-master',   // request url
+    	    {
+    	        success: function (data, status, xhr) {// success callback function    	        	
+	    	        $.each(data, function(index,jsonObject){
+	    	        	$("#siteType").append('<option value="'+jsonObject.type+'">'+jsonObject.type+'</option>');
+	    	        });    	        
+	    	        $("#siteType").selectpicker("refresh");
+	    	        $("#siteType").selectpicker("selectAll");
+	    	        registerRawDataReload($("#siteType"));
+    	    }
+    	});
+}
+
+function loadSiteIds()
+{
+	$.ajax('../dashboard/site-code-master',   // request url
+    	    {
+    	        success: function (data, status, xhr) {// success callback function
+    	        $.each(data, function(index,jsonObject){
+    	            $.each(jsonObject, function(key,val){
+    	                
+    	                $("#siteId").append('<option value="'+val+'">'+val+'</option>');
+    	                
+    	            });
+    	        });    	        
+    	        $("#siteId").selectpicker("refresh");
+    	        $("#siteId").selectpicker("selectAll");
+    	        registerRawDataReload($("#siteId"));
+    	    }
+    	});
+}
+
+function loadDeviceType()
+{
+	$.ajax('../dashboard/device-type-master',   // request url
+    	    {
+    	        success: function (data, status, xhr) {// success callback function    	        	
+	    	        $.each(data, function(index,jsonObject){
+	    	        	$("#device-type-select").append('<option value="'+jsonObject.deviceType+'">'+jsonObject.deviceType+'</option>');    	            
+	    	        });    	        
+	    	        $("#device-type-select").selectpicker("refresh");
+	    	        $("#device-type-select").selectpicker("selectAll");	    	        
+	    	        registerRawDataReload($("#device-type-select"));
+    	    }
+    	});
+}
+
+
+function registerRawDataReload(selectObj){
+	selectObj.on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+		var thisObj = $(this);
+	    var isAllSelected = thisObj.find('option[value="All"]').prop('selected');
+	    var lastAllSelected = $(this).data('all');
+	    var selectedOptions = (thisObj.val())?thisObj.val():[];
+	    var allOptionsLength = thisObj.find('option[value!="All"]').length;
+	     
+	     
+	    var selectedOptionsLength = selectedOptions.length;
+	     
+	    if(isAllSelected == lastAllSelected){
+	    
+	    if($.inArray("All", selectedOptions) >= 0){
+	    	selectedOptionsLength -= 1;      
+	    }
+	        	
+	    if(allOptionsLength <= selectedOptionsLength){
+	    
+	    thisObj.find('option[value="All"]').prop('selected', true).parent().selectpicker('refresh');
+	    isAllSelected = true;
+	    }else{       
+	    	thisObj.find('option[value="All"]').prop('selected', false).parent().selectpicker('refresh');
+	       isAllSelected = false;
+	    }
+	      
+	    }else{   		
+	    	thisObj.find('option').prop('selected', isAllSelected).parent().selectpicker('refresh');
+	    }
+	   
+		$(this).data('all', isAllSelected);
+		
+		$('#rawDataReportDataTable').DataTable().ajax.reload();		
+	});
+}
+
+function buildDataTableAjaxData()
+{
+	var obj = {
+			"siteId" : $("#siteId").val(),
+			"deviceType" : $("#device-type-select").val(),
+			"siteType" : $("#siteType").val(),
+			"clusters" : $("#cluster-select").val(),
+			"zones" : $("#zone-select").val(),
+			"regions" : $("#region-select").val()			
+	}
+	return obj;
+	
 }

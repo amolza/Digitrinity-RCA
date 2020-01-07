@@ -22,8 +22,10 @@
 	<section id="raw-report-header">
 		<div class="container-fluid">
 
-			<div class="row-12 text-center" style="background-color: white;">
-				<h3>Raw Data Report</h3>
+			<div class="row-12 mt-3 mb-3 p-2 text-center">
+				<div class="col-12 p-2" style="background-color: #1A3E4C;color: #E4F1F6;">
+					<h3>Raw Data Report</h3>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -31,8 +33,8 @@
 
 	<section id="raw-report-filter">
 		<div class="container-fluid">
-			<div class="row-12" style="background-color: white;">
-				<table cellspacing="5" cellpadding="5">
+			<div class="row-12 p-2" style="background-color: white;">
+				<table cellspacing="5" cellpadding="5" class = "filter-table">
 					<tr>
 						<td><label class='control-label mr-2'
 							for="hourly-site-id-select"><strong>Region</strong></label></td>
@@ -64,10 +66,10 @@
 								<option value="All" selected="selected">All</option>
 						</select></td>
 						<td><label class='control-label mr-2'
-							for="hourly-site-id-select"><strong>Customer</strong></label></td>
-						<td><select id="customer" name="customer"
+							for="device-type-select"><strong>Device Type</strong></label></td>
+						<td><select id="device-type-select" name="customer"
 							class="selectpicker" data-live-search="true" multiple
-							title="Customer" data-width="150px">
+							title="Device Type" data-width="150px">
 								<option value="All" selected="selected">All</option>
 						</select></td>
 
@@ -88,12 +90,11 @@
 			<div class="row-12"
 				style="background-color: white; overflow-x: auto; white-space: nowrap;">
 				<div class="col-md-12 mx-auto box p-3"
-					style="background-color: white; overflow-x: auto;overflow-y: auto; white-space: nowrap;height:100%">
+					style="background-color: white; overflow-x: auto;overflow-y: auto; white-space: nowrap;height:800px">
 					<table id="rawDataReportDataTable"
 						class="table table-striped table-bordered table-fixed table-hover table-condensed"
 						style="width: 100%;height:100%;">
-						<thead class="text-center"
-							style="background-color: #343a40; color: #fff;">
+						<thead class="text-center datatable-header">
 							<tr>
 								<th>Cluster</th>
 								<th>Site ID</th>
