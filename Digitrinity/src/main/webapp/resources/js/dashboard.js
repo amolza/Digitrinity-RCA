@@ -28,7 +28,7 @@ $(document).ready(function() {
  	renderChart();
  	
  	loadAlarmCategory();
- 	loadAlarmSeverity();
+ 	//loadAlarmSeverity();
  	renderAlarmStatusDataTable();
  	registerLatestReportDataOnClickEvent();
 } );
@@ -47,6 +47,7 @@ function renderLatestReportDataTable(){
 			},
 			"order": [[ 0, "desc" ]],
 			"bLengthChange": false,
+			"bFilter": false,		
 			"columns": [        	 
             { "data": "lastUpdated" },
             { "data": "smSiteCode" },
@@ -104,9 +105,9 @@ function renderLatestReportDataTable(){
             
             
           },
-          "dom": "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
+          /*"dom": "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
           "<'row'<'col-sm-12'tr>>" +
-          "<'row'<'col-sm-4'i><'col-sm-4 text-center'l><'col-sm-4'p>>"
+          "<'row'<'col-sm-4'i><'col-sm-4 text-center'l><'col-sm-4'p>>"*/
     } );
 	
 	 new $.fn.dataTable.FixedHeader( latestReportTable );
@@ -115,6 +116,7 @@ function renderLatestReportDataTable(){
 
 function renderAlarmStatusDataTable(){
 	var alarmTable = $('#alarmTable').DataTable( {
+		"bFilter": false,
 		responsive: true,
 			"ajax" : {
 				"url":"dashboard/alarm-status",
@@ -154,10 +156,6 @@ function renderAlarmStatusDataTable(){
                 } );
             } );
         },
-        
-        "dom": "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
-        "<'row'<'col-sm-12'tr>>" +
-        "<'row'<'col-sm-4'i><'col-sm-4 text-center'l><'col-sm-4'p>>"
     } );
 	 //new $.fn.dataTable.FixedHeader( alarmTable );
 }

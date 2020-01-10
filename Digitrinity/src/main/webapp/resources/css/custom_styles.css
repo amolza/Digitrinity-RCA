@@ -3,7 +3,7 @@ body {
 	#font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	/* default is 1rem or 16px */
-	font-size: 13px;
+	font-size: 13px !important;
 	font-weight: 400;
 	line-height: 1.5;
 	height: 100%;
@@ -30,15 +30,14 @@ td.highlight-red-back {
         background: red !important;
         color:white !important;
     }
-    
-/* #latestDataReportTable {
-  table-layout: fixed;
+   
+#latestDataReportTable {  
   width: 100% !important;
   margin: 0 auto;
   clear: both;
   border-collapse: collapse;
   word-wrap:break-word; 
-}
+} /*
 #latestDataReportTable td,
 #latestDataReportTable th{
   width: auto !important;
@@ -85,20 +84,33 @@ td.highlight-red-back {
 }
 
 
-#latestDataReportTable td.details-control {
-    background: url('https://cdn.rawgit.com/DataTables/DataTables/6c7ada53ebc228ea9bc28b1b216e793b1825d188/examples/resources/details_open.png') no-repeat center center;
-    cursor: pointer;
+#latestDataReportTable, #alarmTable {
+    font-size : 0.8rem !important;
 }
 #latestDataReportTable tr.shown td.details-control {
     background: url('https://cdn.rawgit.com/DataTables/DataTables/6c7ada53ebc228ea9bc28b1b216e793b1825d188/examples/resources/details_close.png') no-repeat center center;
 }
 
 #latestDataReportTable td {
-    padding: .2em .2em !important;
-  }
+    padding: 0.1em 0.1em !important;
+    text-overflow: ellipsis;
+  	overflow: hidden; 	
+  	width: auto !important;  
+  text-overflow: ellipsis;
+  
+}
+
+#latestDataReportTable th {
+    padding-left: 0.2em !important;
+    padding-right: 0.2em !important;
+  	width: auto !important;
+  white-space: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
   
 #alarmTable td {
-    padding: .2em .2em !important;
+    padding: 0em 0em !important;
   }
   
 #alarmTable {
@@ -183,7 +195,7 @@ cursor: pointer;
 #main_navbar.navbar a{
 	
 	color : #1A3E4C !important;
-	font-size: 1.1rem !important;
+	font-size: 0.8rem !important;
     font-weight: 500;
 }
 
@@ -191,4 +203,15 @@ cursor: pointer;
 	background-color: #67AFCB;
     color: #1A3E4C;
 }
+
+.navbar-toggler{
+	color :  #1A3E4C !important;
+}
+
+.bootstrap-select .dropdown-menu li a{
+	font-size: 0.8rem !important;
+}
+
+.bootstrap-select .dropdown-toggle .filter-option-inner-inner{
+	font-size: 0.7rem !important;
 }

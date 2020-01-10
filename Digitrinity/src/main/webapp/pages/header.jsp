@@ -4,7 +4,7 @@
 	<img src="${contextPath}/resources/assets/images/logo.png" alt="" style="width:40px; padding:0 5px;">
 	<a class="navbar-brand" href="${contextPath}"><strong>Digi Trinity</strong></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
+		<span class="navbar-toggler-icon"><i class="fas fa-bars" style="color:#fff; font-size:28px;"></i></span>
 	</button>
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">

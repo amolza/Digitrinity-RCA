@@ -3,11 +3,13 @@ package com.digitrinity.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "V_latestData")
+@IdClass(LatestDataReportComposite.class)
 public class LatestDataReport {
 	
 	@Id
@@ -29,6 +31,7 @@ public class LatestDataReport {
 	@Column(name="Region")	
 	private String region;
 	
+	@Id
 	@Column(name="smSitecode")
 	private String smSiteCode;
 	

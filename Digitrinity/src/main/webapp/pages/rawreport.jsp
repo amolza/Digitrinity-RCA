@@ -24,7 +24,7 @@
 
 			<div class="row-12 mt-3 mb-3 p-2 text-center">
 				<div class="col-12 p-2" style="background-color: #1A3E4C;color: #E4F1F6;">
-					<h3>Raw Data Report</h3>
+					<h5>Raw Data Report</h5>
 				</div>
 			</div>
 		</div>

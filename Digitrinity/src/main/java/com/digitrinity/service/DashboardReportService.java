@@ -5,6 +5,8 @@ package com.digitrinity.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -124,7 +126,7 @@ public class DashboardReportService implements IDashboardReportService {
 					);
 		}
 		
-		return dataReports;
+		return dataReports.stream().filter(dataReport -> Objects.nonNull(dataReport)).collect(Collectors.toList());
 	}
 
 	@Override

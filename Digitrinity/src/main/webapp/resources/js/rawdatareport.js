@@ -16,6 +16,7 @@ $(document).ready(function() {
 function renderRawDataReportDataTable(){
 	rawDataReportDataTable = $('#rawDataReportDataTable').DataTable( {
 			"processing": true,
+			"bFilter": false,
 			"serverSide": true,			
 		    "pageLength": 50,
 			"ajax" : {
@@ -395,9 +396,9 @@ function renderRawDataReportDataTable(){
 	            
 	        ],
 			"bLengthChange": false,
-			"dom": "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
+			/*"dom": "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
 			"<'row'<'col-sm-12'tr>>" +
-			"<'row'<'col-sm-4'i><'col-sm-4 text-center'l><'col-sm-4'p>>"
+			"<'row'<'col-sm-4'i><'col-sm-4 text-center'l><'col-sm-4'p>>"*/
     } );
 	
 	 new $.fn.dataTable.FixedHeader( rawDataReportDataTable );
