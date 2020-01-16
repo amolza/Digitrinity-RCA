@@ -99,7 +99,7 @@ function renderLatestReportDataTable(){
             if(data.major > 0){            	
             	$('td', row).eq(12).addClass('highlight-red');                
             }
-            if(parseFloat(data.dcVoltage) > 48.5){            	
+            if(parseFloat(data.dcVoltage) < 48.5){            	
             	$('td', row).eq(7).addClass('highlight-red-back');                
             }
             

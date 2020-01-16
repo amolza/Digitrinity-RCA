@@ -58,8 +58,8 @@
 						<div class="card-block">
 							<div class="row align-items-end">
 								<div class="col-8">
-									<p class="text-white"><span id="offlineSite" class="font-weight-bold" style="font-size: 0.8rem;">##</span></9>
-									<p class="text-white m-b-0">Offline</p>
+									<p class="text-white"><span id="offlineSite" class="font-weight-bold" style="font-size: 0.8rem;">##</span></p>
+									 <p class="text-white m-b-0">Offline</p> 
 								</div>
 								<div class="col-4 text-right">
 									<h6><i class="fas fa-signal"></i></h6>
@@ -80,7 +80,7 @@
 							for="hourly-site-id-select"><strong>Region</strong></label></td>
 						<td><select id="region-select" name="region-select"
 							class="selectpicker form-control" data-live-search="true"
-							multiple title="Region" data-width="150px"
+							multiple title="Region" data-width="50px"
 							style="background-color: #5cb85c; color: #fff;">
 								<option value="All" selected="selected">All</option>
 						</select></td>
@@ -88,28 +88,28 @@
 							for="hourly-site-id-select"><strong>Zone</strong></label></td>
 						<td><select id="zone-select" name="zone-select"
 							class="selectpicker" data-live-search="true" multiple
-							title="Zone" data-width="150px" data-all="false">
+							title="Zone" data-width="50px" data-all="false">
 								<option value="All" selected="selected">All</option>
 						</select></td>
 						<td><label class='control-label mr-2'
 							for="hourly-site-id-select"><strong>Cluster</strong></label></td>
 						<td><select id="cluster-select" name="cluster-select"
 							class="selectpicker" data-live-search="true" multiple
-							title="Cluster" data-width="150px">
+							title="Cluster" data-width="50px">
 								<option value="All" selected="selected">All</option>
 						</select></td>
 						<td><label class='control-label mr-2'
 							for="hourly-site-id-select"><strong>Site ID</strong></label></td>
 						<td><select id="siteId" name="siteId" class="selectpicker"
 							data-live-search="true" data-size="5" multiple title="Site ID"
-							data-width="150px">
+							data-width="50px">
 								<option value="All" selected="selected">All</option>
 						</select></td>
 						<td><label class='control-label mr-2'
 							for="hourly-site-id-select"><strong>Customer</strong></label></td>
 						<td><select id="customer" name="customer"
 							class="selectpicker" data-live-search="true" multiple
-							title="Customer" data-width="150px">
+							title="Customer" data-width="50px">
 								<option value="All" selected="selected">All</option>
 						</select></td>
 
@@ -117,7 +117,7 @@
 							for="hourly-site-id-select"><strong>Site Type</strong></label></td>
 						<td><select id="siteType" name="siteType"
 							class="selectpicker" data-live-search="true" multiple
-							title="Site Type" data-width="150px">
+							title="Site Type" data-width="50px">
 								<option value="All" selected="selected">All</option>
 						</select></td>
 					</tr>
@@ -125,24 +125,24 @@
 				
 				<table id="latestDataReportTable" class="table table-striped table-bordered table-fixed table-hover table-condensed" style="width: 100%">					
 						<thead class="text-center datatable-header">
-									<tr>
-										<th>Last Updated</th>
-										<th>Site ID</th>
-										<th>Site Name</th>
-										<th>Power Source</th>										
-										<th>Customer</th>
-										<th>Battery SOC</th>
-										<th>DC Load</th>
-										<th>DC Voltage (Kw)</th>
-										<th>DG Power (Kw)</th>
-										<th>Fuel Level (Ltrs)</th>
-										<th>Solar (Kw)</th>
-										<th>Critical</th>
-										<th>Major</th>
-										<th>Minor</th>
-										<th>Offline Duration</th>
-										<th>Engineer Name</th>
-										<th>Location</th>
+									<tr> 
+										<th style="font-size: xx-small; width:5px;">Last Updated</th>
+										<th style="font-size: xx-small; width:5px;">Site ID</th>
+										<th style="font-size: xx-small; width:5px;">Site Name</th>
+										<th style="font-size: xx-small; width:5px;">Power Source</th>										
+										<th style="font-size: xx-small; width:5px;">Customer</th>
+										<th style="font-size: xx-small; width:5px;">Battery SOC</th>
+										<th style="font-size: xx-small; width:5px;">DC Load</th>
+										<th style="font-size: xx-small; width:5px;">DC Voltage (Kw)</th>
+										<th style="font-size: xx-small; width:5px;">DG Power (Kw)</th>
+										<th style="font-size: xx-small; width:5px;">Fuel Level (Ltrs)</th>
+										<th style="font-size: xx-small; width:5px;">Solar (Kw)</th>
+										<th style="font-size: xx-small; width:5px;">Critical</th>
+										<th style="font-size: xx-small; width:5px;">Major</th>
+										<th style="font-size: xx-small; width:5px;">Minor</th>
+										<th style="font-size: xx-small; width:5px;">Offline Duration</th>
+										<th style="font-size: xx-small; width:5px;">Engineer Name</th>
+										<th style="font-size: xx-small; width:5px;">Location</th>
 									</tr>
 								</thead>
 								<tbody class="text-center"></tbody>							
@@ -193,10 +193,10 @@
 								class="table table-striped table-bordered table-fixed table-hover table-condensed" style="width: 100%">								
 								<thead class="text-center datatable-header">
 									<tr>
-										<th>Site ID</th>
-										<th>Alarm Name</th>
-										<th>Alarm Open Time</th>
-										<th>Elapsed Time</th>
+										<th style="font-size: xx-small; width:5px;">Site ID</th>
+										<th style="font-size: xx-small; width:5px;"">Alarm Name</th>
+										<th style="font-size: xx-small; width:5px;"">Alarm Open Time</th>
+										<th style="font-size: xx-small; width:5px;"">Elapsed Time</th>
 									</tr>
 								</thead>
 								<tbody class="text-center"></tbody>
