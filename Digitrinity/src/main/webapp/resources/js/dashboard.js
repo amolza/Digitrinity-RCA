@@ -10,6 +10,7 @@ $(document).ready(function() {
  	renderLatestReportDataTable();
  	loadLatestReportStatus();
  	loadDeviceType();
+	loadSiteStatus();
  	jQuery('#datetimepicker').daterangepicker({
  	  opens: 'right',
  	  showDropdowns: true,
@@ -50,8 +51,16 @@ function renderLatestReportDataTable(){
 			"bFilter": false,		
 			"columns": [        	 
             { "data": "lastUpdated" },
-            { "data": "smSiteCode" },
-            { "data": "siteName" },
+            { "data": "smSiteCode",
+				"render": function(data, type, row, meta){
+            	var ref = "site/details/"+data
+					if(type === 'display'){
+						data = '<a href="'+ref+'" >' + data + '</a>';
+					}
+
+					return data;
+				} },
+            { "data": "siteName"},
             { "data":"powerSource"},
             { "data": "customerName" },
             { "data" : "batterySOC"},
@@ -168,7 +177,9 @@ function buildDataTableAjaxData()
 			"siteType" : $("#siteType").val(),
 			"clusters" : $("#cluster-select").val(),
 			"zones" : $("#zone-select").val(),
-			"regions" : $("#region-select").val()			
+			"regions" : $("#region-select").val(),
+			"siteStatus" : $("#siteStatus").val()
+
 	}
 	return obj;
 	
@@ -197,7 +208,11 @@ function buildHourlyReportAjaxData()
 	
 }
 
-
+function  loadSiteStatus() {
+	$("#siteStatus").selectpicker("refresh");
+	$("#siteStatus").selectpicker("selectAll");
+	registerLatestReportReload($("#siteStatus"));
+}
 function loadLatestReportStatus()
 {
 	$.ajax('dashboard/latest-report-status',   // request url

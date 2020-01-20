@@ -77,6 +77,9 @@ public class LatestDataReport {
 	@Column(name="Minor")
 	private String minor;
 
+	@Column(name = "is_offline")
+	private int isOffline;
+
 	public String getLastUpdated() {
 		return lastUpdated;
 	}
@@ -243,5 +246,13 @@ public class LatestDataReport {
 
 	public void setMinor(String minor) {
 		this.minor = minor;
-	}	
+	}
+
+	public int getIsOffline() {
+		return isOffline;
+	}
+
+	public void setIsOffline(int isOffline) {
+		this.isOffline = isOffline;
+	}
 }

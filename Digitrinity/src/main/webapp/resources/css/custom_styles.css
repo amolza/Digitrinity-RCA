@@ -76,34 +76,28 @@ td.highlight-red-back {
 }
 
 .card-block {
-    padding: 0.2rem 0.7rem;
+    padding: 0.7rem;
 }
 
 .update-card {
     color: #fff;
 }
 
-.customPLabel{
-	margin-bottom:0.2rem;
-}
-
 
 #latestDataReportTable, #alarmTable {
-    font-size : 0.75rem !important;
+    font-size : 0.8rem !important;
 }
 #latestDataReportTable tr.shown td.details-control {
     background: url('https://cdn.rawgit.com/DataTables/DataTables/6c7ada53ebc228ea9bc28b1b216e793b1825d188/examples/resources/details_close.png') no-repeat center center;
 }
 
-#latestDataReportTable td,.filter-table td {
+#latestDataReportTable td {
     padding: 0.1em 0.1em !important;
     text-overflow: ellipsis;
   	overflow: hidden; 	
-  	width: auto !important;
-	height:35px;
-	max-height:35px;
-	font-size:13px !important;
-	line-height:35px !important;
+  	width: auto !important;  
+  text-overflow: ellipsis;
+  
 }
 
 #latestDataReportTable th {
@@ -117,9 +111,7 @@ td.highlight-red-back {
   
 #alarmTable td {
     padding: 0em 0em !important;
-    height:35px !important;
-	max-height:35px !important;
-	overflow-y:hidden !important;
+    font-size: 10px;
   }
   
 #alarmTable {
@@ -136,7 +128,6 @@ td.highlight-red-back {
   white-space: normal;
   text-overflow: ellipsis;
   overflow: hidden;
-  
   
 }
 
@@ -193,7 +184,7 @@ cursor: pointer;
     -webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
-	/* margin-bottom : 5px; */
+	margin-bottom : 5px;
 	color: #E4F1F6;
 }
 

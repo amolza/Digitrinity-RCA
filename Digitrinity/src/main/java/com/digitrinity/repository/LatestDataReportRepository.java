@@ -14,7 +14,7 @@ public interface LatestDataReportRepository extends JpaRepository<LatestDataRepo
 
 	@Query(value = "SELECT ldr FROM LatestDataReport ldr WHERE ((:siteTypeAll) is null or ldr.siteTypeId IN (:siteTypes)) AND ((:zonesAll) is null or ldr.zone IN (:zones)) AND "
 			+ "((:clustersAll) is null or ldr.clusterName IN (:customers)) AND ((:sitesAll) is null or ldr.smSiteCode IN (:siteids)) "
-			+ " AND ((:customersAll) is null or ldr.customerName IN (:customers)) AND ((:regionsAll) is null or ldr.region IN (:regions))")
+			+ " AND ((:customersAll) is null or ldr.customerName IN (:customers)) AND ((:regionsAll) is null or ldr.region IN (:regions)) AND ((:offline) is null or ldr.isOffline IN (:offline))")
 	List<LatestDataReport> findLatestReport(@Param("regions") Collection<String> regions
 			,@Param("zones") Collection<String> zones
 			,@Param("clusters") Collection<String> clusters
@@ -26,8 +26,9 @@ public interface LatestDataReportRepository extends JpaRepository<LatestDataRepo
 			,@Param("sitesAll") String sitesAll
 			,@Param("clustersAll") String clustersAll
 			,@Param("zonesAll") String zonesAll
-			,@Param("regionsAll") String regionsAll			
-			);
+			,@Param("regionsAll") String regionsAll
+			,@Param("offline") Integer siteStatusAll
+	);
 	
 	
 	@Query(value = "SELECT ldr FROM LatestDataReport ldr WHERE (ldr.smSiteCode IN (:siteids))")

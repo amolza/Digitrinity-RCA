@@ -19,6 +19,7 @@ public class LatestReportDto implements Serializable {
 	private List<String> clusters;
 	private List<String> zones;
 	private List<String> regions;
+	private int siteStatus;
 	
 	public List<String> getSiteId() {
 		return siteId;
@@ -48,7 +49,7 @@ public class LatestReportDto implements Serializable {
 	@Override
 	public String toString() {
 		return "LatestReportDto [siteId=" + siteId + ", customers=" + customers + ", siteType=" + siteType
-				+ ", clusters=" + clusters + "]";
+				+ ",  siteStatus=" + siteStatus + ",clusters=" + clusters + "]";
 	}
 	public List<String> getRegions() {
 		return regions;
@@ -56,6 +57,15 @@ public class LatestReportDto implements Serializable {
 	public void setRegions(List<String> regions) {
 		this.regions = regions;
 	}
+
+	public int getSiteStatus() {
+		return siteStatus;
+	}
+
+	public void setSiteStatus(int siteStatus) {
+		this.siteStatus = siteStatus;
+	}
+
 	public List<String> getZones() {
 		return zones;
 	}
@@ -86,6 +96,8 @@ public class LatestReportDto implements Serializable {
 	public boolean isAllRegions() {
 		return this.getRegions().contains(ALL);
 	}
+
+	public boolean isAllSiteStatus(){return this.getSiteStatus()==-1;}
 	
 	public boolean isAnyFilterEmpty() {
 		return this.getClusters().isEmpty() || this.getCustomers().isEmpty() || this.getRegions().isEmpty() || this.getSiteId().isEmpty() || this.getSiteType().isEmpty() || this.getZones().isEmpty();

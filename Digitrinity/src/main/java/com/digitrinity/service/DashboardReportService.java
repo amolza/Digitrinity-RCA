@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import com.digitrinity.model.*;
+import com.digitrinity.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,26 +22,15 @@ import com.digitrinity.dto.LatestReportDto;
 import com.digitrinity.dto.LatestReportStatusDto;
 import com.digitrinity.dto.SiteCodeDto;
 import com.digitrinity.dto.SiteTypeDto;
-import com.digitrinity.model.AlarmStatus;
-import com.digitrinity.model.ClusterMaster;
-import com.digitrinity.model.HourlyReportGroup;
-import com.digitrinity.model.LatestDataReport;
-import com.digitrinity.model.RegionMaster;
-import com.digitrinity.model.SiteMaster;
-import com.digitrinity.model.ZoneMaster;
-import com.digitrinity.repository.AlarmStatusRepository;
-import com.digitrinity.repository.ClusterMasterRepository;
-import com.digitrinity.repository.HourlyReportRepository;
-import com.digitrinity.repository.LatestDataReportRepository;
-import com.digitrinity.repository.RegionMasterRepository;
-import com.digitrinity.repository.SiteMasterRepository;
-import com.digitrinity.repository.ZoneMasterRepository;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Service
 public class DashboardReportService implements IDashboardReportService {
 
 	private final String ALL = "All";
-	
+
 	@Autowired
 	private LatestDataReportRepository latestDataReportRepository;  
 	
@@ -47,8 +38,13 @@ public class DashboardReportService implements IDashboardReportService {
 	private SiteMasterRepository siteMasterRepository;
 	
 	@Autowired
-	private ClusterMasterRepository clusterMasterRepository;	
-	
+	private ClusterMasterRepository clusterMasterRepository;
+	@Autowired
+
+	private UserRoleRepository userRoleRepository;
+
+	@Autowired
+	UserService userService;
 	@Autowired
 	private ZoneMasterRepository zoneMasterRepository;
 	
@@ -102,13 +98,35 @@ public class DashboardReportService implements IDashboardReportService {
 	}
 
 	@Override
-	public List<LatestDataReport> getFilteredLatestReportData(LatestReportDto latestReportDto) {
+	public List<LatestDataReport> getFilteredLatestReportData(LatestReportDto latestReportDto, HttpServletRequest request) {
+	List<RoleUsers> roleUsers=new ArrayList<>();
+List<String> siteType= new ArrayList<>();
+		if (request.getUserPrincipal() != null) {
+			Users user = userService.findByUsername(request.getUserPrincipal().getName());
+			for (Role s : user.getRoles()) {
+				roleUsers.add(userRoleRepository.getOne(s.getId()));
+			}
+			}
+
+
+		for (RoleUsers r:roleUsers){
+			siteType.add(String.valueOf(r.getTee()));
+			siteType.add(String.valueOf(r.getHybrid()));
+			siteType.add(String.valueOf(r.getLithiumIon()));
+		}
+
+		return getFilteredLatestReportData(latestReportDto,siteType);
+	}
+
+	@Override
+	public List<LatestDataReport> getFilteredLatestReportData(LatestReportDto latestReportDto,List<String> siteType) {
+
 		List<LatestDataReport> dataReports = new ArrayList<LatestDataReport>();
 		if(latestReportDto.isAnyFilterEmpty()) {
 			return dataReports;
 		}else if(latestReportDto.isAllClusters() && latestReportDto.isAllCustomers() 
 				&& latestReportDto.isAllSiteId() && latestReportDto.isAllSiteTypes()
-				&& latestReportDto.isAllRegions() && latestReportDto.isAllZones()){
+				&& latestReportDto.isAllRegions() && latestReportDto.isAllZones() && latestReportDto.isAllSiteStatus()){
 			dataReports = latestDataReportRepository.findAll();
 		} else {
 			dataReports = latestDataReportRepository.findLatestReport(latestReportDto.isAllRegions() ? null : latestReportDto.getRegions(), 
@@ -116,13 +134,14 @@ public class DashboardReportService implements IDashboardReportService {
 					latestReportDto.isAllClusters() ? null : latestReportDto.getClusters(), 
 					latestReportDto.isAllSiteId() ? null : latestReportDto.getSiteId(), 
 					latestReportDto.isAllCustomers() ? null : latestReportDto.getCustomers(), 
-					latestReportDto.isAllSiteTypes() ? null : latestReportDto.getSiteType(),
+					latestReportDto.isAllSiteTypes() ? siteType :siteType,
 					latestReportDto.isAllSiteTypes() ? null : ALL,
 					latestReportDto.isAllCustomers() ? null : ALL,
 					latestReportDto.isAllSiteId() ? null : ALL,
 					latestReportDto.isAllClusters() ? null : ALL,
 					latestReportDto.isAllZones() ? null : ALL,
-					latestReportDto.isAllRegions() ? null : ALL
+					latestReportDto.isAllRegions() ? null : ALL,
+					latestReportDto.isAllSiteStatus() ? null : latestReportDto.getSiteStatus()
 					);
 		}
 		

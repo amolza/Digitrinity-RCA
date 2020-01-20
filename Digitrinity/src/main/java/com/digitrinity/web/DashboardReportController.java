@@ -33,6 +33,8 @@ import com.digitrinity.model.RegionMaster;
 import com.digitrinity.model.ZoneMaster;
 import com.digitrinity.service.IDashboardReportService;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping(value = "dashboard")
 public class DashboardReportController {
@@ -49,8 +51,9 @@ public class DashboardReportController {
 	}
 
 	@PostMapping(path = "/latest-data1", produces = "application/json")
-	public DataTableResponse getLatestReportData1(@RequestBody LatestReportDto latestReportDto) {
-		return new DataTableResponse(dashboardReportService.getFilteredLatestReportData(latestReportDto));
+	public DataTableResponse getLatestReportData1(@RequestBody LatestReportDto latestReportDto, HttpServletRequest request) {
+
+		return new DataTableResponse(dashboardReportService.getFilteredLatestReportData(latestReportDto,request));
 	}
 
 	@GetMapping(path = "/customer-master", produces = "application/json")

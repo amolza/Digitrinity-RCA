@@ -19,12 +19,14 @@ import com.digitrinity.model.RegionMaster;
 import com.digitrinity.model.SiteMaster;
 import com.digitrinity.model.ZoneMaster;
 
+import javax.servlet.http.HttpServletRequest;
+
 public interface IDashboardReportService {
 
 	public List<LatestDataReport> getLatestReportData();
 	
-	public List<LatestDataReport> getFilteredLatestReportData(LatestReportDto latestReportDto);
-	
+	public List<LatestDataReport> getFilteredLatestReportData(LatestReportDto latestReportDto,List<String> siteType);
+	public List<LatestDataReport> getFilteredLatestReportData(LatestReportDto latestReportDto, HttpServletRequest request);
 	public List<SiteMaster> getSiteMaster();
 	
 	public List<CustomerDto> getCustomerNames();
