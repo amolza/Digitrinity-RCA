@@ -28,7 +28,7 @@
 						<div class="card-block">
 							<div class="row align-items-end">
 								<div class="col-8">
-									<p class="text-white"><span id="totalSite" class="font-weight-bold" style="font-size: 0.8rem;">##</span></p>
+									<p class="text-white customPLabel"><span id="totalSite" class="font-weight-bold" style="font-size: 0.8rem;">##</span></p>
 									<p class="text-white m-b-0">Total</p>
 								</div>
 								<div class="col-4 text-right">
@@ -43,7 +43,7 @@
 						<div class="card-block">
 							<div class="row align-items-end">
 								<div class="col-8">
-									<p class="text-white"><span id="onlineSite" class="font-weight-bold" style="font-size: 0.8rem;">##</span></p>
+									<p class="text-white customPLabel"><span id="onlineSite" class="font-weight-bold" style="font-size: 0.8rem;">##</span></p>
 									<p class="text-white m-b-0">Online</p>
 								</div>
 								<div class="col-4 text-right">
@@ -58,7 +58,7 @@
 						<div class="card-block">
 							<div class="row align-items-end">
 								<div class="col-8">
-									<p class="text-white"><span id="offlineSite" class="font-weight-bold" style="font-size: 0.8rem;">##</span></p>
+									<p class="text-white customPLabel"><span id="offlineSite" class="font-weight-bold" style="font-size: 0.8rem;">##</span></p>
 									 <p class="text-white m-b-0">Offline</p> 
 								</div>
 								<div class="col-4 text-right">
