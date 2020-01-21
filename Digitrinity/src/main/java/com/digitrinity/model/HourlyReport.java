@@ -49,6 +49,17 @@ public class HourlyReport {
 	@Column(name="Solar_Input_Energy")
 	private Double solarInputEnergy;
 
+	@Column(name="tran_date")
+	private String tranDate;
+
+	public String getTranDate() {
+		return tranDate;
+	}
+
+	public void setTranDate(String tranDate) {
+		this.tranDate = tranDate;
+	}
+
 	public String getDate() {
 		return date;
 	}

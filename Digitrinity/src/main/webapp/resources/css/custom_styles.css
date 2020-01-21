@@ -96,7 +96,8 @@ td.highlight-red-back {
     text-overflow: ellipsis;
   	overflow: hidden; 	
   	width: auto !important;  
-  text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    font-size: 10px;
   
 }
 

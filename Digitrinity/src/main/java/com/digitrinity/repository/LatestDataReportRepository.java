@@ -36,4 +36,7 @@ public interface LatestDataReportRepository extends JpaRepository<LatestDataRepo
 	
 	@Query(value = "SELECT count(ldr.smSiteCode) FROM LatestDataReport ldr WHERE (ldr.age > (:age))")
 	Long countByAge(String age);
+
+	@Query(value = "SELECT ldr FROM LatestDataReport ldr WHERE (ldr.siteTypeId IN (:siteTypes))")
+	List<LatestDataReport> findAll(@Param("siteTypes") Collection<String> siteTypes);
 }

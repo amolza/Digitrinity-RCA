@@ -7,7 +7,7 @@ $(document).ready(function() {
 	loadSiteTypes();
 	loadSiteIds();
 	loadDeviceType();
-	renderRawDataReportDataTable();
+	//renderRawDataReportDataTable();
 } );
 
 

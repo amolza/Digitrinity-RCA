@@ -95,7 +95,7 @@
 	<div class="col-md-8 mx-auto box p-3" style="background-color: white;overflow-x:auto;white-space: nowrap;">
 		<div class="inner">
 			<table cellspacing="5" cellpadding="5" class="filter-table">
-				<tr>
+				<td>
 					<td><label class='control-label mr-2'
 							   for="hourly-site-id-select"><strong>Region</strong></label></td>
 					<td>
@@ -163,7 +163,15 @@
 
 						</select>
 					</td>
+				<td></td>
+				<td></td>
+					<td>
+					<div class="download"selectpicker align="right">
+						<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btncExport" onclick="fnExelReport();"> EXPORT to Excel </button>
+						<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btnExport" onclick="exportTableToCSV('RCAReport.csv')"> EXPORT to CSV </button>
+					</div></td>
 				</tr>
+
 			</table>
 			<table id="latestDataReportTable"
 				   class="table table-striped table-bordered table-fixed table-hover table-condensed"
@@ -177,7 +185,7 @@
 					<th style="font-size: xx-small; width:5px;">Customer</th>
 					<th style="font-size: xx-small; width:5px;">Battery SOC</th>
 					<th style="font-size: xx-small; width:5px;">DC Load</th>
-					<th style="font-size: xx-small; width:5px;">DC Voltage (Kw)</th>
+					<th style="font-size: xx-small; width:5px;">DC Voltage</th>
 					<th style="font-size: xx-small; width:5px;">DG Power (Kw)</th>
 					<th style="font-size: xx-small; width:5px;">Fuel Level (Ltrs)</th>
 					<th style="font-size: xx-small; width:5px;">Solar (Kw)</th>
@@ -305,5 +313,8 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
         integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI="
         crossorigin="anonymous"></script>
+
+<script src="${contextPath}/resources/js/util.js"
+		type="text/javascript"></script>
 </body>
 </html>

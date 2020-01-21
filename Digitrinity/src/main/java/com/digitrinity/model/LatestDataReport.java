@@ -22,7 +22,7 @@ public class LatestDataReport {
 	@Column(name="clusterName")
 	private String clusterName;
 	
-	@Column(name = "sitetypeid")
+	@Column(name = "smSitetypeid")
 	private String siteTypeId;
 	
 	@Column(name="Zone")
@@ -65,7 +65,7 @@ public class LatestDataReport {
 	@Column(name="DG_Power")
 	private String dgPower;
 	
-	@Column(name="FuelLevel")
+	@Column(name="fuellevel_ltrs")
 	private String fuelLevel;
 	
 	@Column(name="Critical")
