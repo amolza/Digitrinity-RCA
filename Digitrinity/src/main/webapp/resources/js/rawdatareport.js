@@ -7,6 +7,20 @@ $(document).ready(function() {
 	loadSiteTypes();
 	loadSiteIds();
 	loadDeviceType();
+	jQuery('#datetimepicker').daterangepicker({
+		opens: 'right',
+		showDropdowns: true,
+		timePicker: true,
+		timePicker24Hour: true,
+		locale: {
+			format: 'YYYY/MM/DD'
+		},
+		startDate: moment().startOf('hour'),
+		endDate: moment().startOf('hour').add(1, 'day'),
+		maxSpan: {
+			"day": 1
+		},
+	}, function(start, end, label) {});
 	//renderRawDataReportDataTable();
 } );
 
@@ -14,32 +28,37 @@ $(document).ready(function() {
 
 
 function renderRawDataReportDataTable(){
-	rawDataReportDataTable = $('#rawDataReportDataTable').DataTable( {
+	if ( $.fn.dataTable.isDataTable( '#rawDataReportDataTable' ) ) {
+		rawDataReportDataTable = $('#rawDataReportDataTable').DataTable().ajax.reload();
+	}
+	else {
+		rawDataReportDataTable = $('#rawDataReportDataTable').DataTable( {
 			"processing": true,
 			"bFilter": false,
-			"serverSide": true,			
-		    "pageLength": 50,
+			"serverSide": true,
+			"pageLength": 50,
+			"deferLoading": 100,
 			"ajax" : {
 				"url":"../raw-report/raw-data",
 				"type": "POST",
 				"dataType": 'json',
 				"contentType": "application/json",
 				"data": function (d) {
-		            var form = {};
-		            $.each($("form").serializeArray(), function (i, field) {
-		                form[field.name] = field.value || "";
-		            });
-		            var info = (rawDataReportDataTable == null) ? { "start": 0, "length": 50, "page": 0 } : rawDataReportDataTable.page.info();
-		            $.extend(form, info);
-		            $.extend(form, d);
-		            $.extend(form, buildDataTableAjaxData());
-		            return JSON.stringify(form);
-		        },
+					var form = {};
+					$.each($("form").serializeArray(), function (i, field) {
+						form[field.name] = field.value || "";
+					});
+					var info = (rawDataReportDataTable == null) ? { "start": 0, "length": 50, "page": 0 } : rawDataReportDataTable.page.info();
+					$.extend(form, info);
+					$.extend(form, d);
+					$.extend(form, buildDataTableAjaxData());
+					return JSON.stringify(form);
+				},
 				"error": function(){  // error handling code
-		              $("#rawDataReportDataTable_processing").css("display","none");
-		            }
+					$("#rawDataReportDataTable_processing").css("display","none");
+				}
 			},
-			"columns": [        	 
+			"columns": [
 				{"data":"cluster"},
 				{"data":"siteId"},
 				{"data":"updateDateTime"},
@@ -391,16 +410,18 @@ function renderRawDataReportDataTable(){
 				{"data":"actelYPower"},
 				{"data":"actelBPower"},
 				{"data":"actelFrequency"}
-	           
-	            
-	            
-	        ],
+
+
+
+			],
 			"bLengthChange": false,
 			/*"dom": "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
 			"<'row'<'col-sm-12'tr>>" +
 			"<'row'<'col-sm-4'i><'col-sm-4 text-center'l><'col-sm-4'p>>"*/
-    } );
-	
+		} );
+
+	}
+
 	 new $.fn.dataTable.FixedHeader( rawDataReportDataTable );
 }
 
@@ -413,8 +434,8 @@ function loadZones()
 	    	        	$("#zone-select").append('<option value="'+jsonObject.znZone+'">'+jsonObject.znZone+'</option>');    	            
 	    	        });    	        
 	    	        $("#zone-select").selectpicker("refresh");
-	    	        $("#zone-select").selectpicker("selectAll");	    	        
-	    	        registerRawDataReload($("#zone-select"));
+	    	        /*$("#zone-select").selectpicker("selectAll");*/
+	    	      //  registerRawDataReload($("#zone-select"));
     	    }
     	});
 }
@@ -428,8 +449,8 @@ function loadRegions()
 	    	        	$("#region-select").append('<option value="'+jsonObject.rgRegion+'">'+jsonObject.rgRegion+'</option>');    	            
 	    	        });    	        
 	    	        $("#region-select").selectpicker("refresh");
-	    	        $("#region-select").selectpicker("selectAll");	    	        
-	    	        registerRawDataReload($("#region-select"));
+	    	       // $("#region-select").selectpicker("selectAll");
+	    	       // registerRawDataReload($("#region-select"));
     	    }
     	});
 }
@@ -443,8 +464,8 @@ function loadClusters()
 	    	        	$("#cluster-select").append('<option value="'+jsonObject.crName+'">'+jsonObject.crName+'</option>');    	            
 	    	        });    	        
 	    	        $("#cluster-select").selectpicker("refresh");
-	    	        $("#cluster-select").selectpicker("selectAll");	    	        
-	    	        registerRawDataReload($("#cluster-select"));
+	    	      //  $("#cluster-select").selectpicker("selectAll");
+	    	        //registerRawDataReload($("#cluster-select"));
     	    }
     	});
 }
@@ -458,8 +479,8 @@ function loadSiteTypes()
 	    	        	$("#siteType").append('<option value="'+jsonObject.type+'">'+jsonObject.type+'</option>');
 	    	        });    	        
 	    	        $("#siteType").selectpicker("refresh");
-	    	        $("#siteType").selectpicker("selectAll");
-	    	        registerRawDataReload($("#siteType"));
+	    	       // $("#siteType").selectpicker("selectAll");
+	    	       // registerRawDataReload($("#siteType"));
     	    }
     	});
 }
@@ -477,8 +498,8 @@ function loadSiteIds()
     	            });
     	        });    	        
     	        $("#siteId").selectpicker("refresh");
-    	        $("#siteId").selectpicker("selectAll");
-    	        registerRawDataReload($("#siteId"));
+    	       // $("#siteId").selectpicker("selectAll");
+    	      //  registerRawDataReload($("#siteId"));
     	    }
     	});
 }
@@ -492,8 +513,8 @@ function loadDeviceType()
 	    	        	$("#device-type-select").append('<option value="'+jsonObject.deviceType+'">'+jsonObject.deviceType+'</option>');    	            
 	    	        });    	        
 	    	        $("#device-type-select").selectpicker("refresh");
-	    	        $("#device-type-select").selectpicker("selectAll");	    	        
-	    	        registerRawDataReload($("#device-type-select"));
+	    	       // $("#device-type-select").selectpicker("selectAll");
+	    	        //registerRawDataReload($("#device-type-select"));
     	    }
     	});
 }
@@ -531,7 +552,7 @@ function registerRawDataReload(selectObj){
 	   
 		$(this).data('all', isAllSelected);
 		
-		$('#rawDataReportDataTable').DataTable().ajax.reload();		
+		//$('#rawDataReportDataTable').DataTable().ajax.reload();
 	});
 }
 
@@ -543,7 +564,8 @@ function buildDataTableAjaxData()
 			"siteType" : $("#siteType").val(),
 			"clusters" : $("#cluster-select").val(),
 			"zones" : $("#zone-select").val(),
-			"regions" : $("#region-select").val()			
+			"regions" : $("#region-select").val(),
+			"date": $("#datetimepicker").val()
 	}
 	return obj;
 	

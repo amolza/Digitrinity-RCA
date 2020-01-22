@@ -16,7 +16,7 @@ public interface HourlyReportRepository extends JpaRepository<HourlyReport, Stri
 			+ "sum(teleEnergy) as teleEnergy,sum(inverterEnergy) as inverterEnergy, "
 			+ "sum(communityLoadEnergy) as communityLoadEnergy,sum(solarOutputEnergy) as solarOutputEnergy, "
 			+ "sum(solarInputEnergy) as solarInputEnergy) FROM HourlyReport "
-			+ " where tranDate >= :startDate and tranDate < :endDate "
+			+ " where tranDate >= :startDate and tranDate <= :endDate "
 			+ "group by date order by date desc")
 	List<HourlyReportGroup> latestHourlyDateGroupBy(@Param("startDate") String startDate,@Param("endDate") String endDate);
 	

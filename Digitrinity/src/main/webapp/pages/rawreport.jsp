@@ -40,7 +40,7 @@
 							for="hourly-site-id-select"><strong>Region</strong></label></td>
 						<td><select id="region-select" name="region-select"
 							class="selectpicker form-control" data-live-search="true"
-							multiple title="Region" data-width="150px"
+							multiple title="Region" data-width="80px"
 							style="background-color: #5cb85c; color: #fff;">
 								<option value="All" selected="selected">All</option>
 						</select></td>
@@ -48,28 +48,28 @@
 							for="hourly-site-id-select"><strong>Zone</strong></label></td>
 						<td><select id="zone-select" name="zone-select"
 							class="selectpicker" data-live-search="true" multiple
-							title="Zone" data-width="150px" data-all="false">
+							title="Zone" data-width="80px" data-all="false">
 								<option value="All" selected="selected">All</option>
 						</select></td>
 						<td><label class='control-label mr-2'
 							for="hourly-site-id-select"><strong>Cluster</strong></label></td>
 						<td><select id="cluster-select" name="cluster-select"
 							class="selectpicker" data-live-search="true" multiple
-							title="Cluster" data-width="150px">
+							title="Cluster" data-width="80px">
 								<option value="All" selected="selected">All</option>
 						</select></td>
 						<td><label class='control-label mr-2'
 							for="hourly-site-id-select"><strong>Site ID</strong></label></td>
 						<td><select id="siteId" name="siteId" class="selectpicker"
 							data-live-search="true" multiple title="Site ID"
-							data-width="150px">
+							data-width="80px">
 								<option value="All" selected="selected">All</option>
 						</select></td>
 						<td><label class='control-label mr-2'
 							for="device-type-select"><strong>Device Type</strong></label></td>
 						<td><select id="device-type-select" name="customer"
 							class="selectpicker" data-live-search="true" multiple
-							title="Device Type" data-width="150px">
+							title="Device Type" data-width="80px">
 								<option value="All" selected="selected">All</option>
 						</select></td>
 
@@ -77,9 +77,21 @@
 							for="hourly-site-id-select"><strong>Site Type</strong></label></td>
 						<td><select id="siteType" name="siteType"
 							class="selectpicker" data-live-search="true" multiple
-							title="Site Type" data-width="150px">
+							title="Site Type" data-width="80px">
 								<option value="All" selected="selected">All</option>
 						</select></td>
+
+						<td><input id="datetimepicker" class="form-control" type="text" style="width: 180px"/></td>
+						<td>
+							<div class="download" align="right">
+								<%--<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btncExport" onclick="exportTableToExcel('RCAReport.xls','latestDataReportTable');"> EXPORT to Excel </button>
+                                --%><button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btnExportCSV" onclick="exportTableToCSV('RawReport.csv','rawDataReportDataTable')"> EXPORT to CSV </button>
+							</div></td>
+						<td>
+							<div class="download" align="right">
+								<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btnExport" onclick="renderRawDataReportDataTable()"> Fetch Data </button>
+							</div></td>
+					</tr>
 					</tr>
 				</table>
 			</div>
@@ -703,6 +715,8 @@
 		</div>
 	</section>
 	<jsp:include page="include_ftr.jsp"></jsp:include>
+	<script src="${contextPath}/resources/js/util.js"
+			type="text/javascript"></script>
 	<script src="${contextPath}/resources/js/rawdatareport.js"
 		type="text/javascript"></script>
 </body>

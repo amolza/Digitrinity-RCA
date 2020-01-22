@@ -1089,6 +1089,18 @@ public class RawDataReport {
 	@Column(name = "ACTEL_Frequency")
 	private Double actelFrequency;
 
+	@Column(name = "smsitetypeid")
+	private String siteType;
+
+
+	public String getSiteType() {
+		return siteType;
+	}
+
+	public void setSiteType(String siteType) {
+		this.siteType = siteType;
+	}
+
 	public String getCluster() {
 		return cluster;
 	}

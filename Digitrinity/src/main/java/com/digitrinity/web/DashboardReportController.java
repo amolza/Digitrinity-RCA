@@ -150,7 +150,8 @@ public class DashboardReportController {
 	}
 	
 	@GetMapping(path = "/latest-report-status", produces = "application/json")
-	public LatestReportStatusDto getLatestReportStatus() {
+	public LatestReportStatusDto getLatestReportStatus(HttpServletRequest request) {
+
 		return dashboardReportService.getLatestReportStatus();
 	}
 	

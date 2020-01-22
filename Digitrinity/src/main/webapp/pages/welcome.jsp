@@ -166,9 +166,9 @@
 				<td></td>
 				<td></td>
 					<td>
-					<div class="download"selectpicker align="right">
-						<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btncExport" onclick="fnExelReport();"> EXPORT to Excel </button>
-						<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btnExport" onclick="exportTableToCSV('RCAReport.csv')"> EXPORT to CSV </button>
+					<div class="download" align="right">
+						<%--<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btncExport" onclick="exportTableToExcel('RCAReport.xls','latestDataReportTable');"> EXPORT to Excel </button>
+						--%><button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btnExport" onclick="exportTableToCSV('RCAReport.csv','latestDataReportTable')"> EXPORT to CSV </button>
 					</div></td>
 				</tr>
 
@@ -239,6 +239,11 @@
 							<option value="All" selected="selected">All</option>
 						</select>
 					</td>
+					<td>
+						<div class="download" align="right">
+							<%--<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btncExport" onclick="exportTableToExcel('RCAReport.xls','alarmTable');"> EXPORT to Excel </button>
+							--%><button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btnExport" onclick="exportTableToCSV('RCAReport.csv','alarmTable')"> EXPORT to CSV </button>
+						</div></td>
 				</tr>
 				<tr>
 				</tr>

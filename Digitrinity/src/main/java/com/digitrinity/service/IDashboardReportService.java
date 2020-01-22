@@ -45,7 +45,7 @@ public interface IDashboardReportService {
 	
 	public List<String> fetchDeviceTypes();
 	
-	public LatestReportStatusDto getLatestReportStatus();
+	public LatestReportStatusDto getLatestReportStatus(List<String> siteTypes);
 	
 	public List<AlarmCategoryDto> getAlarmCategory();
 	

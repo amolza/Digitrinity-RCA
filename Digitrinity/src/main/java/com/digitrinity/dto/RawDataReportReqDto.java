@@ -13,7 +13,7 @@ public class RawDataReportReqDto {
 	private int draw;
 	
 	private int page;
-	
+	private String date = "";
 	private List<String> siteId;
 	private List<String> deviceType;	
 	private List<String> siteType;
@@ -29,6 +29,14 @@ public class RawDataReportReqDto {
 		this.start = start;
 		this.length = length;
 		this.draw = draw;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	public int getStart() {

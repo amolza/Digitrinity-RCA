@@ -9,6 +9,10 @@ import com.digitrinity.dto.RawDataReportReqDto;
 import com.digitrinity.model.RawDataReport;
 import com.digitrinity.repository.RawDataReportRepository;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class RawDataReportService implements IRawDataReportService {
 
@@ -16,10 +20,17 @@ public class RawDataReportService implements IRawDataReportService {
 
 	@Autowired
 	private RawDataReportRepository rawDataReportRepository;
-
+	@Autowired
+	UserService userService;
 	@Override
-	public Page<RawDataReport> fetchFilteredAndPaginatedReport(RawDataReportReqDto dataReportReqDto) {
-
+	public Page<RawDataReport> fetchFilteredAndPaginatedReport(RawDataReportReqDto dataReportReqDto, HttpServletRequest request) {
+		String date= dataReportReqDto.getDate();
+		String startDate = date.split("-")[0].trim().replaceAll("/", "-");
+		String endDate = date.split("-")[1].trim().replaceAll("/", "-");
+		List<String> siteType = new ArrayList<>();
+		if (request.getUserPrincipal() != null) {
+			siteType= userService.allSiteTypeForUser(request.getUserPrincipal().getName());
+		}
 		Page<RawDataReport> reportData = null;
 
 		PageRequest pageRequest = PageRequest.of(dataReportReqDto.getPage(), dataReportReqDto.getLength());
@@ -29,11 +40,11 @@ public class RawDataReportService implements IRawDataReportService {
 		} else if (dataReportReqDto.isAllClusters() && dataReportReqDto.isAllDeviceType()
 				&& dataReportReqDto.isAllSiteId() && dataReportReqDto.isAllSiteTypes()
 				&& dataReportReqDto.isAllRegions() && dataReportReqDto.isAllZones()) {
-			reportData = rawDataReportRepository.findAll(pageRequest);
+			reportData = rawDataReportRepository.findAll(siteType,pageRequest,startDate,endDate);
 		} else {
 			reportData = rawDataReportRepository.fetchFilteredPaginatedRawData(dataReportReqDto.getClusters(),
 					dataReportReqDto.getSiteId(), dataReportReqDto.isAllSiteId() ? null : ALL,
-					dataReportReqDto.isAllClusters() ? null : ALL, pageRequest);
+					dataReportReqDto.isAllClusters() ? null : ALL, siteType,pageRequest,startDate,endDate);
 		}
 
 		return reportData;

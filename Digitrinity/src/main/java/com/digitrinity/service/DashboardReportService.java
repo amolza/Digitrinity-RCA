@@ -124,7 +124,6 @@ public class DashboardReportService implements IDashboardReportService {
                     latestReportDto.isAllSiteId() ? null : latestReportDto.getSiteId(),
                     latestReportDto.isAllCustomers() ? null : latestReportDto.getCustomers(),
                     latestReportDto.isAllSiteTypes() ? siteType : siteType,
-                    latestReportDto.isAllSiteTypes() ? null : ALL,
                     latestReportDto.isAllCustomers() ? null : ALL,
                     latestReportDto.isAllSiteId() ? null : ALL,
                     latestReportDto.isAllClusters() ? null : ALL,
@@ -166,9 +165,9 @@ public class DashboardReportService implements IDashboardReportService {
     }
 
     @Override
-    public LatestReportStatusDto getLatestReportStatus() {
-        long total = latestDataReportRepository.countByAge("-1");
-        long offline = latestDataReportRepository.countByAge("4");
+    public LatestReportStatusDto getLatestReportStatus(List<String> siteTypes) {
+        long total = latestDataReportRepository.countByAge("-1",siteTypes);
+        long offline = latestDataReportRepository.countByAge("4",siteTypes);
         return new LatestReportStatusDto(total, total - offline, offline);
     }
 

@@ -14,6 +14,8 @@ import com.digitrinity.formBeans.ServerSideDataTableResponse;
 import com.digitrinity.model.RawDataReport;
 import com.digitrinity.service.IRawDataReportService;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping(value = "raw-report")
 public class RawDataReportController {
@@ -22,8 +24,8 @@ public class RawDataReportController {
 	private IRawDataReportService rawDataReportService;
 	
 	@PostMapping(path = "/raw-data", produces = "application/json")
-	public ServerSideDataTableResponse getLatestReportData(@RequestBody RawDataReportReqDto dataReportReqDto) {
-		Page<RawDataReport> rawDataReport = rawDataReportService.fetchFilteredAndPaginatedReport(dataReportReqDto);
+	public ServerSideDataTableResponse getLatestReportData(@RequestBody RawDataReportReqDto dataReportReqDto, HttpServletRequest request) {
+		Page<RawDataReport> rawDataReport = rawDataReportService.fetchFilteredAndPaginatedReport(dataReportReqDto,request);
 		if(rawDataReport != null) {
 			return new ServerSideDataTableResponse(rawDataReport.getContent(),rawDataReport.getTotalElements(), rawDataReport.getTotalElements(),dataReportReqDto.getDraw());
 		}else {

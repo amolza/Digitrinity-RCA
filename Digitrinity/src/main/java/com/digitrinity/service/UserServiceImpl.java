@@ -51,15 +51,13 @@ public class UserServiceImpl implements UserService {
     public List<String> allSiteTypeForUser(String user) {
         List<String> siteType = new ArrayList<>();
         Users savedUser = findByUsername(user);
-        List<RoleUsers> roleUsers = new ArrayList<>();
-        for (Role s : savedUser.getRoles()) {
-            roleUsers.add(userRoleRepository.getOne(s.getId()));
-        }
-        for (RoleUsers r : roleUsers) {
+        RoleUsers r = userRoleRepository.getOne(Long.valueOf(savedUser.getRoleId()));
+        if (r.getTee() > 0)
             siteType.add(String.valueOf(r.getTee()));
+        if (r.getHybrid() > 0)
             siteType.add(String.valueOf(r.getHybrid()));
+        if (r.getLithiumIon() > 0)
             siteType.add(String.valueOf(r.getLithiumIon()));
-        }
         return siteType;
     }
 }

@@ -17,12 +17,12 @@ $(document).ready(function() {
  	  timePicker: true,
  	  timePicker24Hour: true,
  	  locale: {
- 	      format: 'YYYY/MM/DD HH:MM:SS'
+ 	      format: 'YYYY/MM/DD'
  	   },
  	  startDate: moment().startOf('hour'),
- 	  endDate: moment().startOf('hour').add(8, 'hour'),
+ 	  endDate: moment().startOf('hour').add(1, 'day'),
  	  maxSpan: {
- 	       "hours": 8
+ 	       "hours": 24
  	  },
  	  }, function(start, end, label) {});
  	hourlyReportDateApply();

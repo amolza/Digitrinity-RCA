@@ -101,11 +101,20 @@ public class Users {
 	private int umLastupdateddt;
 	@Column(name = "umLastupdatedby")
 	private String umLastupdatedby;
+	@Column(name = "role_id")
+	private String roleId;
 
 	@ManyToMany
 	private Set<Role> roles;
 
-	
+	public String getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(String roleId) {
+		this.roleId = roleId;
+	}
+
 	public Long getUmID() {
 		return umID;
 	}
