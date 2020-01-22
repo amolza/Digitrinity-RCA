@@ -1,9 +1,11 @@
 package com.digitrinity.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import com.digitrinity.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,6 +47,8 @@ public class DashboardReportController {
 	@Autowired
 	private ModelMapper modelMapper;
 
+	@Autowired
+	UserService userService;
 	@GetMapping(path = "/latest-data", produces = "application/json")
 	public DataTableResponse getLatestReportData() {
 		return new DataTableResponse(dashboardReportService.getLatestReportData());
@@ -151,8 +155,11 @@ public class DashboardReportController {
 	
 	@GetMapping(path = "/latest-report-status", produces = "application/json")
 	public LatestReportStatusDto getLatestReportStatus(HttpServletRequest request) {
-
-		return dashboardReportService.getLatestReportStatus();
+		List<String> siteType = new ArrayList<>();
+		if (request.getUserPrincipal() != null) {
+			siteType= userService.allSiteTypeForUser(request.getUserPrincipal().getName());
+		}
+		return dashboardReportService.getLatestReportStatus(siteType);
 	}
 	
 	@GetMapping(path = "/alarm-category", produces = "application/json")
