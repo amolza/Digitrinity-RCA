@@ -61,23 +61,23 @@ public class DashboardReportController {
 	}
 
 	@GetMapping(path = "/customer-master", produces = "application/json")
-	public List<CustomerDto> getSiteMaster() {
+	public List<CustomerDto> getSiteMaster(HttpServletRequest request) {
 		return dashboardReportService.getCustomerNames();
 	}
 
 	@GetMapping(path = "/site-code-master", produces = "application/json")
-	public List<SiteCodeDto> getSiteCodeMaster() {
-		return dashboardReportService.getSiteCode();
+	public List<SiteCodeDto> getSiteCodeMaster(HttpServletRequest request) {
+		return dashboardReportService.getSiteCode(request);
 	}
 
 	@GetMapping(path = "/site-type-master", produces = "application/json")
-	public List<SiteTypeDto> getSiteTypeMaster() {
-		return dashboardReportService.getSiteType();
+	public List<SiteTypeDto> getSiteTypeMaster(HttpServletRequest request) {
+		return dashboardReportService.getSiteType(request);
 	}
 
 	@GetMapping(path = "/cluster-master", produces = "application/json")
-	public List<ClusterDto> getClusters() {
-		List<ClusterMaster> clusters = dashboardReportService.getClusters();
+	public List<ClusterDto> getClusters(HttpServletRequest request) {
+		List<ClusterMaster> clusters = dashboardReportService.getClusters(request);
 		List<ClusterDto> collectDto = clusters.stream().map(cluster -> {
 			return modelMapper.map(cluster, ClusterDto.class);
 		}).collect(Collectors.toList());
@@ -85,8 +85,8 @@ public class DashboardReportController {
 	}
 
 	@GetMapping(path = "/zone-master", produces = "application/json")
-	public List<ZoneDto> getZones() {
-		List<ZoneMaster> clusters = dashboardReportService.getZones();
+	public List<ZoneDto> getZones(HttpServletRequest request) {
+		List<ZoneMaster> clusters = dashboardReportService.getZones(request);
 		List<ZoneDto> collectDto = clusters.stream().map(cluster -> {
 			return modelMapper.map(cluster, ZoneDto.class);
 		}).collect(Collectors.toList());
@@ -94,8 +94,8 @@ public class DashboardReportController {
 	}
 
 	@GetMapping(path = "/region-master", produces = "application/json")
-	public List<RegionDto> getRegions() {
-		List<RegionMaster> clusters = dashboardReportService.getRegions();
+	public List<RegionDto> getRegions(HttpServletRequest request) {
+		List<RegionMaster> clusters = dashboardReportService.getRegions(request);
 		List<RegionDto> collectDto = clusters.stream().map(cluster -> {
 			return modelMapper.map(cluster, RegionDto.class);
 		}).collect(Collectors.toList());
@@ -103,8 +103,8 @@ public class DashboardReportController {
 	}
 
 	@PostMapping(path = "/hourly-report", produces = "application/json")
-	public HourlyReportDto getHourlyReportData(@RequestBody HourlyReportDto requestDto) {
-		List<HourlyReportGroup> hourlyReport = dashboardReportService.getLatestHourlReportData(requestDto);
+	public HourlyReportDto getHourlyReportData(@RequestBody HourlyReportDto requestDto,HttpServletRequest request) {
+		List<HourlyReportGroup> hourlyReport = dashboardReportService.getLatestHourlReportData(requestDto,request);
 		return convert(hourlyReport);
 	}
 
@@ -142,8 +142,8 @@ public class DashboardReportController {
 	}
 
 	@GetMapping(path = "/device-type-master", produces = "application/json")
-	public List<DeviceTypeDto> getDeviceType() {
-		return convertDeviceTypes(dashboardReportService.fetchDeviceTypes());
+	public List<DeviceTypeDto> getDeviceType(HttpServletRequest request) {
+		return convertDeviceTypes(dashboardReportService.fetchDeviceTypes(request));
 	}
 
 	private List<DeviceTypeDto> convertDeviceTypes(List<String> deviceType) {
@@ -163,18 +163,18 @@ public class DashboardReportController {
 	}
 	
 	@GetMapping(path = "/alarm-category", produces = "application/json")
-	public List<AlarmCategoryDto> getAlarmCategory() {
-		return dashboardReportService.getAlarmCategory();
+	public List<AlarmCategoryDto> getAlarmCategory(HttpServletRequest request) {
+		return dashboardReportService.getAlarmCategory(request);
 	}
 	
 	@GetMapping(path = "/alarm-severity", produces = "application/json")
-	public List<AlarmSeverityDto> getAlarmSeverity() {
-		return dashboardReportService.getAlarmSeverity();
+	public List<AlarmSeverityDto> getAlarmSeverity(HttpServletRequest request) {
+		return dashboardReportService.getAlarmSeverity(request);
 	}
 	
 	@PostMapping(path = "/alarm-status", produces = "application/json")
-	public DataTableResponse getAlarmStatus(@RequestBody AlarmStatusDto latestReportDto) {
-		return new DataTableResponse(dashboardReportService.getAlarmStatus(latestReportDto));
+	public DataTableResponse getAlarmStatus(@RequestBody AlarmStatusDto latestReportDto,HttpServletRequest request) {
+		return new DataTableResponse(dashboardReportService.getAlarmStatus(latestReportDto,request));
 	}
 	
 }

@@ -73,27 +73,27 @@ public class DashboardReportService implements IDashboardReportService {
     }
 
     @Override
-    public List<SiteTypeDto> getSiteType() {
+    public List<SiteTypeDto> getSiteType(HttpServletRequest request) {
         return SiteTypeDto.generate(siteMasterRepository.fetchSiteTypeId());
     }
 
     @Override
-    public List<SiteCodeDto> getSiteCode() {
+    public List<SiteCodeDto> getSiteCode(HttpServletRequest request) {
         return SiteCodeDto.generate(siteMasterRepository.fetchSiteCode());
     }
 
     @Override
-    public List<ClusterMaster> getClusters() {
+    public List<ClusterMaster> getClusters(HttpServletRequest request) {
         return clusterMasterRepository.findAllByOrderByCrNameAsc();
     }
 
     @Override
-    public List<ZoneMaster> getZones() {
+    public List<ZoneMaster> getZones(HttpServletRequest request) {
         return zoneMasterRepository.findAllByOrderByZnZoneAsc();
     }
 
     @Override
-    public List<RegionMaster> getRegions() {
+    public List<RegionMaster> getRegions(HttpServletRequest request) {
         return regionMasterRepository.findAllByOrderByRgRegionAsc();
     }
 
@@ -137,8 +137,13 @@ public class DashboardReportService implements IDashboardReportService {
     }
 
     @Override
-    public List<HourlyReportGroup> getLatestHourlReportData(HourlyReportDto requestDto) {
+    public List<HourlyReportGroup> getLatestHourlReportData(HourlyReportDto requestDto,HttpServletRequest request) {
         String date = requestDto.getDate();
+        List<String> siteType = new ArrayList<>();
+        if (request.getUserPrincipal() != null) {
+            siteType= userService.allSiteTypeForUser(request.getUserPrincipal().getName());
+        }
+
         String startDate = date.split("-")[0].trim().replaceAll("/", "-");
         String endDate = date.split("-")[1].trim().replaceAll("/", "-");
 
@@ -146,10 +151,9 @@ public class DashboardReportService implements IDashboardReportService {
             return new ArrayList<HourlyReportGroup>();
         }
         if (requestDto.isAllDeviceTypes() && requestDto.isAllSiteId() && requestDto.isAllSiteTypes()) {
-            return hourlyReportRepository.latestHourlyDateGroupBy(startDate, endDate);
+            return hourlyReportRepository.latestHourlyDateGroupBy(startDate, endDate,siteType);
         } else {
             return hourlyReportRepository.filteredLatestHourlyDateGroupBy(startDate, endDate,
-                    requestDto.isAllSiteTypes() ? null : ALL,
                     requestDto.getSiteType(),
                     requestDto.isAllDeviceTypes() ? null : ALL,
                     requestDto.getDeviceType(),
@@ -159,7 +163,7 @@ public class DashboardReportService implements IDashboardReportService {
   }
 
     @Override
-    public List<String> fetchDeviceTypes() {
+    public List<String> fetchDeviceTypes(HttpServletRequest request) {
         List<String> deviceTypes = hourlyReportRepository.fetchDeviceTypes();
         return deviceTypes;
     }
@@ -172,27 +176,30 @@ public class DashboardReportService implements IDashboardReportService {
     }
 
     @Override
-    public List<AlarmCategoryDto> getAlarmCategory() {
+    public List<AlarmCategoryDto> getAlarmCategory(HttpServletRequest request) {
         return AlarmCategoryDto.generate(alarmStatusRepository.fetchAlarmCategory());
     }
 
     @Override
-    public List<AlarmSeverityDto> getAlarmSeverity() {
+    public List<AlarmSeverityDto> getAlarmSeverity(HttpServletRequest request) {
         return AlarmSeverityDto.generate(alarmStatusRepository.fetchAlarmSeverity());
     }
 
     @Override
-    public List<AlarmStatus> getAlarmStatus(AlarmStatusDto alarmStatusDto) {
-
+    public List<AlarmStatus> getAlarmStatus(AlarmStatusDto alarmStatusDto,HttpServletRequest request) {
+        List<String> siteType = new ArrayList<>();
+        if (request.getUserPrincipal() != null) {
+            siteType= userService.allSiteTypeForUser(request.getUserPrincipal().getName());
+        }
         List<AlarmStatus> alarmStatus;
 
         if (alarmStatusDto.isAnyFilterEmpty()) {
             alarmStatus = new ArrayList<AlarmStatus>();
         } else if (alarmStatusDto.isAllCategory() && alarmStatusDto.isAllSeverity() && alarmStatusDto.isAllSiteId()) {
-            alarmStatus = (List<AlarmStatus>) alarmStatusRepository.findAll();
+            alarmStatus = (List<AlarmStatus>) alarmStatusRepository.findAll(siteType);
         } else {
             alarmStatus = alarmStatusRepository.fetchAlarmStatus(alarmStatusDto.getSiteId(), alarmStatusDto.getCategories(), alarmStatusDto.getSeverities(),
-                    alarmStatusDto.isAllSiteId() ? null : ALL, alarmStatusDto.isAllCategory() ? null : ALL, alarmStatusDto.isAllSeverity() ? null : ALL);
+                    alarmStatusDto.isAllSiteId() ? null : ALL, alarmStatusDto.isAllCategory() ? null : ALL, alarmStatusDto.isAllSeverity() ? null : ALL,siteType);
         }
         return alarmStatus;
     }

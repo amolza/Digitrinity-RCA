@@ -31,6 +31,17 @@ public class AlarmStatus {
 	
 	private String almcategory;
 
+	@Column(name = "smsitetypeid")
+	private String smSiteTypeId;
+
+	public String getSmSiteTypeId() {
+		return smSiteTypeId;
+	}
+
+	public void setSmSiteTypeId(String smSiteTypeId) {
+		this.smSiteTypeId = smSiteTypeId;
+	}
+
 	public String getAlOpentime() {
 		return alOpentime;
 	}

@@ -30,7 +30,7 @@ td.highlight-red-back {
         background: red !important;
         color:white !important;
     }
-   
+
 #latestDataReportTable {  
   width: 100% !important;
   margin: 0 auto;
@@ -216,4 +216,8 @@ cursor: pointer;
 
 .bootstrap-select .dropdown-toggle .filter-option-inner-inner{
 	font-size: 0.7rem !important;
+}
+
+.btn-secondary{
+    background-color: #347b98;
 }

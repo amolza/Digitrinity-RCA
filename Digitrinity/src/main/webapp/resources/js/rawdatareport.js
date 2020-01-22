@@ -37,7 +37,18 @@ function renderRawDataReportDataTable(){
 			"bFilter": false,
 			"serverSide": true,
 			"pageLength": 50,
-			"deferLoading": 100,
+			dom: 'Bfrtip',
+			buttons: [
+				'copy',
+				{
+					extend: 'csvHtml5',
+					title: 'Latest Data'
+				},
+				{
+					extend: 'excelHtml5',
+					title: 'Latest Data'
+				},'print'
+			],
 			"ajax" : {
 				"url":"../raw-report/raw-data",
 				"type": "POST",

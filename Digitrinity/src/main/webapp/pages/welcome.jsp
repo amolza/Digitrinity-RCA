@@ -163,13 +163,13 @@
 
 						</select>
 					</td>
-				<td></td>
+			<%--	<td></td>
 				<td></td>
 					<td>
 					<div class="download" align="right">
-						<%--<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btncExport" onclick="exportTableToExcel('RCAReport.xls','latestDataReportTable');"> EXPORT to Excel </button>
-						--%><button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btnExport" onclick="exportTableToCSV('RCAReport.csv','latestDataReportTable')"> EXPORT to CSV </button>
-					</div></td>
+						&lt;%&ndash;<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btncExport" onclick="exportTableToExcel('RCAReport.xls','latestDataReportTable');"> EXPORT to Excel </button>
+						&ndash;%&gt;<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btnExport" onclick="exportTableToCSV('RCAReport.csv','latestDataReportTable')"> EXPORT to CSV </button>
+					</div></td>--%>
 				</tr>
 
 			</table>
@@ -239,11 +239,11 @@
 							<option value="All" selected="selected">All</option>
 						</select>
 					</td>
-					<td>
+					<%--<td>
 						<div class="download" align="right">
-							<%--<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btncExport" onclick="exportTableToExcel('RCAReport.xls','alarmTable');"> EXPORT to Excel </button>
-							--%><button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btnExport" onclick="exportTableToCSV('RCAReport.csv','alarmTable')"> EXPORT to CSV </button>
-						</div></td>
+							&lt;%&ndash;<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btncExport" onclick="exportTableToExcel('RCAReport.xls','alarmTable');"> EXPORT to Excel </button>
+							&ndash;%&gt;<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btnExport" onclick="exportTableToCSV('RCAReport.csv','alarmTable')"> EXPORT to CSV </button>
+						</div></td>--%>
 				</tr>
 				<tr>
 				</tr>

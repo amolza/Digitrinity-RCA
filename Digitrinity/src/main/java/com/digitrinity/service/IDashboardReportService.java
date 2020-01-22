@@ -31,26 +31,26 @@ public interface IDashboardReportService {
 	
 	public List<CustomerDto> getCustomerNames();
 	
-	public List<SiteTypeDto> getSiteType();
+	public List<SiteTypeDto> getSiteType(HttpServletRequest request);
 	
-	public List<SiteCodeDto> getSiteCode();
+	public List<SiteCodeDto> getSiteCode(HttpServletRequest request);
 	
-	public List<ClusterMaster> getClusters();
+	public List<ClusterMaster> getClusters(HttpServletRequest request);
 	
-	public List<ZoneMaster> getZones();
+	public List<ZoneMaster> getZones(HttpServletRequest request);
 	
-	public List<RegionMaster> getRegions();
+	public List<RegionMaster> getRegions(HttpServletRequest request);
 	
-	public List<HourlyReportGroup> getLatestHourlReportData(HourlyReportDto requestDto);
+	public List<HourlyReportGroup> getLatestHourlReportData(HourlyReportDto requestDto,HttpServletRequest request);
 	
-	public List<String> fetchDeviceTypes();
+	public List<String> fetchDeviceTypes(HttpServletRequest request);
 	
 	public LatestReportStatusDto getLatestReportStatus(List<String> siteTypes);
 	
-	public List<AlarmCategoryDto> getAlarmCategory();
+	public List<AlarmCategoryDto> getAlarmCategory(HttpServletRequest request);
 	
-	public List<AlarmSeverityDto> getAlarmSeverity();
+	public List<AlarmSeverityDto> getAlarmSeverity(HttpServletRequest request);
 	
-	public List<AlarmStatus> getAlarmStatus(AlarmStatusDto alarmStatusDto);
+	public List<AlarmStatus> getAlarmStatus(AlarmStatusDto alarmStatusDto,HttpServletRequest request);
 	
 }

@@ -82,11 +82,11 @@
 						</select></td>
 
 						<td><input id="datetimepicker" class="form-control" type="text" style="width: 180px"/></td>
-						<td>
+						<%--<td>
 							<div class="download" align="right">
-								<%--<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btncExport" onclick="exportTableToExcel('RCAReport.xls','latestDataReportTable');"> EXPORT to Excel </button>
-                                --%><button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btnExportCSV" onclick="exportTableToCSV('RawReport.csv','rawDataReportDataTable')"> EXPORT to CSV </button>
-							</div></td>
+								&lt;%&ndash;<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btncExport" onclick="exportTableToExcel('RCAReport.xls','latestDataReportTable');"> EXPORT to Excel </button>
+                                &ndash;%&gt;<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btnExportCSV" onclick="exportTableToCSV('RawReport.csv','rawDataReportDataTable')"> EXPORT to CSV </button>
+							</div></td>--%>
 						<td>
 							<div class="download" align="right">
 								<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btnExport" onclick="renderRawDataReportDataTable()"> Fetch Data </button>
