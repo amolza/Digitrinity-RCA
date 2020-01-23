@@ -29,7 +29,8 @@ $(document).ready(function() {
 
 function renderRawDataReportDataTable(){
 	if ( $.fn.dataTable.isDataTable( '#rawDataReportDataTable' ) ) {
-		rawDataReportDataTable = $('#rawDataReportDataTable').DataTable().ajax.reload();
+		rawDataReportDataTable.clear().draw();
+		rawDataReportDataTable.ajax.reload();
 	}
 	else {
 		rawDataReportDataTable = $('#rawDataReportDataTable').DataTable( {

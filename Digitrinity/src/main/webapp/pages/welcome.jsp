@@ -201,7 +201,7 @@
 			</table>
 		</div>
 	</div>
-	<div class="col-md-4 mx-auto box p-4"
+	<div class="col-md-4 mx-auto box p-3"
 		 style="background-color: white;overflow-x:auto;white-space: nowrap;border-left: 5px solid #e9e9e9;">
 		<div class="inner">
 			<table cellspacing="5" cellpadding="5" class="filter-table">

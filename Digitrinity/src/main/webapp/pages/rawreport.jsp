@@ -39,7 +39,7 @@
 						<td><label class='control-label mr-2'
 							for="hourly-site-id-select"><strong>Region</strong></label></td>
 						<td><select id="region-select" name="region-select"
-							class="selectpicker form-control" data-live-search="true"
+							class="selectpicker" data-live-search="true"
 							multiple title="Region" data-width="80px"
 							style="background-color: #5cb85c; color: #fff;">
 								<option value="All" selected="selected">All</option>
@@ -80,8 +80,9 @@
 							title="Site Type" data-width="80px">
 								<option value="All" selected="selected">All</option>
 						</select></td>
-
-						<td><input id="datetimepicker" class="form-control" type="text" style="width: 180px"/></td>
+						<td><label class='control-label mr-2'
+								   for="hourly-site-id-select"><strong>Date</strong></label></td>
+						<td><input id="datetimepicker" class="form-control" type="text" style="width: 175px"/></td>
 						<%--<td>
 							<div class="download" align="right">
 								&lt;%&ndash;<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btncExport" onclick="exportTableToExcel('RCAReport.xls','latestDataReportTable');"> EXPORT to Excel </button>
