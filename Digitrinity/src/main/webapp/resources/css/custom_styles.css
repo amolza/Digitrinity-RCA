@@ -37,7 +37,8 @@ td.highlight-red-back {
   clear: both;
   border-collapse: collapse;
   word-wrap:break-word; 
-} /*
+}
+/*
 #latestDataReportTable td,
 #latestDataReportTable th{
   width: auto !important;
@@ -105,7 +106,7 @@ td.highlight-red-back {
     padding-left: 0.2em !important;
     padding-right: 0.2em !important;
   	width: auto !important;
-  white-space: normal;
+  white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }

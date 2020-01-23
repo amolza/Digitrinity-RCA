@@ -74,12 +74,22 @@ public class DashboardReportService implements IDashboardReportService {
 
     @Override
     public List<SiteTypeDto> getSiteType(HttpServletRequest request) {
-        return SiteTypeDto.generate(siteMasterRepository.fetchSiteTypeId());
+        List<String> siteType = new ArrayList<>();
+        if (request.getUserPrincipal() != null) {
+            siteType= userService.allSiteTypeForUser(request.getUserPrincipal().getName());
+        }
+        List<Integer> siteTypeInt = siteType.stream().map(Integer::parseInt).collect(Collectors.toList());
+        return SiteTypeDto.generate(siteMasterRepository.fetchSiteTypeId(siteTypeInt));
     }
 
     @Override
     public List<SiteCodeDto> getSiteCode(HttpServletRequest request) {
-        return SiteCodeDto.generate(siteMasterRepository.fetchSiteCode());
+        List<String> siteType = new ArrayList<>();
+        if (request.getUserPrincipal() != null) {
+            siteType= userService.allSiteTypeForUser(request.getUserPrincipal().getName());
+        }
+        List<Integer> siteTypeInt = siteType.stream().map(Integer::parseInt).collect(Collectors.toList());
+        return SiteCodeDto.generate(siteMasterRepository.fetchSiteCode(siteTypeInt));
     }
 
     @Override

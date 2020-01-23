@@ -42,11 +42,11 @@ function renderRawDataReportDataTable(){
 				'copy',
 				{
 					extend: 'csvHtml5',
-					title: 'Latest Data'
+					title: 'Raw Data'
 				},
 				{
 					extend: 'excelHtml5',
-					title: 'Latest Data'
+					title: 'Raw Data'
 				},'print'
 			],
 			"ajax" : {

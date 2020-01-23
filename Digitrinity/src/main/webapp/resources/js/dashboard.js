@@ -429,12 +429,13 @@ function renderChart(startDate, endDate) {
 	        	    }
     	        	barChart = new Chart(document.getElementById("bar-chart"), {
     	        	    type: 'bar',
+						responsive: true,
     	        	    data: {
     	        	    	labels: data.labels,
     	        	        datasets: data.dataSets
     	        	    },
     	        	    options: {
-    	        	      legend: { display: true },
+    	        	      legend: { display: true,position: 'bottom' },
     	        	      title: {
     	        	        display: false,
     	        	        text: 'Predicted world population (millions) in 2050'
