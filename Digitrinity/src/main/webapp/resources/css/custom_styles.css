@@ -126,11 +126,11 @@ td.highlight-red-back {
 }
 #alarmTable td,
 #alarmTable th{
-  width: auto !important;
+  /*width: auto !important;
   white-space: normal;
   text-overflow: ellipsis;
-  overflow: hidden;
-  
+  overflow: hidden;*/
+  word-wrap: break-word;
 }
 
 .footer-widget {

@@ -253,10 +253,10 @@
 				   style="width: 100%">
 				<thead class="text-center datatable-header">
 				<tr>
-					<th style="font-size: xx-small; width:5px;">Site ID</th>
-					<th style="font-size: xx-small; width:5px;">Alarm Name</th>
-					<th style="font-size: xx-small; width:5px;">Alarm Open Time</th>
-					<th style="font-size: xx-small; width:5px;">Elapsed Time</th>
+					<th style="font-size: xx-small;">Site ID</th>
+					<th style="font-size: xx-small;">Alarm Name</th>
+					<th style="font-size: xx-small;">Alarm Open Time</th>
+					<th style="font-size: xx-small;">Elapsed Time</th>
 				</tr>
 				</thead>
 				<tbody class="text-center"></tbody>

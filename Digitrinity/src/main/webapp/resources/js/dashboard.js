@@ -139,7 +139,7 @@ function renderLatestReportDataTable(){
 function renderAlarmStatusDataTable(){
 	var alarmTable = $('#alarmTable').DataTable( {
 		"bFilter": false,
-		responsive: true,
+		//responsive: true,
 		dom: 'Bfrtip',
 		buttons: [
 			'copy',
