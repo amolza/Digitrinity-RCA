@@ -25,7 +25,7 @@ public interface IDashboardReportService {
 
 	public List<LatestDataReport> getLatestReportData();
 	
-	public List<LatestDataReport> getFilteredLatestReportData(LatestReportDto latestReportDto,List<String> siteType);
+	public List<LatestDataReport> getFilteredLatestReportData(LatestReportDto latestReportDto,List<String> siteType,String customerId);
 	public List<LatestDataReport> getFilteredLatestReportData(LatestReportDto latestReportDto, HttpServletRequest request);
 	public List<SiteMaster> getSiteMaster();
 	
@@ -45,7 +45,7 @@ public interface IDashboardReportService {
 	
 	public List<String> fetchDeviceTypes(HttpServletRequest request);
 	
-	public LatestReportStatusDto getLatestReportStatus(List<String> siteTypes);
+	public LatestReportStatusDto getLatestReportStatus(HttpServletRequest request);
 	
 	public List<AlarmCategoryDto> getAlarmCategory(HttpServletRequest request);
 	

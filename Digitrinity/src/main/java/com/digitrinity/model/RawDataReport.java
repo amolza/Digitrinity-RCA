@@ -11,7 +11,10 @@ public class RawDataReport {
 	
 	@Column(name = "Cluster")
 	private String cluster;
-	
+
+	@Column(name = "customer_id")
+	private int customerId;
+
 	@Column(name = "Site_id")
 	private String siteId;
 		
@@ -3667,6 +3670,14 @@ public class RawDataReport {
 
 	public void setInverterInputCurrent11(Double inverterInputCurrent11) {
 		this.inverterInputCurrent11 = inverterInputCurrent11;
+	}
+
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
 
 	public Double getInverterOutVoltage11() {

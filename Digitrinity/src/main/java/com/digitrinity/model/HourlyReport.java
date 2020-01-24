@@ -52,6 +52,17 @@ public class HourlyReport {
 	@Column(name="tran_date")
 	private String tranDate;
 
+	@Column(name = "customer_id")
+	private int customerId;
+
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
 	public String getTranDate() {
 		return tranDate;
 	}

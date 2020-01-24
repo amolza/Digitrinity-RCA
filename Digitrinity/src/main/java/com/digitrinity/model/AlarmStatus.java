@@ -1,12 +1,10 @@
 package com.digitrinity.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "V_alarmStatus")
+@IdClass(AlarmStatusComposite.class)
 public class AlarmStatus {
 
 	@Id
@@ -17,7 +15,8 @@ public class AlarmStatus {
 	private Integer sacalarmactivestatus;
 	
 	private String alrPinNumber;
-	
+
+	@Id
 	private String smSiteCode;
 	
 	private String smSiteName;
@@ -34,6 +33,17 @@ public class AlarmStatus {
 	@Column(name = "smsitetypeid")
 	private String smSiteTypeId;
 
+	@Column(name = "customer_id")
+	private int customerId;
+
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
 	public String getSmSiteTypeId() {
 		return smSiteTypeId;
 	}
@@ -41,6 +51,7 @@ public class AlarmStatus {
 	public void setSmSiteTypeId(String smSiteTypeId) {
 		this.smSiteTypeId = smSiteTypeId;
 	}
+
 
 	public String getAlOpentime() {
 		return alOpentime;

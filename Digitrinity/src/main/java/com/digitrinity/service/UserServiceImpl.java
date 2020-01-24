@@ -61,4 +61,11 @@ public class UserServiceImpl implements UserService {
             siteType.add(String.valueOf(r.getLithiumIon()));
         return siteType;
     }
+
+
+    @Override
+    public String getCustomerIdOfUser(String user) {
+        Users savedUser = findByUsername(user);
+        return savedUser.getCustomerId();
+    }
 }

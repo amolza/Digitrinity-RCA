@@ -1,5 +1,6 @@
 package com.digitrinity.service;
 
+import org.hibernate.secure.spi.IntegrationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,9 +29,14 @@ public class RawDataReportService implements IRawDataReportService {
 		String startDate = date.split("-")[0].trim().replaceAll("/", "-");
 		String endDate = date.split("-")[1].trim().replaceAll("/", "-");
 		List<String> siteType = new ArrayList<>();
+		String customerId="";
+		int customerIdInt=0;
+
 		if (request.getUserPrincipal() != null) {
 			siteType= userService.allSiteTypeForUser(request.getUserPrincipal().getName());
+			customerId = userService.getCustomerIdOfUser(request.getUserPrincipal().getName());
 		}
+		customerIdInt= Integer.valueOf(customerId);
 		Page<RawDataReport> reportData = null;
 
 		PageRequest pageRequest = PageRequest.of(dataReportReqDto.getPage(), dataReportReqDto.getLength());
@@ -40,11 +46,11 @@ public class RawDataReportService implements IRawDataReportService {
 		} else if (dataReportReqDto.isAllClusters() && dataReportReqDto.isAllDeviceType()
 				&& dataReportReqDto.isAllSiteId() && dataReportReqDto.isAllSiteTypes()
 				&& dataReportReqDto.isAllRegions() && dataReportReqDto.isAllZones()) {
-			reportData = rawDataReportRepository.findAll(siteType,pageRequest,startDate,endDate);
+			reportData = rawDataReportRepository.findAll(siteType,pageRequest,startDate,endDate,customerIdInt);
 		} else {
 			reportData = rawDataReportRepository.fetchFilteredPaginatedRawData(dataReportReqDto.getClusters(),
 					dataReportReqDto.getSiteId(), dataReportReqDto.isAllSiteId() ? null : ALL,
-					dataReportReqDto.isAllClusters() ? null : ALL, siteType,pageRequest,startDate,endDate);
+					dataReportReqDto.isAllClusters() ? null : ALL, siteType,pageRequest,startDate,endDate,customerIdInt);
 		}
 
 		return reportData;

@@ -103,7 +103,8 @@ public class Users {
 	private String umLastupdatedby;
 	@Column(name = "role_id")
 	private String roleId;
-
+    @Column(name = "customer_id")
+	private String customerId;
 	@ManyToMany
 	private Set<Role> roles;
 
@@ -162,7 +163,13 @@ public class Users {
 		this.password = umLoginPassword;
 	}
 
-	
+	public String getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
 
 	public String getPasswordConfirm() {
 		return passwordConfirm;

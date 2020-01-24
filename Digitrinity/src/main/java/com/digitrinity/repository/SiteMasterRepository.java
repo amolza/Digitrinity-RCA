@@ -13,11 +13,11 @@ public interface SiteMasterRepository extends JpaRepository<SiteMaster, Long>{
 	@Query("SELECT DISTINCT smCustomerName from SiteMaster order by smCustomerName")
 	List<String> fetchCustomerNames();
 	
-	@Query("SELECT DISTINCT (sm.smSitetypeid) from SiteMaster sm where sm.smSitetypeid IN (:siteTypes) order by sm.smSitetypeid")
-	List<Integer> fetchSiteTypeId(Collection<Integer> siteTypes);
+	@Query("SELECT DISTINCT (sm.smSitetypeid) from SiteMaster sm where sm.smSitetypeid IN (:siteTypes) AND sm.smCustomerName = (:customerId) order by sm.smSitetypeid")
+	List<Integer> fetchSiteTypeId(Collection<Integer> siteTypes,String customerId);
 	
-	@Query("SELECT DISTINCT sm.smSitecode from SiteMaster sm where sm.smSitetypeid IN (:siteTypes) order by sm.smSitecode")
-	List<String> fetchSiteCode(Collection<Integer> siteTypes);
+	@Query("SELECT DISTINCT sm.smSitecode from SiteMaster sm where sm.smSitetypeid IN (:siteTypes) AND sm.smCustomerName = (:customerId) order by sm.smSitecode")
+	List<String> fetchSiteCode(Collection<Integer> siteTypes,String customerId);
 	
 	
 }

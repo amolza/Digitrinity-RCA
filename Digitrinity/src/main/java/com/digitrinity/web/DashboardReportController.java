@@ -155,11 +155,8 @@ public class DashboardReportController {
 	
 	@GetMapping(path = "/latest-report-status", produces = "application/json")
 	public LatestReportStatusDto getLatestReportStatus(HttpServletRequest request) {
-		List<String> siteType = new ArrayList<>();
-		if (request.getUserPrincipal() != null) {
-			siteType= userService.allSiteTypeForUser(request.getUserPrincipal().getName());
-		}
-		return dashboardReportService.getLatestReportStatus(siteType);
+
+		return dashboardReportService.getLatestReportStatus(request);
 	}
 	
 	@GetMapping(path = "/alarm-category", produces = "application/json")

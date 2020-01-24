@@ -14,7 +14,7 @@ public interface LatestDataReportRepository extends JpaRepository<LatestDataRepo
 
 	@Query(value = "SELECT ldr FROM LatestDataReport ldr WHERE (ldr.siteTypeId IN (:siteTypes)) AND ((:zonesAll) is null or ldr.zone IN (:zones)) AND "
 			+ "((:clustersAll) is null or ldr.clusterName IN (:customers)) AND ((:sitesAll) is null or ldr.smSiteCode IN (:siteids)) "
-			+ " AND ((:customersAll) is null or ldr.customerName IN (:customers)) AND ((:regionsAll) is null or ldr.region IN (:regions)) AND ((:offline) is null or ldr.isOffline IN (:offline))")
+			+ " AND ((:customersAll) is null or ldr.customerName IN (:customers)) AND ((:regionsAll) is null or ldr.region IN (:regions)) AND ((:offline) is null or ldr.isOffline IN (:offline)) AND ldr.customerName = (:customerId)")
 	List<LatestDataReport> findLatestReport(@Param("regions") Collection<String> regions
 			,@Param("zones") Collection<String> zones
 			,@Param("clusters") Collection<String> clusters
@@ -27,15 +27,16 @@ public interface LatestDataReportRepository extends JpaRepository<LatestDataRepo
 			,@Param("zonesAll") String zonesAll
 			,@Param("regionsAll") String regionsAll
 			,@Param("offline") Integer siteStatusAll
+			,@Param("customerId")String customerId
 	);
 	
 	
-	@Query(value = "SELECT ldr FROM LatestDataReport ldr WHERE (ldr.smSiteCode IN (:siteids))")
-	List<LatestDataReport> findLatestReport1(@Param("siteids") Collection<String> siteTypes);
+	@Query(value = "SELECT ldr FROM LatestDataReport ldr WHERE (ldr.smSiteCode IN (:siteids) AND ldr.customerName = (:customerId))")
+	List<LatestDataReport> findLatestReport1(@Param("siteids") Collection<String> siteTypes,@Param("customerId")String customerId);
 	
-	@Query(value = "SELECT count(ldr.smSiteCode) FROM LatestDataReport ldr WHERE (ldr.age > (:age) and ldr.siteTypeId IN (:siteTypes))")
-	Long countByAge(String age,Collection<String> siteTypes);
+	@Query(value = "SELECT count(ldr.smSiteCode) FROM LatestDataReport ldr WHERE (ldr.age > (:age) and ldr.siteTypeId IN (:siteTypes)) AND ldr.customerName = (:customerId)")
+	Long countByAge(String age,Collection<String> siteTypes,String customerId);
 
-	@Query(value = "SELECT ldr FROM LatestDataReport ldr WHERE (ldr.siteTypeId IN (:siteTypes))")
-	List<LatestDataReport> findAll(@Param("siteTypes") Collection<String> siteTypes);
+	@Query(value = "SELECT ldr FROM LatestDataReport ldr WHERE (ldr.siteTypeId IN (:siteTypes)) AND ldr.customerName = (:customerId)")
+	List<LatestDataReport> findAll(@Param("siteTypes") Collection<String> siteTypes,@Param("customerId")String customerId);
 }

@@ -13,4 +13,6 @@ public interface UserService {
 	Optional<Users> findById(long l);
 
     List<String> allSiteTypeForUser(String user);
+
+    String getCustomerIdOfUser(String user);
 }

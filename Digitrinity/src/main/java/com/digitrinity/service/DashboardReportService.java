@@ -75,21 +75,25 @@ public class DashboardReportService implements IDashboardReportService {
     @Override
     public List<SiteTypeDto> getSiteType(HttpServletRequest request) {
         List<String> siteType = new ArrayList<>();
+        String customerId="";
         if (request.getUserPrincipal() != null) {
-            siteType= userService.allSiteTypeForUser(request.getUserPrincipal().getName());
+            siteType = userService.allSiteTypeForUser(request.getUserPrincipal().getName());
+            customerId = userService.getCustomerIdOfUser(request.getUserPrincipal().getName());
         }
         List<Integer> siteTypeInt = siteType.stream().map(Integer::parseInt).collect(Collectors.toList());
-        return SiteTypeDto.generate(siteMasterRepository.fetchSiteTypeId(siteTypeInt));
+        return SiteTypeDto.generate(siteMasterRepository.fetchSiteTypeId(siteTypeInt,customerId));
     }
 
     @Override
     public List<SiteCodeDto> getSiteCode(HttpServletRequest request) {
         List<String> siteType = new ArrayList<>();
+        String customerId="";
         if (request.getUserPrincipal() != null) {
             siteType= userService.allSiteTypeForUser(request.getUserPrincipal().getName());
+            customerId = userService.getCustomerIdOfUser(request.getUserPrincipal().getName());
         }
         List<Integer> siteTypeInt = siteType.stream().map(Integer::parseInt).collect(Collectors.toList());
-        return SiteCodeDto.generate(siteMasterRepository.fetchSiteCode(siteTypeInt));
+        return SiteCodeDto.generate(siteMasterRepository.fetchSiteCode(siteTypeInt,customerId));
     }
 
     @Override
@@ -110,15 +114,16 @@ public class DashboardReportService implements IDashboardReportService {
     @Override
     public List<LatestDataReport> getFilteredLatestReportData(LatestReportDto latestReportDto, HttpServletRequest request) {
         List<String> siteType = new ArrayList<>();
+        String customerId="";
         if (request.getUserPrincipal() != null) {
-            siteType= userService.allSiteTypeForUser(request.getUserPrincipal().getName());
+            siteType = userService.allSiteTypeForUser(request.getUserPrincipal().getName());
+            customerId = userService.getCustomerIdOfUser(request.getUserPrincipal().getName());
         }
-
-        return getFilteredLatestReportData(latestReportDto, siteType);
+        return getFilteredLatestReportData(latestReportDto, siteType,customerId);
     }
 
     @Override
-    public List<LatestDataReport> getFilteredLatestReportData(LatestReportDto latestReportDto, List<String> siteType) {
+    public List<LatestDataReport> getFilteredLatestReportData(LatestReportDto latestReportDto, List<String> siteType,String customerId) {
 
         List<LatestDataReport> dataReports = new ArrayList<LatestDataReport>();
         if (latestReportDto.isAnyFilterEmpty()) {
@@ -126,7 +131,7 @@ public class DashboardReportService implements IDashboardReportService {
         } else if (latestReportDto.isAllClusters() && latestReportDto.isAllCustomers()
                 && latestReportDto.isAllSiteId() && latestReportDto.isAllSiteTypes()
                 && latestReportDto.isAllRegions() && latestReportDto.isAllZones() && latestReportDto.isAllSiteStatus()) {
-            dataReports = latestDataReportRepository.findAll(siteType);
+            dataReports = latestDataReportRepository.findAll(siteType,customerId);
         } else {
             dataReports = latestDataReportRepository.findLatestReport(latestReportDto.isAllRegions() ? null : latestReportDto.getRegions(),
                     latestReportDto.isAllZones() ? null : latestReportDto.getZones(),
@@ -139,7 +144,7 @@ public class DashboardReportService implements IDashboardReportService {
                     latestReportDto.isAllClusters() ? null : ALL,
                     latestReportDto.isAllZones() ? null : ALL,
                     latestReportDto.isAllRegions() ? null : ALL,
-                    latestReportDto.isAllSiteStatus() ? null : latestReportDto.getSiteStatus()
+                    latestReportDto.isAllSiteStatus() ? null : latestReportDto.getSiteStatus(),customerId
             );
         }
 
@@ -149,10 +154,14 @@ public class DashboardReportService implements IDashboardReportService {
     @Override
     public List<HourlyReportGroup> getLatestHourlReportData(HourlyReportDto requestDto,HttpServletRequest request) {
         String date = requestDto.getDate();
-        List<String> siteType = new ArrayList<>();
+               List<String> siteType = new ArrayList<>();
+        String customerId="";
+        int customerIdInt=0;
         if (request.getUserPrincipal() != null) {
             siteType= userService.allSiteTypeForUser(request.getUserPrincipal().getName());
+            customerId = userService.getCustomerIdOfUser(request.getUserPrincipal().getName());
         }
+        customerIdInt=Integer.valueOf(customerId);
 
         String startDate = date.split("-")[0].trim().replaceAll("/", "-");
         String endDate = date.split("-")[1].trim().replaceAll("/", "-");
@@ -161,14 +170,14 @@ public class DashboardReportService implements IDashboardReportService {
             return new ArrayList<HourlyReportGroup>();
         }
         if (requestDto.isAllDeviceTypes() && requestDto.isAllSiteId() && requestDto.isAllSiteTypes()) {
-            return hourlyReportRepository.latestHourlyDateGroupBy(startDate, endDate,siteType);
+            return hourlyReportRepository.latestHourlyDateGroupBy(startDate, endDate,siteType,customerIdInt);
         } else {
             return hourlyReportRepository.filteredLatestHourlyDateGroupBy(startDate, endDate,
                     requestDto.getSiteType(),
                     requestDto.isAllDeviceTypes() ? null : ALL,
                     requestDto.getDeviceType(),
                     requestDto.isAllSiteId() ? null : ALL,
-                    requestDto.getSiteId());
+                    requestDto.getSiteId(),customerIdInt);
         }
   }
 
@@ -179,9 +188,15 @@ public class DashboardReportService implements IDashboardReportService {
     }
 
     @Override
-    public LatestReportStatusDto getLatestReportStatus(List<String> siteTypes) {
-        long total = latestDataReportRepository.countByAge("-1",siteTypes);
-        long offline = latestDataReportRepository.countByAge("4",siteTypes);
+    public LatestReportStatusDto getLatestReportStatus(HttpServletRequest request) {
+        List<String> siteType = new ArrayList<>();
+        String customerId="";
+        if (request.getUserPrincipal() != null) {
+            siteType= userService.allSiteTypeForUser(request.getUserPrincipal().getName());
+            customerId = userService.getCustomerIdOfUser(request.getUserPrincipal().getName());
+        }
+        long total = latestDataReportRepository.countByAge("-1",siteType,customerId);
+        long offline = latestDataReportRepository.countByAge("4",siteType,customerId);
         return new LatestReportStatusDto(total, total - offline, offline);
     }
 
@@ -198,18 +213,22 @@ public class DashboardReportService implements IDashboardReportService {
     @Override
     public List<AlarmStatus> getAlarmStatus(AlarmStatusDto alarmStatusDto,HttpServletRequest request) {
         List<String> siteType = new ArrayList<>();
+        String customerId="";
+        int customerIdInt=0;
         if (request.getUserPrincipal() != null) {
             siteType= userService.allSiteTypeForUser(request.getUserPrincipal().getName());
+            customerId = userService.getCustomerIdOfUser(request.getUserPrincipal().getName());
         }
+        customerIdInt= Integer.valueOf(customerId);
         List<AlarmStatus> alarmStatus;
 
         if (alarmStatusDto.isAnyFilterEmpty()) {
             alarmStatus = new ArrayList<AlarmStatus>();
         } else if (alarmStatusDto.isAllCategory() && alarmStatusDto.isAllSeverity() && alarmStatusDto.isAllSiteId()) {
-            alarmStatus = (List<AlarmStatus>) alarmStatusRepository.findAll(siteType);
+            alarmStatus = (List<AlarmStatus>) alarmStatusRepository.findAll(siteType,customerIdInt);
         } else {
             alarmStatus = alarmStatusRepository.fetchAlarmStatus(alarmStatusDto.getSiteId(), alarmStatusDto.getCategories(), alarmStatusDto.getSeverities(),
-                    alarmStatusDto.isAllSiteId() ? null : ALL, alarmStatusDto.isAllCategory() ? null : ALL, alarmStatusDto.isAllSeverity() ? null : ALL,siteType);
+                    alarmStatusDto.isAllSiteId() ? null : ALL, alarmStatusDto.isAllCategory() ? null : ALL, alarmStatusDto.isAllSeverity() ? null : ALL,siteType,customerIdInt);
         }
         return alarmStatus;
     }
