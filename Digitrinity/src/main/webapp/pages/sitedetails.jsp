@@ -188,7 +188,6 @@
             background: #6d7fcc;
         }
     </style>
-    <script src="${contextPath}/resources/js/sitedetails.js" type="text/javascript"/>
 </head>
 <body style="background-color: #e9e9e9; font-size: .88rem;"
       data-spy="scroll">
@@ -276,7 +275,7 @@
 </div>
 
 <jsp:include page="include_ftr.jsp"></jsp:include>
-<script src="${contextPath}/resources/js/rawdatareport.js"
+<script src="${contextPath}/resources/js/sitedetails.js"
         type="text/javascript"></script>
 </body>
 </html>

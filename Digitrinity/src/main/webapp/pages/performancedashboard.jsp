@@ -204,7 +204,7 @@
 
 <div class="container-fluid">
     <div class="modal-body row">
-        <div class="col-md-2">
+       <%-- <div class="col-md-2">
             <div class="wrapper">
                 <nav id="sidebar">
                     <ul class="list-unstyled components">
@@ -239,7 +239,7 @@
                 </nav>
 
             </div>
-        </div>
+        </div>--%>
         <div class="col-md-6">
             <div class="tab">
                 <button class="tablinks" onclick="return alert ('Solar energy')">
@@ -311,7 +311,7 @@
 </div>
 
 <jsp:include page="include_ftr.jsp"></jsp:include>
-<script src="${contextPath}/resources/js/rawdatareport.js"
+<script src="${contextPath}/resources/js/performancedashboard.js"
         type="text/javascript"></script>
 </body>
 </html>

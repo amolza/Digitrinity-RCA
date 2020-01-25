@@ -66,7 +66,7 @@ function renderLatestReportDataTable(){
             { "data": "lastUpdated" },
             { "data": "smSiteCode",
 				"render": function(data, type, row, meta){
-            	var ref = "site/details/"+data
+            	var ref = "site/perfdashboard/"+data
 					if(type === 'display'){
 						data = '<a href="'+ref+'" >' + data + '</a>';
 					}
