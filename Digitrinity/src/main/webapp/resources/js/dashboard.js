@@ -114,6 +114,7 @@ function renderLatestReportDataTable(){
         'createdRow': function(row, data, index){
             if(data.age > 4){
             	$('td', row).eq(14).addClass('highlight-red');
+				$('td',row).css('background-color', '#ff6c4c');
             }
             if(data.critical > 0){
             	$('td', row).eq(11).addClass('highlight-red');
@@ -124,7 +125,6 @@ function renderLatestReportDataTable(){
             if(parseFloat(data.dcVoltage) < 48.5){
             	$('td', row).eq(7).addClass('highlight-red-back');
             }
-
 
           },
           /*"dom": "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
@@ -167,7 +167,13 @@ function renderAlarmStatusDataTable(){
             { "data": "smSiteCode" },
             { "data": "alName" },
             { "data": "alOpentime" },
-            { "data": "age" }
+            { "data": "age","render": function(data, type, row, meta){
+					var measuredTime = new Date(null);
+					measuredTime.setMinutes(data);
+					var MHSTime = measuredTime.toISOString().substr(11, 8);
+
+					return MHSTime;
+				} }
 
         ],
         initComplete: function () {

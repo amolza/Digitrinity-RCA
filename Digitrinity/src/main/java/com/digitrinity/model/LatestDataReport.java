@@ -43,7 +43,10 @@ public class LatestDataReport {
 	
 	@Column(name="CustomerName")
 	private String customerName;
-	
+
+	@Column(name="customer_id")
+	private int customerId;
+
 	@Column(name="Powersource")
 	private String powerSource;
 	
@@ -114,6 +117,14 @@ public class LatestDataReport {
 
 	public String getZone() {
 		return zone;
+	}
+
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
 
 	public void setZone(String zone) {

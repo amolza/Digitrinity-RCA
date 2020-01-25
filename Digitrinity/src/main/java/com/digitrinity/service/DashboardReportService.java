@@ -131,7 +131,7 @@ public class DashboardReportService implements IDashboardReportService {
         } else if (latestReportDto.isAllClusters() && latestReportDto.isAllCustomers()
                 && latestReportDto.isAllSiteId() && latestReportDto.isAllSiteTypes()
                 && latestReportDto.isAllRegions() && latestReportDto.isAllZones() && latestReportDto.isAllSiteStatus()) {
-            dataReports = latestDataReportRepository.findAll(siteType,customerId);
+            dataReports = latestDataReportRepository.findAll(siteType,Integer.valueOf(customerId));
         } else {
             dataReports = latestDataReportRepository.findLatestReport(latestReportDto.isAllRegions() ? null : latestReportDto.getRegions(),
                     latestReportDto.isAllZones() ? null : latestReportDto.getZones(),
@@ -144,8 +144,7 @@ public class DashboardReportService implements IDashboardReportService {
                     latestReportDto.isAllClusters() ? null : ALL,
                     latestReportDto.isAllZones() ? null : ALL,
                     latestReportDto.isAllRegions() ? null : ALL,
-                    latestReportDto.isAllSiteStatus() ? null : latestReportDto.getSiteStatus(),customerId
-            );
+                    latestReportDto.isAllSiteStatus() ? null : latestReportDto.getSiteStatus(),Integer.valueOf(customerId));
         }
 
         return dataReports.stream().filter(dataReport -> Objects.nonNull(dataReport)).collect(Collectors.toList());
@@ -195,8 +194,8 @@ public class DashboardReportService implements IDashboardReportService {
             siteType= userService.allSiteTypeForUser(request.getUserPrincipal().getName());
             customerId = userService.getCustomerIdOfUser(request.getUserPrincipal().getName());
         }
-        long total = latestDataReportRepository.countByAge("-1",siteType,customerId);
-        long offline = latestDataReportRepository.countByAge("4",siteType,customerId);
+        long total = latestDataReportRepository.countByAge("-1",siteType,Integer.valueOf(customerId));
+        long offline = latestDataReportRepository.countByAge("4",siteType,Integer.valueOf(customerId));
         return new LatestReportStatusDto(total, total - offline, offline);
     }
 
