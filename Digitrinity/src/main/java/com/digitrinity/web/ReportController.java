@@ -12,4 +12,9 @@ public class ReportController {
 	public String getRawReport() {
 		return "rawreport";
 	}
+
+	@GetMapping("/powertrackertee")
+	public String getPowerTrackerReport() {
+		return "powertrackertee";
+	}
 }

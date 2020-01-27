@@ -38,7 +38,8 @@
 					Reports
 				</a>
 				<ul class="dropdown-menu" aria-labelledby="navbarDropdown">					
-					<li><a class="dropdown-item" href="${contextPath}/report/rawreport">Raw Data Report</a></li>						
+					<li><a class="dropdown-item" href="${contextPath}/report/rawreport">Raw Data Report</a></li>
+					<%--<li><a class="dropdown-item" href="${contextPath}/report/powertrackertee">Power Tracker Report(TEE)</a></li>--%>
 				</ul>
 			</li>
 			<%-- <li class="nav-item dropdown">
