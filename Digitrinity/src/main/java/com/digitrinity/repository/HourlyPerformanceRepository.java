@@ -1,21 +1,22 @@
 package com.digitrinity.repository;
 
-import com.digitrinity.model.HourlyReport;
-import com.digitrinity.model.HourlyReportGroup;
+
 import com.digitrinity.model.VHourlyPerformance;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
+
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public interface HourlyPerformanceRepository extends JpaRepository<VHourlyPerformance, String> {
-    @Override
-    List<VHourlyPerformance> findAll();
+
+
+    @Query(value = "SELECT ldr FROM VHourlyPerformance ldr WHERE (ldr.smSiteCode = (:siteId)) AND ldr.dateHour >=(:startDate) AND ldr.dateHour <=(:endDate)")
+    List<VHourlyPerformance> findAll(String siteId, LocalDate startDate, LocalDate endDate);
 
     @Override
     List<VHourlyPerformance> findAll(Sort sort);

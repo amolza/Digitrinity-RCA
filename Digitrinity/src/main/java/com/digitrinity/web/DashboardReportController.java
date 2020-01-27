@@ -62,7 +62,7 @@ public class DashboardReportController {
 
 	@GetMapping(path = "/customer-master", produces = "application/json")
 	public List<CustomerDto> getSiteMaster(HttpServletRequest request) {
-		return dashboardReportService.getCustomerNames();
+		return dashboardReportService.getCustomerNames(request);
 	}
 
 	@GetMapping(path = "/site-code-master", produces = "application/json")

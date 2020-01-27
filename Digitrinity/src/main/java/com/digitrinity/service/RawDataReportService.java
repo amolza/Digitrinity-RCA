@@ -30,14 +30,13 @@ public class RawDataReportService implements IRawDataReportService {
 		String startDate = date.split("-")[0].trim().replaceAll("/", "-");
 		String endDate = date.split("-")[1].trim().replaceAll("/", "-");
 		List<String> siteType = new ArrayList<>();
-		String customerId="";
-		int customerIdInt=0;
+		List<Integer> customerId=new ArrayList<>();
 
 		if (request.getUserPrincipal() != null) {
 			siteType= userService.allSiteTypeForUser(request.getUserPrincipal().getName());
 			customerId = userService.getCustomerIdOfUser(request.getUserPrincipal().getName());
 		}
-		customerIdInt= Integer.valueOf(customerId);
+
 		Page<RawDataReport> reportData = null;
 
 		PageRequest pageRequest = PageRequest.of(dataReportReqDto.getPage(), dataReportReqDto.getLength());
@@ -47,11 +46,11 @@ public class RawDataReportService implements IRawDataReportService {
 		} else if (dataReportReqDto.isAllClusters() && dataReportReqDto.isAllDeviceType()
 				&& dataReportReqDto.isAllSiteId() && dataReportReqDto.isAllSiteTypes()
 				&& dataReportReqDto.isAllRegions() && dataReportReqDto.isAllZones()) {
-			reportData = rawDataReportRepository.findAll(siteType,pageRequest,startDate,endDate,customerIdInt);
+			reportData = rawDataReportRepository.findAll(siteType,pageRequest,startDate,endDate,customerId);
 		} else {
 			reportData = rawDataReportRepository.fetchFilteredPaginatedRawData(dataReportReqDto.getClusters(),
 					dataReportReqDto.getSiteId(), dataReportReqDto.isAllSiteId() ? null : ALL,
-					dataReportReqDto.isAllClusters() ? null : ALL, siteType,pageRequest,startDate,endDate,customerIdInt);
+					dataReportReqDto.isAllClusters() ? null : ALL, siteType,pageRequest,startDate,endDate,customerId);
 		}
 
 		return reportData;
@@ -63,25 +62,23 @@ public class RawDataReportService implements IRawDataReportService {
 		String startDate = date.split("-")[0].trim().replaceAll("/", "-");
 		String endDate = date.split("-")[1].trim().replaceAll("/", "-");
 		List<String> siteType = new ArrayList<>();
-		String customerId="";
-		int customerIdInt=0;
+		List<Integer> customerId=new ArrayList<>();
 
 		if (request.getUserPrincipal() != null) {
 			siteType= userService.allSiteTypeForUser(request.getUserPrincipal().getName());
 			customerId = userService.getCustomerIdOfUser(request.getUserPrincipal().getName());
 		}
-		customerIdInt= Integer.valueOf(customerId);
 
 		if (dataReportReqDto.isAnyFilterEmpty()) {
 			return null;
 		} else if (dataReportReqDto.isAllClusters() && dataReportReqDto.isAllDeviceType()
 				&& dataReportReqDto.isAllSiteId() && dataReportReqDto.isAllSiteTypes()
 				&& dataReportReqDto.isAllRegions() && dataReportReqDto.isAllZones()) {
-			return rawDataReportRepository.findAll(siteType,startDate,endDate,customerIdInt);
+			return rawDataReportRepository.findAll(siteType,startDate,endDate,customerId);
 		} else {
 			return rawDataReportRepository.fetchFilteredPaginatedRawData(dataReportReqDto.getClusters(),
 					dataReportReqDto.getSiteId(), dataReportReqDto.isAllSiteId() ? null : ALL,
-					dataReportReqDto.isAllClusters() ? null : ALL, siteType,startDate,endDate,customerIdInt);
+					dataReportReqDto.isAllClusters() ? null : ALL, siteType,startDate,endDate,customerId);
 		}
 
 	}

@@ -22,7 +22,7 @@ public interface AlarmStatusRepository extends CrudRepository<AlarmStatus, Strin
 
     @Query(value = "SELECT ldr FROM AlarmStatus ldr WHERE ((:sitesAll) is null or ldr.smSiteCode IN (:siteids)) "
             + " AND ((:categoryAll) is null or ldr.almcategory IN (:category)) AND ((:severityAll) is null or ldr.alPinCriticality IN (:severity)) " +
-			"AND (ldr.smSiteTypeId IN (:siteTypes)) AND ldr.customerId = (:customerId)")
+			"AND (ldr.smSiteTypeId IN (:siteTypes)) AND ldr.customerId IN (:customerId)")
     List<AlarmStatus> fetchAlarmStatus(
             @Param("siteids") Collection<String> sites
             , @Param("category") Collection<String> categories
@@ -31,11 +31,11 @@ public interface AlarmStatusRepository extends CrudRepository<AlarmStatus, Strin
             , @Param("categoryAll") String categoryAll
             , @Param("severityAll") String severityAll,
             @Param("siteTypes") Collection<String> siteTypes
-            ,@Param("customerId") int customerId
+            ,@Param("customerId")  List<Integer>  customerId
     );
 
     List<AlarmStatus> findAllByOrderByAlOpentimeDesc();
 
-    @Query(value = "SELECT ldr FROM AlarmStatus ldr WHERE (ldr.smSiteTypeId IN (:siteTypes) AND ldr.customerId = (:customerId))")
-    List<AlarmStatus> findAll(@Param("siteTypes") Collection<String> siteTypes,int customerId);
+    @Query(value = "SELECT ldr FROM AlarmStatus ldr WHERE (ldr.smSiteTypeId IN (:siteTypes) AND ldr.customerId IN (:customerId))")
+    List<AlarmStatus> findAll(@Param("siteTypes") Collection<String> siteTypes,List<Integer> customerId);
 }

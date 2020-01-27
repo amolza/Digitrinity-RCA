@@ -1,6 +1,6 @@
 var rawDataReportDataTable;
 $(document).ready(function() {
-	
+
 	loadRegions();
 	loadZones();
 	loadClusters();
@@ -24,7 +24,26 @@ $(document).ready(function() {
 	//renderRawDataReportDataTable();
 } );
 
+function downloadExcelNew() {
 
+	$(function()
+	{
+		$.ajax({
+			"url":"../raw-report/raw-data-excel",
+			"type": "GET",
+			"contentType": "application/json",
+			"dataType":"file",
+		/*	"data":  JSON.stringify({}),*/
+			"error": function(){  // error handling code
+
+				alert('there is a error');
+				$("#rawDataReportDataTable_processing").css("display","none");
+			}
+		});
+
+	});
+
+	}
 
 
 function renderRawDataReportDataTable(){
@@ -37,8 +56,17 @@ function renderRawDataReportDataTable(){
 			"processing": true,
 			"bFilter": false,
 			"serverSide": true,
-			"pageLength": 50,
-			dom: 'Bfrtip',
+			"pageLength": 20,
+			dom: 'Bfrti<"plcontainer"lp>',
+			"bLengthChange": true,
+			"pagingType": "simple",
+			"language": {
+				"paginate": {
+					"previous": "<",
+					"next": ">"
+				}
+			},
+			"lengthMenu": [ 10, 20, 30, 40, 50, 100 ],
 			buttons: [
 				'copy',
 				{
@@ -55,6 +83,7 @@ function renderRawDataReportDataTable(){
 				"type": "POST",
 				"dataType": 'json',
 				"contentType": "application/json",
+				"pagingType": "simple",
 				"data": function (d) {
 					var form = {};
 					$.each($("form").serializeArray(), function (i, field) {
@@ -426,7 +455,6 @@ function renderRawDataReportDataTable(){
 
 
 			],
-			"bLengthChange": false,
 			/*"dom": "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
 			"<'row'<'col-sm-12'tr>>" +
 			"<'row'<'col-sm-4'i><'col-sm-4 text-center'l><'col-sm-4'p>>"*/
@@ -441,10 +469,10 @@ function loadZones()
 {
 	$.ajax('../dashboard/zone-master',   // request url
     	    {
-    	        success: function (data, status, xhr) {// success callback function   
+    	        success: function (data, status, xhr) {// success callback function
 	    	        $.each(data, function(index,jsonObject){
-	    	        	$("#zone-select").append('<option value="'+jsonObject.znZone+'">'+jsonObject.znZone+'</option>');    	            
-	    	        });    	        
+	    	        	$("#zone-select").append('<option value="'+jsonObject.znZone+'">'+jsonObject.znZone+'</option>');
+	    	        });
 	    	        $("#zone-select").selectpicker("refresh");
 	    	        /*$("#zone-select").selectpicker("selectAll");*/
 	    	      //  registerRawDataReload($("#zone-select"));
@@ -456,10 +484,10 @@ function loadRegions()
 {
 	$.ajax('../dashboard/region-master',   // request url
     	    {
-    	        success: function (data, status, xhr) {// success callback function    	        	
+    	        success: function (data, status, xhr) {// success callback function
 	    	        $.each(data, function(index,jsonObject){
-	    	        	$("#region-select").append('<option value="'+jsonObject.rgRegion+'">'+jsonObject.rgRegion+'</option>');    	            
-	    	        });    	        
+	    	        	$("#region-select").append('<option value="'+jsonObject.rgRegion+'">'+jsonObject.rgRegion+'</option>');
+	    	        });
 	    	        $("#region-select").selectpicker("refresh");
 	    	       // $("#region-select").selectpicker("selectAll");
 	    	       // registerRawDataReload($("#region-select"));
@@ -471,10 +499,10 @@ function loadClusters()
 {
 	$.ajax('../dashboard/cluster-master',   // request url
     	    {
-    	        success: function (data, status, xhr) {// success callback function    	        	
+    	        success: function (data, status, xhr) {// success callback function
 	    	        $.each(data, function(index,jsonObject){
-	    	        	$("#cluster-select").append('<option value="'+jsonObject.crName+'">'+jsonObject.crName+'</option>');    	            
-	    	        });    	        
+	    	        	$("#cluster-select").append('<option value="'+jsonObject.crName+'">'+jsonObject.crName+'</option>');
+	    	        });
 	    	        $("#cluster-select").selectpicker("refresh");
 	    	      //  $("#cluster-select").selectpicker("selectAll");
 	    	        //registerRawDataReload($("#cluster-select"));
@@ -486,10 +514,10 @@ function loadSiteTypes()
 {
 	$.ajax('../dashboard/site-type-master',   // request url
     	    {
-    	        success: function (data, status, xhr) {// success callback function    	        	
+    	        success: function (data, status, xhr) {// success callback function
 	    	        $.each(data, function(index,jsonObject){
 	    	        	$("#siteType").append('<option value="'+jsonObject.type+'">'+jsonObject.type+'</option>');
-	    	        });    	        
+	    	        });
 	    	        $("#siteType").selectpicker("refresh");
 	    	       // $("#siteType").selectpicker("selectAll");
 	    	       // registerRawDataReload($("#siteType"));
@@ -504,11 +532,11 @@ function loadSiteIds()
     	        success: function (data, status, xhr) {// success callback function
     	        $.each(data, function(index,jsonObject){
     	            $.each(jsonObject, function(key,val){
-    	                
+
     	                $("#siteId").append('<option value="'+val+'">'+val+'</option>');
-    	                
+
     	            });
-    	        });    	        
+    	        });
     	        $("#siteId").selectpicker("refresh");
     	       // $("#siteId").selectpicker("selectAll");
     	      //  registerRawDataReload($("#siteId"));
@@ -520,10 +548,10 @@ function loadDeviceType()
 {
 	$.ajax('../dashboard/device-type-master',   // request url
     	    {
-    	        success: function (data, status, xhr) {// success callback function    	        	
+    	        success: function (data, status, xhr) {// success callback function
 	    	        $.each(data, function(index,jsonObject){
-	    	        	$("#device-type-select").append('<option value="'+jsonObject.deviceType+'">'+jsonObject.deviceType+'</option>');    	            
-	    	        });    	        
+	    	        	$("#device-type-select").append('<option value="'+jsonObject.deviceType+'">'+jsonObject.deviceType+'</option>');
+	    	        });
 	    	        $("#device-type-select").selectpicker("refresh");
 	    	       // $("#device-type-select").selectpicker("selectAll");
 	    	        //registerRawDataReload($("#device-type-select"));
@@ -539,31 +567,31 @@ function registerRawDataReload(selectObj){
 	    var lastAllSelected = $(this).data('all');
 	    var selectedOptions = (thisObj.val())?thisObj.val():[];
 	    var allOptionsLength = thisObj.find('option[value!="All"]').length;
-	     
-	     
+
+
 	    var selectedOptionsLength = selectedOptions.length;
-	     
+
 	    if(isAllSelected == lastAllSelected){
-	    
+
 	    if($.inArray("All", selectedOptions) >= 0){
-	    	selectedOptionsLength -= 1;      
+	    	selectedOptionsLength -= 1;
 	    }
-	        	
+
 	    if(allOptionsLength <= selectedOptionsLength){
-	    
+
 	    thisObj.find('option[value="All"]').prop('selected', true).parent().selectpicker('refresh');
 	    isAllSelected = true;
-	    }else{       
+	    }else{
 	    	thisObj.find('option[value="All"]').prop('selected', false).parent().selectpicker('refresh');
 	       isAllSelected = false;
 	    }
-	      
-	    }else{   		
+
+	    }else{
 	    	thisObj.find('option').prop('selected', isAllSelected).parent().selectpicker('refresh');
 	    }
-	   
+
 		$(this).data('all', isAllSelected);
-		
+
 		//$('#rawDataReportDataTable').DataTable().ajax.reload();
 	});
 }
@@ -580,5 +608,5 @@ function buildDataTableAjaxData()
 			"date": $("#datetimepicker").val()
 	}
 	return obj;
-	
+
 }

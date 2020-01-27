@@ -45,7 +45,7 @@ function renderLatestReportDataTable() {
                 return JSON.stringify(buildDataTableAjaxData())
             }
         },
-        "dom": 'lfrtip',
+        "dom": 'frti<"plcontainer"lp>',
         "buttons": [
             'copy',
             {
@@ -57,10 +57,20 @@ function renderLatestReportDataTable() {
                 title: 'Latest Data'
             }, 'print'
         ],
+        "scrollY": "400px",
+        "scrollCollapse": true,
         "order": [[0, "desc"]],
-        "pageLength": 25,
+        "pageLength": 20,
+		"lengthMenu": [ 10, 20, 30, 40, 50, 100 ],
         "bLengthChange": true,
         "bFilter": false,
+		"language": {
+			"paginate": {
+				"previous": "<",
+				"next": ">"
+			}
+		},
+		"pagingType": "simple",
         "columns": [
             {"data": "lastUpdated"},
             {
@@ -142,7 +152,7 @@ function renderAlarmStatusDataTable() {
     var alarmTable = $('#alarmTable').DataTable({
         "bFilter": false,
         //responsive: true,
-        dom: 'lfrtip',
+        dom: 'frti<"plcontainer"lp>',
         buttons: [
             'copy',
             {
@@ -163,9 +173,19 @@ function renderAlarmStatusDataTable() {
                 return JSON.stringify(buildAlarmStatusDataTableAjaxData())
             }
         },
+        "scrollY": "400px",
+        "scrollCollapse": true,
         "bLengthChange": true,
-        "pageLength": 25,
+        "pageLength": 20,
+		"lengthMenu": [ 10, 20, 30, 40, 50, 100 ],
         "order": [[2, "desc"]],
+		"language": {
+			"paginate": {
+				"previous": "<",
+				"next": ">"
+			}
+		},
+		"pagingType": "simple",
         "columns": [
             {"data": "smSiteCode"},
             {"data": "alName"},
@@ -434,7 +454,7 @@ function renderChart(startDate, endDate) {
                         datasets: data.dataSets
                     },
                     options: {
-                        legend: {display: true, position: 'right'},
+                        legend: {display: true, position: 'bottom'},
                         title: {
                             display: false,
                             text: 'Predicted world population (millions) in 2050'

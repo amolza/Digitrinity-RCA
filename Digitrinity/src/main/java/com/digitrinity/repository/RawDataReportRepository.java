@@ -34,30 +34,31 @@ public interface RawDataReportRepository extends PagingAndSortingRepository<RawD
      */
 
     @Query(value = "SELECT ldr FROM RawDataReport ldr WHERE ((:sitesAll) is null or ldr.siteId IN (:siteids)) "
-            + " AND ((:clusterAll) is null or ldr.cluster IN (:clusters)) AND (ldr.siteType) IN (:siteTypeID)  AND ldr.tranTime >= :startDate AND ldr.tranTime < :endDate AND ldr.customerId=(:customerId)")
+            + " AND ((:clusterAll) is null or ldr.cluster IN (:clusters)) AND (ldr.siteType) IN (:siteTypeID)  AND ldr.tranTime >= :startDate AND " +
+            "ldr.tranTime < :endDate AND ldr.customerId IN (:customerId)")
     Page<RawDataReport> fetchFilteredPaginatedRawData(@Param("clusters") Collection<String> clusters
             , @Param("siteids") Collection<String> sites
             , @Param("sitesAll") String sitesAll
             , @Param("clusterAll") String clusterAll
             , @Param("siteTypeID") Collection<String> siteTypeID
             , Pageable pageable, @Param("startDate") String startDate, @Param("endDate") String endDate
-            , @Param("customerId") int customerId
+            , @Param("customerId") List<Integer> customerId
     );
 
-    @Query(value = "SELECT ldr FROM RawDataReport ldr WHERE (ldr.siteType IN (:siteTypeID) AND ldr.tranTime >= :startDate AND ldr.tranTime < :endDate AND ldr.customerId=(:customerId))")
-    Page<RawDataReport> findAll(@Param("siteTypeID") Collection<String> siteTypes, Pageable pageable, @Param("startDate") String startDate, @Param("endDate") String endDate, @Param("customerId") int customerId);
+    @Query(value = "SELECT ldr FROM RawDataReport ldr WHERE (ldr.siteType IN (:siteTypeID) AND ldr.tranTime >= :startDate AND ldr.tranTime < :endDate AND ldr.customerId IN (:customerId))")
+    Page<RawDataReport> findAll(@Param("siteTypeID") Collection<String> siteTypes, Pageable pageable, @Param("startDate") String startDate, @Param("endDate") String endDate, @Param("customerId") List<Integer> customerId);
 
     @Query(value = "SELECT ldr FROM RawDataReport ldr WHERE ((:sitesAll) is null or ldr.siteId IN (:siteids)) "
-            + " AND ((:clusterAll) is null or ldr.cluster IN (:clusters)) AND (ldr.siteType) IN (:siteTypeID)  AND ldr.tranTime >= :startDate AND ldr.tranTime < :endDate AND ldr.customerId=(:customerId)")
+            + " AND ((:clusterAll) is null or ldr.cluster IN (:clusters)) AND (ldr.siteType) IN (:siteTypeID)  AND ldr.tranTime >= :startDate AND ldr.tranTime < :endDate AND ldr.customerId IN (:customerId)")
     List<RawDataReport> fetchFilteredPaginatedRawData(@Param("clusters") Collection<String> clusters
             , @Param("siteids") Collection<String> sites
             , @Param("sitesAll") String sitesAll
             , @Param("clusterAll") String clusterAll
             , @Param("siteTypeID") Collection<String> siteTypeID
             , @Param("startDate") String startDate, @Param("endDate") String endDate
-            , @Param("customerId") int customerId
+            , @Param("customerId") List<Integer> customerId
     );
 
-    @Query(value = "SELECT ldr FROM RawDataReport ldr WHERE (ldr.siteType IN (:siteTypeID) AND ldr.tranTime >= :startDate AND ldr.tranTime < :endDate AND ldr.customerId=(:customerId))")
-    List<RawDataReport> findAll(@Param("siteTypeID") Collection<String> siteTypes,@Param("startDate") String startDate, @Param("endDate") String endDate, @Param("customerId") int customerId);
+    @Query(value = "SELECT ldr FROM RawDataReport ldr WHERE (ldr.siteType IN (:siteTypeID) AND ldr.tranTime >= :startDate AND ldr.tranTime < :endDate AND ldr.customerId IN (:customerId))")
+    List<RawDataReport> findAll(@Param("siteTypeID") Collection<String> siteTypes,@Param("startDate") String startDate, @Param("endDate") String endDate, @Param("customerId") List<Integer> customerId);
 }

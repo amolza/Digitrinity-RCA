@@ -1,7 +1,9 @@
 package com.digitrinity.service;
 
+import com.digitrinity.model.CustomerRole;
 import com.digitrinity.model.Role;
 import com.digitrinity.model.RoleUsers;
+import com.digitrinity.repository.CustomerRoleRepository;
 import com.digitrinity.repository.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,6 +32,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRoleRepository userRoleRepository;
 
+    @Autowired
+    CustomerRoleRepository customerRoleRepository ;
     @Override
     public void save(Users user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
@@ -64,8 +68,17 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public String getCustomerIdOfUser(String user) {
+    public List<Integer> getCustomerIdOfUser(String user) {
         Users savedUser = findByUsername(user);
-        return savedUser.getCustomerId();
+       int customerRoleId= savedUser.getCustomerRoleId();
+       CustomerRole cs=customerRoleRepository.getOne((long) customerRoleId);
+        List<Integer> customerID = new ArrayList<>();
+        if (cs.getIgt()>0){
+            customerID.add(cs.getIgt());
+        }
+        if(cs.getTelenor()>0){
+            customerID.add(cs.getTelenor());
+        }
+        return customerID;
     }
 }

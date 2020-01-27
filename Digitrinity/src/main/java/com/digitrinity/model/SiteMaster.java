@@ -49,9 +49,21 @@ public class SiteMaster{
 	private Integer smSitetypeid;
 	@Column(name = "smCustomerName")
 	private String smCustomerName;
+
+	@Column(name = "customer_id")
+	private String smCustomerId;
+
 	@Column(name = "AccID")
 	private Integer accID;
-	
+
+	public String getSmCustomerId() {
+		return smCustomerId;
+	}
+
+	public void setSmCustomerId(String smCustomerId) {
+		this.smCustomerId = smCustomerId;
+	}
+
 	public int getSmSiteID() {
 		return smSiteID;
 	}

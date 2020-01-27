@@ -1,7 +1,9 @@
 package com.digitrinity.web;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import com.digitrinity.util.ExcelViewCreatorRawReport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,8 +15,10 @@ import com.digitrinity.dto.RawDataReportReqDto;
 import com.digitrinity.formBeans.ServerSideDataTableResponse;
 import com.digitrinity.model.RawDataReport;
 import com.digitrinity.service.IRawDataReportService;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping(value = "raw-report")
@@ -32,5 +36,18 @@ public class RawDataReportController {
 			return new ServerSideDataTableResponse(new ArrayList<String>(),0,0,dataReportReqDto.getDraw());
 		}
 		
+	}
+
+	@RequestMapping(path = "/raw-data-excel")
+	public ModelAndView  getLatestReportDataForExcel(@RequestBody RawDataReportReqDto dataReportReqDto,HttpServletRequest request, HttpServletResponse response) {
+		List<RawDataReport> rawDataReport = rawDataReportService.fetchFilteredReportForDownload(dataReportReqDto,request);
+	/*	List<RawDataReport> rawDataReport=new ArrayList<>();*/
+		return new ModelAndView(new ExcelViewCreatorRawReport(),"rawDataReport",rawDataReport);
+		/*if(rawDataReport != null) {
+			return new ServerSideDataTableResponse(rawDataReport.getContent(),rawDataReport.getTotalElements(), rawDataReport.getTotalElements(),dataReportReqDto.getDraw());
+		}else {
+			return new ServerSideDataTableResponse(new ArrayList<String>(),0,0,dataReportReqDto.getDraw());
+		}
+*/
 	}
 }

@@ -108,6 +108,17 @@ public class Users {
 	@ManyToMany
 	private Set<Role> roles;
 
+	@Column(name = "customer_role_id")
+	private int customerRoleId;
+
+	public int getCustomerRoleId() {
+		return customerRoleId;
+	}
+
+	public void setCustomerRoleId(int customerRoleId) {
+		this.customerRoleId = customerRoleId;
+	}
+
 	public String getRoleId() {
 		return roleId;
 	}

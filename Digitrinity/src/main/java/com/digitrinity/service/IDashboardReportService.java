@@ -1,5 +1,6 @@
 package com.digitrinity.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.digitrinity.dto.AlarmCategoryDto;
@@ -25,11 +26,11 @@ public interface IDashboardReportService {
 
 	public List<LatestDataReport> getLatestReportData();
 	
-	public List<LatestDataReport> getFilteredLatestReportData(LatestReportDto latestReportDto,List<String> siteType,String customerId);
+	public List<LatestDataReport> getFilteredLatestReportData(LatestReportDto latestReportDto,List<String> siteType, List<Integer> customerId);
 	public List<LatestDataReport> getFilteredLatestReportData(LatestReportDto latestReportDto, HttpServletRequest request);
 	public List<SiteMaster> getSiteMaster();
 	
-	public List<CustomerDto> getCustomerNames();
+	public List<CustomerDto> getCustomerNames(HttpServletRequest request);
 	
 	public List<SiteTypeDto> getSiteType(HttpServletRequest request);
 	

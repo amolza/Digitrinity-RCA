@@ -8,26 +8,35 @@ import javax.persistence.*;
 public class AlarmStatus {
 
 	@Id
+	@Column(name = "alOpentime")
 	private String alOpentime;
-	
-	private Integer smsiteid;
-	
-	private Integer sacalarmactivestatus;
-	
-	private String alrPinNumber;
 
 	@Id
+	@Column(name = "smsitecode")
 	private String smSiteCode;
-	
+
+	@Column(name = "smsiteid")
+	private Integer smsiteid;
+
+	@Column(name = "sacalarmactivestatus")
+	private Integer sacalarmactivestatus;
+
+	@Column(name = "alrPinNumber")
+	private String alrPinNumber;
+
+	@Column(name = "smsitename")
 	private String smSiteName;
-	
+
+	@Column(name = "alname")
 	private String alName;
-	
+
+	@Column(name = "alpincriticality")
 	private String alPinCriticality;
 	
 	@Column(name = "Aging")
 	private Integer age;
-	
+
+	@Column(name = "almcategory")
 	private String almcategory;
 
 	@Column(name = "smsitetypeid")

@@ -14,5 +14,7 @@ public interface UserService {
 
     List<String> allSiteTypeForUser(String user);
 
-    String getCustomerIdOfUser(String user);
+    List<Integer> getCustomerIdOfUser(String user);
+
+
 }

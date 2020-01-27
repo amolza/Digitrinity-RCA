@@ -115,7 +115,7 @@ td.highlight-red-back {
 }
 
 #alarmTable td {
-    padding: 0em 0em !important;
+    padding: 0.1em 0.1em !important;
     font-size: 10px;
 }
 
@@ -245,4 +245,16 @@ table.dataTable tbody tr.selected {
 
 .btn-secondary {
     background-color: #347b98;
+}
+
+.plcontainer{
+    display: flex;
+}
+
+.dataTables_paginate {
+    width: 90%;
+}
+
+.dataTables_length{
+ flex-grow: 1;
 }
