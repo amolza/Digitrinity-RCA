@@ -15,7 +15,7 @@ public interface LatestDataReportRepository extends JpaRepository<LatestDataRepo
 
 	@Query(value = "SELECT ldr FROM LatestDataReport ldr WHERE (ldr.siteTypeId IN (:siteTypes)) AND ((:zonesAll) is null or ldr.zone IN (:zones)) AND "
 			+ "((:clustersAll) is null or ldr.clusterName IN (:customers)) AND ((:sitesAll) is null or ldr.smSiteCode IN (:siteids)) "
-			+ " AND ((:customersAll) is null or ldr.customerName IN (:customers)) AND ((:regionsAll) is null or ldr.region IN (:regions)) AND ( ldr.isOffline = (:offline))" +
+			+ " AND ((:customersAll) is null or ldr.customerName IN (:customers)) AND ((:regionsAll) is null or ldr.region IN (:regions)) AND ((:offline) is null or  ldr.isOffline = (:offline))" +
 			" AND ldr.customerId IN (:customerId)")
 	List<LatestDataReport> findLatestReport(@Param("regions") Collection<String> regions
 			,@Param("zones") Collection<String> zones
