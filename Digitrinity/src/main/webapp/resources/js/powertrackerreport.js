@@ -19,7 +19,7 @@ $(document).ready(function () {
         maxSpan: {
             "day": 1
         },
-    }, function(start, end, label) {alert('date');});
+    }, function(start, end, label) {});
     loadSiteStatus();
     loadRegions();
     renderLatestReportDataTable();
@@ -114,7 +114,7 @@ function renderLatestReportDataTable() {
                     select.append('<option value="' + d + '">' + d + '</option>')
                 });
             });
-            loadExportSelect('#latestDataReportTableFilters', latestReportTable)
+            loadExportSelect('#powerTrackerDataTableFilters', latestReportTable)
         },
         'createdRow': function (row, data, index) {
             if (data.age > 4) {
@@ -132,11 +132,7 @@ function renderLatestReportDataTable() {
             }
 
         },
-        /*"dom": "<'row'<'col-sm-6'B><'col-sm-6'f>>" +
-        "<'row'<'col-sm-12'tr>>" +
-        "<'row'<'col-sm-4'i><'col-sm-4 text-center'l><'col-sm-4'p>>"*/
     });
-
     new $.fn.dataTable.FixedHeader(latestReportTable);
 }
 
@@ -150,7 +146,6 @@ function buildDataTableAjaxData() {
         "zones": $("#zone-select").val(),
         "regions": $("#region-select").val(),
         "siteStatus": $("#siteStatus").val()
-
     }
     return obj;
 
@@ -161,18 +156,6 @@ function loadSiteStatus() {
     $("#siteStatus").selectpicker("refresh");
     $("#siteStatus").selectpicker("selectAll");
     registerLatestReportReload($("#siteStatus"));
-}
-
-function loadLatestReportStatus() {
-    $.ajax('../dashboard/latest-report-status',   // request url
-        {
-            success: function (data, status, xhr) {// success callback function
-                $("#totalSite").text(data.totalSite);
-                $("#onlineSite").text(data.onlineSite);
-                $("#offlineSite").text(data.offlineSite);
-
-            }
-        });
 }
 
 function loadCustomers() {
@@ -276,6 +259,7 @@ function loadDeviceType() {
                     $("#device-type-select").append('<option value="' + jsonObject.deviceType + '">' + jsonObject.deviceType + '</option>');
                 });
                 $("#device-type-select").selectpicker("refresh");
+                $("#device-type-select").selectpicker("selectAll");
             }
         });
 }
