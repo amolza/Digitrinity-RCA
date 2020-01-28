@@ -86,8 +86,7 @@ td.highlight-red-back {
     color: #fff;
 }
 
-
-#latestDataReportTable, #alarmTable {
+#latestDataReportTable, #alarmTable, .rawDataReportDataTable {
     font-size: 0.8rem !important;
 }
 
@@ -95,27 +94,35 @@ td.highlight-red-back {
     background: url('https://cdn.rawgit.com/DataTables/DataTables/6c7ada53ebc228ea9bc28b1b216e793b1825d188/examples/resources/details_close.png') no-repeat center center;
 }
 
-#latestDataReportTable td {
-    padding: 0.1em 0.1em !important;
+#latestDataReportTable td ,
+.rawDataReportDataTable td {
+    padding-top: 0.1em!important;
+    padding-bottom: 0.1em!important;
     text-overflow: ellipsis;
     overflow: hidden;
-    width: auto !important;
     text-overflow: ellipsis;
     font-size: 10px;
+}
 
+.rawDataReportDataTable th {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 10px;
 }
 
 #latestDataReportTable th {
-    padding-left: 0.2em !important;
-    padding-right: 0.2em !important;
-    width: auto !important;
+    padding-top: 0.1em!important;
+    padding-bottom: 0.1em!important;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 }
 
 #alarmTable td {
-    padding: 0.1em 0.1em !important;
+    padding-top: 0.1em!important;
+    padding-bottom: 0.1em!important;
     font-size: 10px;
 }
 
@@ -141,7 +148,6 @@ td.highlight-red-back {
     height: 100%;
     width: 100%;
 }
-
 
 .top5 {
     margin-top: 5px;
@@ -193,14 +199,13 @@ table.dataTable tbody tr.selected {
     cursor: pointer;
 }
 
-
 .filter-table {
     margin-bottom: 10px;
+    border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
 
 }
-
 
 .filter-table tr {
     background-color: #347B98;
@@ -212,6 +217,10 @@ table.dataTable tbody tr.selected {
     border-radius: 10px;
     margin-bottom: 5px;
     color: #E4F1F6;
+}
+
+.filter-table label {
+    white-space: nowrap;
 }
 
 #main_navbar.navbar {
@@ -249,6 +258,7 @@ table.dataTable tbody tr.selected {
 
 .plcontainer{
     display: flex;
+    margin-top: 2px;
 }
 
 .dataTables_paginate {
@@ -256,5 +266,17 @@ table.dataTable tbody tr.selected {
 }
 
 .dataTables_length{
- flex-grow: 1;
+    flex-grow: 1;
+}
+
+.report-filter-export-container {
+    display: flex;
+}
+
+.report-export-container {
+    margin: 0 11px;
+}
+
+.report-export-container .custom-select{
+    margin: 0 12px;
 }

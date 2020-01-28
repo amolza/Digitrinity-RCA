@@ -57,7 +57,8 @@ function renderLatestReportDataTable() {
                 title: 'Latest Data'
             }, 'print'
         ],
-        "scrollY": "400px",
+        "scrollY": "41vh",
+        "scrollX": "100%",
         "scrollCollapse": true,
         "order": [[0, "desc"]],
         "pageLength": 20,
@@ -121,7 +122,7 @@ function renderLatestReportDataTable() {
                     select.append('<option value="' + d + '">' + d + '</option>')
                 });
             });
-            loadExportSelect('#latestDataReportTableFilters', latestReportTable)
+            loadExportSelect('.latest-report-filter-export-container', latestReportTable)
         },
         'createdRow': function (row, data, index) {
             if (data.age > 4) {
@@ -173,8 +174,9 @@ function renderAlarmStatusDataTable() {
                 return JSON.stringify(buildAlarmStatusDataTableAjaxData())
             }
         },
-        "scrollY": "400px",
-        "scrollCollapse": true,
+            "scrollY": "41vh",
+            "scrollX": "100%",
+            "scrollCollapse": true,
         "bLengthChange": true,
         "pageLength": 20,
 		"lengthMenu": [ 10, 20, 30, 40, 50, 100 ],
@@ -220,7 +222,7 @@ function renderAlarmStatusDataTable() {
                     select.append('<option value="' + d + '">' + d + '</option>')
                 });
             });
-            loadExportSelect('#alarmTableFilters', alarmTable)
+            loadExportSelect('.alarm-report-filter-export-container', alarmTable)
         }
     });
     //new $.fn.dataTable.FixedHeader( alarmTable );

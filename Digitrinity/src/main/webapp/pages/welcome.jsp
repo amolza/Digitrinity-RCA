@@ -22,79 +22,89 @@
       integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E="
       crossorigin="anonymous"/>
 <div class="container-fluid">
-    <div class="row-12 top7">
-        <div class="row p-2" style="background-color: white">
-            <div class="col" style="max-width: 10rem;">
-                <div class="card bg-c-lite-green update-card">
-                    <div class="card-block">
-                        <div class="row align-items-end" style="max-height: 45px;">
-                            <div class="col-3">
-                                <span><i class="fas fa-signal"></i></span>
-                            </div>
-                            <div class="col-9">
+    <div class="row top7" style="background-color: white">
+        <div class="col-sm-5 row-no-gutters">
+            <div class="row row-no-gutters p-2">
+                <div class="col-sm-4">
+                    <div class="card bg-c-lite-green update-card" style="max-width: 10rem">
+                        <div class="card-block">
+                            <div class="row align-items-end" style="max-height: 45px;">
+                                <div class="col-3">
+                                    <span><i class="fas fa-signal"></i></span>
+                                </div>
+                                <div class="col-9">
                         <span class="text-white">
                         <span id="totalSite" class="font-weight-bold" style="font-size: 0.8rem;">##</span>
                         </span>
-                                <span class="text-white m-b-0">Total</span>
+                                    <span class="text-white m-b-0">Total</span>
+                                </div>
+                                <%--<div class="col-4 text-right">
+                                   <h6><i class="fas fa-signal"></i></h6>
+                                   </div>--%>
                             </div>
-                            <%--<div class="col-4 text-right">
-                               <h6><i class="fas fa-signal"></i></h6>
-                               </div>--%>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col" style="max-width: 10rem;">
-                <div class="card bg-c-green update-card">
-                    <div class="card-block">
-                        <div class="row align-items-end" style="max-height: 45px;">
-                            <div class="col-3">
-                                <span><i class="fas fa-signal"></i></span>
-                            </div>
-                            <div class="col-9">
+                <div class="col-sm-4">
+                    <div class="card bg-c-green update-card" style="max-width: 10rem">
+                        <div class="card-block">
+                            <div class="row align-items-end" style="max-height: 45px;">
+                                <div class="col-3">
+                                    <span><i class="fas fa-signal"></i></span>
+                                </div>
+                                <div class="col-9">
                         <span class="text-white">
                         <span id="onlineSite" class="font-weight-bold" style="font-size: 0.8rem;">##</span>
                         </span>
-                                <span class="text-white m-b-0">Online</span>
+                                    <span class="text-white m-b-0">Online</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col" style="max-width: 10rem;">
-                <div class="card bg-c-pink update-card">
-                    <div class="card-block">
-                        <div class="row align-items-end" style="max-height: 45px;">
-                            <div class="col-3">
-                                <span><i class="fas fa-signal"></i></span>
-                            </div>
-                            <div class="col-9">
+                <div class="col-sm-4">
+                    <div class="card bg-c-pink update-card" style="max-width: 10rem">
+                        <div class="card-block">
+                            <div class="row align-items-end" style="max-height: 45px;">
+                                <div class="col-3">
+                                    <span><i class="fas fa-signal"></i></span>
+                                </div>
+                                <div class="col-9">
                         <span class="text-white">
                         <span id="offlineSite" class="font-weight-bold" style="font-size: 0.8rem;">##</span>
                         </span>
-                                <span class="text-white m-b-0">Offline</span>
+                                    <span class="text-white m-b-0">Offline</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div style="max-width: 10rem;float: right;position: absolute;right: 10px">
-            <span class="text-white">
-            <span id="abc" class="font-weight-bold" style="font-size: 0.8rem;">
-            <a href="#" onclick="location.reload();" class="btn btn-info btn-lg" style="background-color: #17A3E3">
-            <span class="&#xf021;"></span> Refresh Data </a>
-            </span>
-            </span>
+        </div>
+        <div class="col-sm-5">
+        </div>
+        <div class="col-sm-2">
+            <div class="row p-2">
+                <div class="col-sm-12">
+                    <button style="float: right;" class="btn btn-info btn-lg" onclick="location.reload()">Refresh Data
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="row top7" style="background-color:#e9e9e9;">
-        <div class="col-md-8 mx-auto box p-3" style="background-color: white;overflow-x:auto;white-space: nowrap;">
-            <div class="inner">
-                <table id="latestDataReportTableFilters" cellspacing="5" cellpadding="5" class="filter-table">
-                    <td><label class='control-label mr-2'
-                               for="hourly-site-id-select"><strong>Region</strong></label></td>
+        <div class="col-sm-8 mx-auto box p-3"
+             style="background-color: white;white-space: nowrap; overflow-x: auto">
+            <div class="latest-report-filter-export-container report-filter-export-container">
+                <table id="latestDataReportTableFilters" cellspacing="5" cellpadding="5"
+                       class="filter-table">
+                    <td>
+                        <label class='control-label mr-2'
+                               for="hourly-site-id-select">
+                            <strong>Region</strong>
+                        </label>
+                    </td>
                     <td>
                         <select id="region-select" name="region-select"
                                 class="selectpicker form-control" data-live-search="true"
@@ -103,8 +113,11 @@
                             <option value="All" selected="selected">All</option>
                         </select>
                     </td>
-                    <td><label class='control-label mr-2'
-                               for="hourly-site-id-select"><strong>Zone</strong></label></td>
+                    <td>
+                        <label class='control-label mr-2'
+                               for="hourly-site-id-select">
+                            <strong>Zone</strong></label>
+                    </td>
                     <td>
                         <select id="zone-select" name="zone-select"
                                 class="selectpicker" data-live-search="true" multiple
@@ -112,8 +125,11 @@
                             <option value="All" selected="selected">All</option>
                         </select>
                     </td>
-                    <td><label class='control-label mr-2'
-                               for="hourly-site-id-select"><strong>Cluster</strong></label></td>
+                    <td>
+                        <label class='control-label mr-2'
+                               for="hourly-site-id-select"><strong>Cluster</strong>
+                        </label>
+                    </td>
                     <td>
                         <select id="cluster-select" name="cluster-select"
                                 class="selectpicker" data-live-search="true" multiple
@@ -121,8 +137,12 @@
                             <option value="All" selected="selected">All</option>
                         </select>
                     </td>
-                    <td><label class='control-label mr-2'
-                               for="hourly-site-id-select"><strong>Site ID</strong></label></td>
+                    <td>
+                        <label class='control-label mr-2'
+                               for="hourly-site-id-select">
+                            <strong>Site ID</strong>
+                        </label>
+                    </td>
                     <td>
                         <select id="siteId" name="siteId" class="selectpicker"
                                 data-live-search="true" data-size="5" multiple title="Site ID"
@@ -130,8 +150,11 @@
                             <option value="All" selected="selected">All</option>
                         </select>
                     </td>
-                    <td><label class='control-label mr-2'
-                               for="hourly-site-id-select"><strong>Customer</strong></label></td>
+                    <td>
+                        <label class='control-label mr-2'
+                               for="hourly-site-id-select"><strong>Customer</strong>
+                        </label>
+                    </td>
                     <td>
                         <select id="customer" name="customer"
                                 class="selectpicker" data-live-search="true" multiple
@@ -139,8 +162,12 @@
                             <option value="All" selected="selected">All</option>
                         </select>
                     </td>
-                    <td><label class='control-label mr-2'
-                               for="hourly-site-id-select"><strong>Site Type</strong></label></td>
+                    <td>
+                        <label class='control-label mr-2'
+                               for="hourly-site-id-select">
+                            <strong>Site Type</strong>
+                        </label>
+                    </td>
                     <td>
                         <select id="siteType" name="siteType"
                                 class="selectpicker" data-live-search="true" multiple
@@ -148,8 +175,12 @@
                             <option value="All" selected="selected">All</option>
                         </select>
                     </td>
-                    <td><label class='control-label mr-2'
-                               for="hourly-site-id-select"><strong>Site Status</strong></label></td>
+                    <td>
+                        <label class='control-label mr-2'
+                               for="hourly-site-id-select">
+                            <strong>Site Status</strong>
+                        </label>
+                    </td>
                     <td>
                         <select id="siteStatus" name="siteStatus"
                                 class="selectpicker" data-live-search="true"
@@ -159,7 +190,6 @@
                             <option value="1">Offline</option>
                         </select>
                     </td>
-                    <jsp:include page="include_export.jsp"></jsp:include>
                     <%--	<td></td>
                         <td></td>
                             <td>
@@ -168,44 +198,49 @@
                                 &ndash;%&gt;<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btnExport" onclick="exportTableToCSV('RCAReport.csv','latestDataReportTable')"> EXPORT to CSV </button>
                             </div></td>--%>
                     </tr>
-
                 </table>
-                <table id="latestDataReportTable"
-                       class="table table-striped table-bordered table-fixed table-hover table-condensed"
-                       style="width: 100%">
-                    <thead class="text-center datatable-header">
-                    <tr>
-                        <th style="font-size: xx-small; width:5px;">Last Updated</th>
-                        <th style="font-size: xx-small; width:5px;">Site ID</th>
-                        <th style="font-size: xx-small; width:5px;">Site Name</th>
-                        <th style="font-size: xx-small; width:5px;">Power Source</th>
-                        <th style="font-size: xx-small; width:5px;">Customer</th>
-                        <th style="font-size: xx-small; width:5px;">Battery SOC</th>
-                        <th style="font-size: xx-small; width:5px;">DC Load</th>
-                        <th style="font-size: xx-small; width:5px;">DC Voltage</th>
-                        <th style="font-size: xx-small; width:5px;">DG Power (Kw)</th>
-                        <th style="font-size: xx-small; width:5px;">Fuel Level (Ltrs)</th>
-                        <th style="font-size: xx-small; width:5px;">Solar (Kw)</th>
-                        <th style="font-size: xx-small; width:5px;">Critical</th>
-                        <th style="font-size: xx-small; width:5px;">Major</th>
-                        <th style="font-size: xx-small; width:5px;">Minor</th>
-                        <th style="font-size: xx-small; width:5px;">Offline Duration</th>
-                        <th style="font-size: xx-small; width:5px;">Engineer Name</th>
-                        <th style="font-size: xx-small; width:5px;">Location</th>
-                    </tr>
-                    </thead>
-                    <tbody class="text-center"></tbody>
-                </table>
+                <div class="report-export-container">
+                    <jsp:include page="include_export.jsp"></jsp:include>
+                </div>
             </div>
+
+            <table id="latestDataReportTable" cellspacing="1" cellpadding="1"
+                   class="table table-striped table-bordered table-hover"
+                   style="width: 100%">
+                <thead class="text-center datatable-header">
+                <tr>
+                    <th style="font-size: xx-small; ">Last Updated</th>
+                    <th style="font-size: xx-small; ">Site ID</th>
+                    <th style="font-size: xx-small; ">Site Name</th>
+                    <th style="font-size: xx-small; ">Power Source</th>
+                    <th style="font-size: xx-small; ">Customer</th>
+                    <th style="font-size: xx-small; ">Battery SOC</th>
+                    <th style="font-size: xx-small; ">DC Load</th>
+                    <th style="font-size: xx-small; ">DC Voltage</th>
+                    <th style="font-size: xx-small; ">DG Power (Kw)</th>
+                    <th style="font-size: xx-small; ">Fuel Level (Ltrs)</th>
+                    <th style="font-size: xx-small; ">Solar (Kw)</th>
+                    <th style="font-size: xx-small; ">Critical</th>
+                    <th style="font-size: xx-small; ">Major</th>
+                    <th style="font-size: xx-small; ">Minor</th>
+                    <th style="font-size: xx-small; ">Offline Duration</th>
+                    <th style="font-size: xx-small; ">Engineer Name</th>
+                    <th style="font-size: xx-small; ">Location</th>
+                </tr>
+                </thead>
+                <tbody class="text-center"></tbody>
+            </table>
         </div>
-        <div class="col-md-4 mx-auto box p-3"
-             style="background-color: white;overflow-x:auto;white-space: nowrap;border-left: 5px solid #e9e9e9;">
-            <div class="inner">
+        <div class="col-sm-4 mx-auto box p-3"
+             style="background-color: white;white-space: nowrap;border-left: 5px solid #e9e9e9; overflow-x: auto">
+            <div class="alarm-report-filter-export-container report-filter-export-container">
                 <table id="alarmTableFilters" cellspacing="5" cellpadding="5" class="filter-table">
                     <tr>
-                        <td><label class='control-label mr-2'
-                                   for="hourly-site-id-select"><strong>Alarm
-                            category</strong></label>
+                        <td>
+                            <label class='control-label mr-2'
+                                   for="hourly-site-id-select">
+                                <strong>Alarm category</strong>
+                            </label>
                         </td>
                         <td>
                             <select id="alarm-category-select"
@@ -216,8 +251,12 @@
                                 <option value="All" selected="selected">All</option>
                             </select>
                         </td>
-                        <td class="d-none"><label class='control-label mr-2'
-                                                  for="hourly-site-id-select"><strong>Site ID</strong></label></td>
+                        <td class="d-none">
+                            <label class='control-label mr-2'
+                                   for="hourly-site-id-select">
+                                <strong>Site ID</strong
+                                ></label>
+                        </td>
                         <td class="d-none">
                             <select id="alarm-site-id-select"
                                     name="alarm-site-id-select" class="selectpicker"
@@ -226,8 +265,11 @@
                                 <option value="All" selected="selected">All</option>
                             </select>
                         </td>
-                        <td class="d-none"><label class='control-label mr-2'
-                                                  for="hourly-site-id-select"><strong>Severity</strong></label></td>
+                        <td class="d-none">
+                            <label class='control-label mr-2'
+                                   for="hourly-site-id-select">
+                                <strong>Severity</strong>
+                            </label></td>
                         <td class="d-none">
                             <select id="alarm-severity-select"
                                     name="alarm-severity-select" class="selectpicker"
@@ -236,76 +278,83 @@
                                 <option value="All" selected="selected">All</option>
                             </select>
                         </td>
-                        <jsp:include page="include_export.jsp"></jsp:include>
                         <%--<td>
                             <div class="download" align="right">
                                 &lt;%&ndash;<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btncExport" onclick="exportTableToExcel('RCAReport.xls','alarmTable');"> EXPORT to Excel </button>
                                 &ndash;%&gt;<button type="button" class="btn btn-outline-primary" style="background-color: white;" id="btnExport" onclick="exportTableToCSV('RCAReport.csv','alarmTable')"> EXPORT to CSV </button>
                             </div></td>--%>
                     </tr>
-                    <tr>
-                    </tr>
                 </table>
-                <table id="alarmTable"
-                       class="table table-striped table-bordered table-fixed table-hover table-condensed"
-                       style="width: 100%">
-                    <thead class="text-center datatable-header">
-                    <tr>
-                        <th style="font-size: xx-small;">Site ID</th>
-                        <th style="font-size: xx-small;">Alarm Name</th>
-                        <th style="font-size: xx-small;">Alarm Open Time</th>
-                        <th style="font-size: xx-small;">Elapsed Time</th>
-                    </tr>
-                    </thead>
-                    <tbody class="text-center"></tbody>
-                </table>
+                <div class="report-export-container">
+                    <jsp:include page="include_export.jsp"></jsp:include>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="row-12 m-2">
-        <div class="row p-2" style="background-color: white">
-            <table cellspacing="5" cellpadding="5" class="filter-table">
+            <table id="alarmTable"
+                   class="table table-striped table-bordered table-fixed table-hover table-condensed"
+                   style="width: 100%">
+                <thead class="text-center datatable-header">
                 <tr>
-                    <td><label class='control-label mr-2'><strong>Date</strong></label></td>
-                    <td><input id="datetimepicker" class="form-control" type="text" style="width: 280px"/></td>
-                    <td class="d-none"><label class='control-label mr-2' for="hourly-site-id-select"><strong>Site
-                        ID</strong></label>
-                    </td>
-                    <td class="d-none">
-                        <select id="hourly-site-id-select"
-                                name="hourly-site-id-select" class="selectpicker form-control"
-                                data-live-search="true" multiple title="Site Id"
-                                data-width="150px">
-                            <option value="All" selected="selected">All</option>
-                        </select>
-                    </td>
-                    <td class="d-none"><label class='control-label mr-2' for="hourly-site-type-select"><strong>Site
-                        ID</strong></label>
-                    </td>
-                    <td class="d-none">
-                        <select id="hourly-site-type-select" class="form-control"
-                                name="hourly-site-type-select" class="selectpicker"
-                                data-live-search="true" multiple title="Site Type"
-                                data-width="150px">
-                            <option value="All" selected="selected">All</option>
-                        </select>
-                    </td>
-                    <td class="d-none"><label class='control-label mr-2' for="hourly-device-type-select"><strong>Device
-                        Type</strong></label>
-                    </td>
-                    <td class="d-none">
-                        <select id="hourly-device-type-select" class="form-control"
-                                name="hourly-device-type-select" class="selectpicker"
-                                data-live-search="true" multiple title="Device Type"
-                                data-width="150px">
-                            <option value="All" selected="selected">All</option>
-                        </select>
-                    </td>
+                    <th style="font-size: xx-small;">Site ID</th>
+                    <th style="font-size: xx-small;">Alarm Name</th>
+                    <th style="font-size: xx-small;">Alarm Open Time</th>
+                    <th style="font-size: xx-small;">Elapsed Time</th>
                 </tr>
+                </thead>
+                <tbody class="text-center"></tbody>
             </table>
         </div>
-        <div class="row" style="background-color: white">
-            <canvas id="bar-chart" width="800" height="190"></canvas>
+    </div>
+    <div class="row m-2">
+        <div class="col-sm-12">
+            <div class="row p-2" style="background-color: white">
+                <table cellspacing="5" cellpadding="5" class="filter-table">
+                    <tr>
+                        <td><label class='control-label mr-2'><strong>Date</strong></label></td>
+                        <td><input id="datetimepicker" class="form-control" type="text" style="width: 280px"/>
+                        </td>
+                        <td class="d-none">
+                            <label class='control-label mr-2' for="hourly-site-id-select">
+                                <strong>Site ID</strong>
+                            </label>
+                        </td>
+                        <td class="d-none">
+                            <select id="hourly-site-id-select"
+                                    name="hourly-site-id-select" class="selectpicker form-control"
+                                    data-live-search="true" multiple title="Site Id"
+                                    data-width="150px">
+                                <option value="All" selected="selected">All</option>
+                            </select>
+                        </td>
+                        <td class="d-none"><label class='control-label mr-2'
+                                                  for="hourly-site-type-select"><strong>Site
+                            ID</strong></label>
+                        </td>
+                        <td class="d-none">
+                            <select id="hourly-site-type-select" class="form-control"
+                                    name="hourly-site-type-select" class="selectpicker"
+                                    data-live-search="true" multiple title="Site Type"
+                                    data-width="150px">
+                                <option value="All" selected="selected">All</option>
+                            </select>
+                        </td>
+                        <td class="d-none"><label class='control-label mr-2'
+                                                  for="hourly-device-type-select"><strong>Device
+                            Type</strong></label>
+                        </td>
+                        <td class="d-none">
+                            <select id="hourly-device-type-select" class="form-control"
+                                    name="hourly-device-type-select" class="selectpicker"
+                                    data-live-search="true" multiple title="Device Type"
+                                    data-width="150px">
+                                <option value="All" selected="selected">All</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="row" style="background-color: white">
+                <canvas id="bar-chart" width="800" height="190"></canvas>
+            </div>
         </div>
     </div>
 </div>
