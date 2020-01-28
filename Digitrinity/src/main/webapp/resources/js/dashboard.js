@@ -275,7 +275,6 @@ function loadLatestReportStatus() {
                 $("#totalSite").text(data.totalSite);
                 $("#onlineSite").text(data.onlineSite);
                 $("#offlineSite").text(data.offlineSite);
-
             }
         });
 }
