@@ -142,14 +142,15 @@ public class DashboardReportService implements IDashboardReportService {
                     latestReportDto.isAllClusters() ? null : latestReportDto.getClusters(),
                     latestReportDto.isAllSiteId() ? null : latestReportDto.getSiteId(),
                     latestReportDto.isAllCustomers() ? null : latestReportDto.getCustomers(),
-                    latestReportDto.isAllSiteTypes() ? siteType : siteType,
+                    latestReportDto.isAllSiteTypes() ? null : latestReportDto.getSiteType(),
                     latestReportDto.isAllCustomers() ? null : ALL,
                     latestReportDto.isAllSiteId() ? null : ALL,
                     latestReportDto.isAllClusters() ? null : ALL,
                     latestReportDto.isAllZones() ? null : ALL,
                     latestReportDto.isAllRegions() ? null : ALL,
                     latestReportDto.isAllSiteStatus()?null:latestReportDto.getSiteStatus(),
-                    customerId);
+                    customerId,
+                    latestReportDto.isAllSiteTypes() ? null : ALL);
         }
         return dataReports.stream().filter(dataReport -> Objects.nonNull(dataReport)).collect(Collectors.toList());
     }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PowerTrackerTeeReportService_Impl implements PowerTrackerTeeReportService {
@@ -21,7 +22,7 @@ public class PowerTrackerTeeReportService_Impl implements PowerTrackerTeeReportS
 	PowerTrackerTeeRepository powerTrackerTeeRepository;
 
     @Override
-    public List<VPowerTrackerTee> getPowerReportData(HttpServletRequest request, PowerTrackerReqDto reqDto) {
+    public List<VPowerTrackerTee> getPowerReportData(HttpServletRequest request, PowerTrackerReqDto latestReportDto) {
 		List<VPowerTrackerTee> dataReports = new ArrayList<VPowerTrackerTee>();
 		List<String> siteType = new ArrayList<>();
 		List<Integer> customerId = new ArrayList<>();
@@ -29,13 +30,18 @@ public class PowerTrackerTeeReportService_Impl implements PowerTrackerTeeReportS
 			siteType = userService.allSiteTypeForUser(request.getUserPrincipal().getName());
 			customerId = userService.getCustomerIdOfUser(request.getUserPrincipal().getName());
 		}
-		if (reqDto.isAnyFilterEmpty()){
+		List<Integer> siteTypeInt = siteType.stream().map(Integer::parseInt).collect(Collectors.toList());
+		if (latestReportDto.isAnyFilterEmpty()){
 			return dataReports;
 		}
-		/*else if(reqDto.){}
+		else if(latestReportDto.isAllClusters() && latestReportDto.isAllCustomers()
+				&& latestReportDto.isAllSiteId() && latestReportDto.isAllSiteTypes()
+				&& latestReportDto.isAllRegions() && latestReportDto.isAllZones() && latestReportDto.isAllDeviceType() && latestReportDto.isAllPowerSource()){
+			dataReports = powerTrackerTeeRepository.findAll(siteTypeInt, customerId);
+		}
 		else{
 
-		}*/
-        return null;
+		}
+		return dataReports;
     }
 }

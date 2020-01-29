@@ -19,18 +19,18 @@ $(document).ready(function () {
         maxSpan: {
             "day": 1
         },
-    }, function(start, end, label) {});
+    }, function (start, end, label) {
+    });
     loadSiteStatus();
     loadRegions();
-    renderLatestReportDataTable();
-    loadLatestReportStatus();
+    renderPowerTrackerTeeDataTable();
     registerLatestReportDataOnClickEvent();
 });
 
-function renderLatestReportDataTable() {
+function renderPowerTrackerTeeDataTable() {
     powerTrackerTable = $('#powerTrackerDataTable').DataTable({
         "ajax": {
-            "url": "../dashboard/latest-data1",
+            "url": "../power-tracker/tee",
             "type": "POST",
             "dataType": 'json',
             "contentType": "application/json",
@@ -39,101 +39,9 @@ function renderLatestReportDataTable() {
             }
         },
         "dom": 'frti<"plcontainer"lp>',
-        "buttons": [
-            'copy',
-            {
-                extend: 'csvHtml5',
-                title: 'Latest Data'
-            },
-            {
-                extend: 'excelHtml5',
-                title: 'Latest Data'
-            }, 'print'
-        ],
-        "scrollY": "400px",
-        "scrollCollapse": true,
-        "order": [[0, "desc"]],
-        "pageLength": 20,
-        "lengthMenu": [10, 20, 30, 40, 50, 100],
-        "bLengthChange": true,
-        "bFilter": false,
-        "language": {
-            "paginate": {
-                "previous": "<",
-                "next": ">"
-            }
-        },
-        "pagingType": "simple",
-        "columns": [
-            {"data": "lastUpdated"},
-            {
-                "data": "smSiteCode",
-                "render": function (data, type, row, meta) {
-                    var ref = "site/perfdashboard/" + data
-                    if (type === 'display') {
-                        data = '<a href="' + ref + '" >' + data + '</a>';
-                    }
-
-                    return data;
-                }
-            },
-            {"data": "siteName"},
-            {"data": "powerSource"},
-            {"data": "customerName"},
-            {"data": "batterySOC"},
-            {"data": "dcLoad"},
-            {"data": "dcVoltage"},
-            {"data": "dgPower"},
-            {"data": "fuelLevel"},
-            {"data": "solarKw"},
-            {"data": "critical"},
-            {"data": "major"},
-            {"data": "minor"},
-            {"data": "age"},
-            {"data": "engineerName"},
-            {"data": "location"}
-
-
-        ],
-        initComplete: function () {
-            this.api().columns().every(function () {
-                var column = this;
-                var select = $('<select><option value=""></option></select>')
-                    .appendTo($(column.footer()).empty())
-                    .on('change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex(
-                            $(this).val()
-                        );
-
-                        column
-                            .search(val ? '^' + val + '$' : '', true, false)
-                            .draw();
-                    });
-
-                column.data().unique().sort().each(function (d, j) {
-                    select.append('<option value="' + d + '">' + d + '</option>')
-                });
-            });
-            loadExportSelect('#powerTrackerDataTableFilters', latestReportTable)
-        },
-        'createdRow': function (row, data, index) {
-            if (data.age > 4) {
-                $('td', row).eq(14).addClass('highlight-red');
-                $('td', row).css('background-color', '#ff6c4c');
-            }
-            if (data.critical > 0) {
-                $('td', row).eq(11).addClass('highlight-red');
-            }
-            if (data.major > 0) {
-                $('td', row).eq(12).addClass('highlight-red');
-            }
-            if (parseFloat(data.dcVoltage) < 48.5) {
-                $('td', row).eq(7).addClass('highlight-red-back');
-            }
-
-        },
+        "bFilter": false
     });
-    new $.fn.dataTable.FixedHeader(latestReportTable);
+    //new $.fn.dataTable.FixedHeader(latestReportTable);
 }
 
 
@@ -145,7 +53,8 @@ function buildDataTableAjaxData() {
         "clusters": $("#cluster-select").val(),
         "zones": $("#zone-select").val(),
         "regions": $("#region-select").val(),
-        "siteStatus": $("#siteStatus").val()
+        "deviceType": $("#device-type-select").val(),
+        "powerSource": $("#powersource").val()
     }
     return obj;
 

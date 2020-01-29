@@ -24,7 +24,10 @@ public class LatestDataReport {
 	
 	@Column(name = "smSitetypeid")
 	private String siteTypeId;
-	
+
+	@Column(name = "sitetypeid")
+	private String siteTypeName;
+
 	@Column(name="Zone")
 	private String zone;
 	
@@ -121,6 +124,14 @@ public class LatestDataReport {
 
 	public int getCustomerId() {
 		return customerId;
+	}
+
+	public String getSiteTypeName() {
+		return siteTypeName;
+	}
+
+	public void setSiteTypeName(String siteTypeName) {
+		this.siteTypeName = siteTypeName;
 	}
 
 	public void setCustomerId(int customerId) {

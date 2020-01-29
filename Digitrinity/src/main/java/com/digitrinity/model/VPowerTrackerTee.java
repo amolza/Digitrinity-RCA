@@ -63,10 +63,10 @@ public class VPowerTrackerTee {
     @Column(name = "customer_name")
     private String customerName;
     @Column(name = "customer_id")
-    private long customerId;
+    private int customerId;
 
     @Column(name = "smsitetypeid")
-    private long smsitetypeid;
+    private int smsitetypeid;
 
 
     public long getSmSiteId() {
@@ -267,20 +267,20 @@ public class VPowerTrackerTee {
     }
 
 
-    public long getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(long customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
 
-    public long getSmsitetypeid() {
+    public int getSmsitetypeid() {
         return smsitetypeid;
     }
 
-    public void setSmsitetypeid(long smsitetypeid) {
+    public void setSmsitetypeid(int smsitetypeid) {
         this.smsitetypeid = smsitetypeid;
     }
 
