@@ -39,7 +39,62 @@ function renderPowerTrackerTeeDataTable() {
             }
         },
         "dom": 'frti<"plcontainer"lp>',
-        "bFilter": false
+        "bFilter": false,
+        "buttons": [
+            'copy',
+            {
+                extend: 'csvHtml5',
+                title: 'Latest Data'
+            },
+            {
+                extend: 'excelHtml5',
+                title: 'Latest Data'
+            }, 'print'
+        ],
+        "scrollY": "41vh",
+        "scrollX": "100%",
+        "scrollCollapse": true,
+        "order": [[0, "desc"]],
+        "pageLength": 20,
+        "lengthMenu": [ 10, 20, 30, 40, 50, 100 ],
+        "bLengthChange": true,
+        "language": {
+            "paginate": {
+                "previous": "<",
+                "next": ">"
+            }
+        },
+        "pagingType": "simple",
+        "columns": [
+            {"data": "region"},
+            {"data": "smSiteCode"},
+            {"data": "datetime"},
+            {"data": "engineerName"},
+            {"data": "powersource"},
+            {"data": "sitebattvolt"},
+            {"data": "battSoc"},
+            {"data": "totalDcLoadCurrent"},
+            {"data": "rectInputRCurrent"},
+            {"data": "rectInputYCurrent"},
+            {"data": "rectInputBCurrent"},
+            {"data": "opco1LoadCurrent"},
+            {"data": "opco2LoadCurrent"},
+            {"data": "opco3LoadCurrent"},
+            {"data": "opco4LoadCurrent"}
+
+/*
+            {"data": "clusterName"},
+            {"data": "zone"},
+            {"data": "smSiteId"},
+            {"data": "sitetypeid"},
+            {"data": "devicetype"},
+            {"data": "smCustomerName"},
+
+*/
+            ],
+        initComplete: function () {
+            loadExportSelect('.latest-report-filter-export-container', powerTrackerTable)
+        }
     });
     //new $.fn.dataTable.FixedHeader(latestReportTable);
 }

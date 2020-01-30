@@ -137,7 +137,8 @@ public class DashboardReportService implements IDashboardReportService {
                 && latestReportDto.isAllRegions() && latestReportDto.isAllZones() && latestReportDto.isAllSiteStatus()) {
             dataReports = latestDataReportRepository.findAll(siteType, customerId);
         } else {
-            dataReports = latestDataReportRepository.findLatestReport(latestReportDto.isAllRegions() ? null : latestReportDto.getRegions(),
+            dataReports = latestDataReportRepository.findLatestReport(
+                    latestReportDto.isAllRegions() ? null : latestReportDto.getRegions(),
                     latestReportDto.isAllZones() ? null : latestReportDto.getZones(),
                     latestReportDto.isAllClusters() ? null : latestReportDto.getClusters(),
                     latestReportDto.isAllSiteId() ? null : latestReportDto.getSiteId(),

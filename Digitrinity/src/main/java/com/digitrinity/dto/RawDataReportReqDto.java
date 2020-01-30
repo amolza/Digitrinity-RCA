@@ -20,7 +20,7 @@ public class RawDataReportReqDto {
 	private List<String> clusters;
 	private List<String> zones;
 	private List<String> regions;
-	
+	private int siteStatus;
 
 	public RawDataReportReqDto() {
 	}
@@ -45,6 +45,14 @@ public class RawDataReportReqDto {
 
 	public void setStart(int start) {
 		this.start = start;
+	}
+
+	public int getSiteStatus() {
+		return siteStatus;
+	}
+
+	public void setSiteStatus(int siteStatus) {
+		this.siteStatus = siteStatus;
 	}
 
 	public int getLength() {
@@ -146,5 +154,5 @@ public class RawDataReportReqDto {
 	public boolean isAnyFilterEmpty() {
 		return this.getClusters().isEmpty() || this.getDeviceType().isEmpty() || this.getRegions().isEmpty() || this.getSiteId().isEmpty() || this.getSiteType().isEmpty() || this.getZones().isEmpty();
 	}
-	
+	public boolean isAllSiteStatus(){return this.getSiteStatus()==-1;}
 }

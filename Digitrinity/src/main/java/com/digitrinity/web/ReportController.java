@@ -14,7 +14,7 @@ public class ReportController {
 	}
 
 	@GetMapping("/powertrackertee")
-	public String getPowerTrackerReport() {
+	public String getPowerTrackerReportTee() {
 		return "powertrackertee";
 	}
 }

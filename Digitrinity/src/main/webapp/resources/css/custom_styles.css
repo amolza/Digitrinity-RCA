@@ -86,7 +86,7 @@ td.highlight-red-back {
     color: #fff;
 }
 
-#latestDataReportTable, #alarmTable, .rawDataReportDataTable {
+#latestDataReportTable, #alarmTable, .rawDataReportDataTable,#powerTrackerDataTable {
     font-size: 0.8rem !important;
 }
 
@@ -95,7 +95,8 @@ td.highlight-red-back {
 }
 
 #latestDataReportTable td ,
-.rawDataReportDataTable td {
+.rawDataReportDataTable td,
+#powerTrackerDataTable td{
     padding-top: 0.1em!important;
     padding-bottom: 0.1em!important;
     text-overflow: ellipsis;
@@ -104,7 +105,8 @@ td.highlight-red-back {
     font-size: 10px;
 }
 
-.rawDataReportDataTable th {
+.rawDataReportDataTable th,
+#powerTrackerDataTable th{
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -136,7 +138,9 @@ td.highlight-red-back {
 }
 
 #alarmTable td,
-#alarmTable th {
+#alarmTable th,
+#powerTrackerDataTable td,
+#powerTrackerDataTableth {
     /*width: auto !important;
     white-space: normal;
     text-overflow: ellipsis;
@@ -275,8 +279,14 @@ table.dataTable tbody tr.selected {
 
 .report-export-container {
     margin: 0 11px;
+    display: flex;
 }
 
 .report-export-container .custom-select{
     margin: 0 12px;
+    width: 60px;
+}
+
+.report-export-container label{
+   align-self: center;
 }

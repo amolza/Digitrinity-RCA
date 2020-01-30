@@ -48,9 +48,29 @@ public class RawDataReportService implements IRawDataReportService {
 				&& dataReportReqDto.isAllRegions() && dataReportReqDto.isAllZones()) {
 			reportData = rawDataReportRepository.findAll(siteType,pageRequest,startDate,endDate,customerId);
 		} else {
-			reportData = rawDataReportRepository.fetchFilteredPaginatedRawData(dataReportReqDto.getClusters(),
-					dataReportReqDto.getSiteId(), dataReportReqDto.isAllSiteId() ? null : ALL,
-					dataReportReqDto.isAllClusters() ? null : ALL, siteType,pageRequest,startDate,endDate,customerId);
+			reportData = rawDataReportRepository.fetchFilteredPaginatedRawData(
+					dataReportReqDto.getClusters(),
+					dataReportReqDto.getSiteId(),
+					dataReportReqDto.isAllSiteId() ? null : ALL,
+					dataReportReqDto.isAllClusters() ? null : ALL,
+					siteType,
+					pageRequest,
+					startDate,
+					endDate,
+					customerId);
+
+			rawDataReportRepository.fetchFilteredPaginatedRawDataNew(
+					dataReportReqDto.isAllZones() ? null : dataReportReqDto.getZones(),
+					dataReportReqDto.isAllClusters() ? null : dataReportReqDto.getClusters(),
+					dataReportReqDto.isAllSiteId() ? null : dataReportReqDto.getSiteId(),
+					dataReportReqDto.isAllSiteTypes() ? null : dataReportReqDto.getSiteType(),
+					dataReportReqDto.isAllSiteId() ? null : ALL,
+					dataReportReqDto.isAllClusters() ? null : ALL,
+					dataReportReqDto.isAllZones() ? null : ALL,
+					dataReportReqDto.isAllRegions() ? null : ALL,
+					dataReportReqDto.isAllSiteStatus()?null:dataReportReqDto.getSiteStatus(),
+					customerId,
+					dataReportReqDto.isAllSiteTypes() ? null : ALL);
 		}
 
 		return reportData;

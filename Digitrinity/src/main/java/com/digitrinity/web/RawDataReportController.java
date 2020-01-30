@@ -38,16 +38,16 @@ public class RawDataReportController {
 		
 	}
 
-	@RequestMapping(path = "/raw-data-excel")
+/*	@RequestMapping(path = "/raw-data-excel")
 	public ModelAndView  getLatestReportDataForExcel(@RequestBody RawDataReportReqDto dataReportReqDto,HttpServletRequest request, HttpServletResponse response) {
 		List<RawDataReport> rawDataReport = rawDataReportService.fetchFilteredReportForDownload(dataReportReqDto,request);
-	/*	List<RawDataReport> rawDataReport=new ArrayList<>();*/
+	*//*	List<RawDataReport> rawDataReport=new ArrayList<>();*//*
 		return new ModelAndView(new ExcelViewCreatorRawReport(),"rawDataReport",rawDataReport);
-		/*if(rawDataReport != null) {
+		*//*if(rawDataReport != null) {
 			return new ServerSideDataTableResponse(rawDataReport.getContent(),rawDataReport.getTotalElements(), rawDataReport.getTotalElements(),dataReportReqDto.getDraw());
 		}else {
 			return new ServerSideDataTableResponse(new ArrayList<String>(),0,0,dataReportReqDto.getDraw());
 		}
-*/
-	}
+*//*
+	}*/
 }

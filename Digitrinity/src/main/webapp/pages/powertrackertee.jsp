@@ -15,19 +15,18 @@
     <title>Welcome</title>
     <jsp:include page="include_hdr.jsp"></jsp:include>
 </head>
-<body style="background-color: #e9e9e9; font-size: .88rem;"
-      data-spy="scroll">
+<body style="background-color: #e9e9e9;"
+>
 <jsp:include page="header.jsp"></jsp:include>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
-            <div class="text-center mb-3 p-2 mt-3" style="background-color: #1A3E4C;color: #E4F1F6;">
-                <h5>Power Tracker Report(TEE)</h5>
-            </div>
+            <h5 class="text-center p-2 m-2" style="background-color: #1A3E4C;color: #E4F1F6;">Power Tracker
+                Report(TEE)</h5>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-12">
+    <div class="row"  style="background-color: white;">
+        <div class="col-sm-12  mt-3" style="overflow: auto">
             <div class="power-tee-export-container report-filter-export-container">
                 <table cellspacing="5" cellpadding="5" class="filter-table" id="powerTrackerDataTableFilters">
                     <tr>
@@ -35,7 +34,7 @@
                                    for="hourly-site-id-select"><strong>Region</strong></label></td>
                         <td><select id="region-select" name="region-select"
                                     class="selectpicker form-control" data-live-search="true"
-                                    multiple title="Region" data-width="80px"
+                                    multiple title="Region" data-width="60px"
                                     style="background-color: #5cb85c; color: #fff;">
                             <option value="All" selected="selected">All</option>
                         </select></td>
@@ -43,14 +42,14 @@
                                    for="hourly-site-id-select"><strong>Zone</strong></label></td>
                         <td><select id="zone-select" name="zone-select"
                                     class="selectpicker form-control" data-live-search="true" multiple
-                                    title="Zone" data-width="80px" data-all="false">
+                                    title="Zone" data-width="60px" data-all="false">
                             <option value="All" selected="selected">All</option>
                         </select></td>
                         <td><label class='control-label mr-2'
                                    for="hourly-site-id-select"><strong>Cluster</strong></label></td>
                         <td><select id="cluster-select" name="cluster-select"
                                     class="selectpicker form-control" data-live-search="true" multiple
-                                    title="Cluster" data-width="80px">
+                                    title="Cluster" data-width="60px">
                             <option value="All" selected="selected">All</option>
                         </select></td>
                         <td>
@@ -61,7 +60,7 @@
                         <td>
                             <select id="customer" name="customer"
                                     class="selectpicker" data-live-search="true" multiple
-                                    title="Customer" data-width="80px">
+                                    title="Customer" data-width="60px">
                                 <option value="All" selected="selected">All</option>
                             </select>
                         </td>
@@ -69,14 +68,14 @@
                                    for="hourly-site-id-select"><strong>Site ID</strong></label></td>
                         <td><select id="siteId" name="siteId" class="selectpicker form-control"
                                     data-live-search="true" multiple title="Site ID"
-                                    data-width="80px">
+                                    data-width="60px">
                             <option value="All" selected="selected">All</option>
                         </select></td>
                         <td><label class='control-label mr-2'
                                    for="hourly-site-id-select"><strong>Device Type</strong></label></td>
                         <td><select id="device-type-select" name="customer"
                                     class="selectpicker form-control" data-live-search="true" multiple
-                                    title="Device Type" data-width="80px">
+                                    title="Device Type" data-width="60px">
                             <option value="All" selected="selected">All</option>
                         </select></td>
 
@@ -84,7 +83,7 @@
                                    for="hourly-site-id-select"><strong>Site Type</strong></label></td>
                         <td><select id="siteType" name="siteType"
                                     class="selectpicker form-control" data-live-search="true" multiple
-                                    title="Site Type" data-width="80px">
+                                    title="Site Type" data-width="60px">
                             <option value="All" selected="selected">All</option>
                         </select></td>
                         <td>
@@ -96,7 +95,7 @@
                         <td>
                             <select id="powersource" name="siteStatus"
                                     class="selectpicker" data-live-search="true" multiple
-                                    title="PowerSource" data-width="80px">
+                                    title="PowerSource" data-width="60px">
                                 <option value="-1" selected="selected">All</option>
                                 <option value="0">SOL+MDG</option>
                                 <option value="1">Mobile_DG</option>
@@ -119,20 +118,25 @@
                 </div>
             </div>
             <table id="powerTrackerDataTable"
-                   class="table table-striped table-bordered table-fixed table-hover table-condensed"
+                   class="powerTrackerDataTable table table-striped table-bordered table-fixed table-hover table-condensed"
                    style="width: 100%">
                 <thead class="text-center datatable-header">
                 <tr>
-                    <th style="font-size: xx-small; width:5px;">Last Updated</th>
+                    <th style="font-size: xx-small; width:5px;">Region</th>
                     <th style="font-size: xx-small; width:5px;">Site ID</th>
-                    <th style="font-size: xx-small; width:5px;">Site Name</th>
+                    <th style="font-size: xx-small; width:5px;">DateTime</th>
+                    <th style="font-size: xx-small; width:5px;">Engineer Name</th>
                     <th style="font-size: xx-small; width:5px;">Power Source</th>
-                    <th style="font-size: xx-small; width:5px;">Customer</th>
-                    <th style="font-size: xx-small; width:5px;">Battery SOC</th>
-                    <th style="font-size: xx-small; width:5px;">DC Load</th>
-                    <th style="font-size: xx-small; width:5px;">DC Voltage</th>
-                    <th style="font-size: xx-small; width:5px;">DG Power (Kw)</th>
-                    <th style="font-size: xx-small; width:5px;">Fuel Level (Ltrs)</th>
+                    <th style="font-size: xx-small; width:5px;">Site Batt Volt</th>
+                    <th style="font-size: xx-small; width:5px;">Batt SOC</th>
+                    <th style="font-size: xx-small; width:5px;">Total DC Load Current</th>
+                    <th style="font-size: xx-small; width:5px;">React Input R Current</th>
+                    <th style="font-size: xx-small; width:5px;">React Input Y Current</th>
+                    <th style="font-size: xx-small; width:5px;">React Input B Current</th>
+                    <th style="font-size: xx-small; width:5px;">Opco 1 Load Current</th>
+                    <th style="font-size: xx-small; width:5px;">Opco 2 Load Current</th>
+                    <th style="font-size: xx-small; width:5px;">Opco 3 Load Current</th>
+                    <th style="font-size: xx-small; width:5px;">Opco 4 Load Current</th>
                 </tr>
                 </thead>
                 <tbody class="text-center"></tbody>

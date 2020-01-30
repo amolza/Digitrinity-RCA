@@ -31,7 +31,7 @@
                                for="hourly-site-id-select"><strong>Region</strong></label></td>
                     <td><select id="region-select" name="region-select"
                                 class="selectpicker form-control" data-live-search="true"
-                                multiple title="Region" data-width="80px"
+                                multiple title="Region" data-width="65px"
                                 style="background-color: #5cb85c; color: #fff;">
                         <option value="All" selected="selected">All</option>
                     </select></td>
@@ -39,28 +39,28 @@
                                for="hourly-site-id-select"><strong>Zone</strong></label></td>
                     <td><select id="zone-select" name="zone-select"
                                 class="selectpicker form-control" data-live-search="true" multiple
-                                title="Zone" data-width="80px" data-all="false">
+                                title="Zone" data-width="65px" data-all="false">
                         <option value="All" selected="selected">All</option>
                     </select></td>
                     <td><label class='control-label mr-2'
                                for="hourly-site-id-select"><strong>Cluster</strong></label></td>
                     <td><select id="cluster-select" name="cluster-select"
                                 class="selectpicker form-control" data-live-search="true" multiple
-                                title="Cluster" data-width="80px">
+                                title="Cluster" data-width="65px">
                         <option value="All" selected="selected">All</option>
                     </select></td>
                     <td><label class='control-label mr-2'
                                for="hourly-site-id-select"><strong>Site ID</strong></label></td>
                     <td><select id="siteId" name="siteId" class="selectpicker form-control"
                                 data-live-search="true" multiple title="Site ID"
-                                data-width="80px">
+                                data-width="65px">
                         <option value="All" selected="selected">All</option>
                     </select></td>
                     <td><label class='control-label mr-2'
                                for="device-type-select"><strong>Device Type</strong></label></td>
                     <td><select id="device-type-select" name="customer"
                                 class="selectpicker form-control" data-live-search="true" multiple
-                                title="Device Type" data-width="80px">
+                                title="Device Type" data-width="65px">
                         <option value="All" selected="selected">All</option>
                     </select></td>
 
@@ -68,7 +68,7 @@
                                for="hourly-site-id-select"><strong>Site Type</strong></label></td>
                     <td><select id="siteType" name="siteType"
                                 class="selectpicker form-control" data-live-search="true" multiple
-                                title="Site Type" data-width="80px">
+                                title="Site Type" data-width="65px">
                         <option value="All" selected="selected">All</option>
                     </select></td>
                     <td><label class='control-label mr-2'
