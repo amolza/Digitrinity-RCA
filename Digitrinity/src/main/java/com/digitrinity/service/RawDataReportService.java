@@ -60,6 +60,7 @@ public class RawDataReportService implements IRawDataReportService {
 					customerId);
 
 			rawDataReportRepository.fetchFilteredPaginatedRawDataNew(
+					dataReportReqDto.isAllRegions()?null : dataReportReqDto.getRegions(),
 					dataReportReqDto.isAllZones() ? null : dataReportReqDto.getZones(),
 					dataReportReqDto.isAllClusters() ? null : dataReportReqDto.getClusters(),
 					dataReportReqDto.isAllSiteId() ? null : dataReportReqDto.getSiteId(),

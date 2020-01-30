@@ -53,9 +53,7 @@ public interface RawDataReportRepository extends PagingAndSortingRepository<RawD
             ,@Param("zones") Collection<String> zones
             ,@Param("clusters") Collection<String> clusters
             ,@Param("siteids") Collection<String> sites
-            ,@Param("customers") Collection<String> customers
             ,@Param("siteTypes") Collection<String> siteTypes
-            ,@Param("customersAll") String customersAll
             ,@Param("sitesAll") String sitesAll
             ,@Param("clustersAll") String clustersAll
             ,@Param("zonesAll") String zonesAll
