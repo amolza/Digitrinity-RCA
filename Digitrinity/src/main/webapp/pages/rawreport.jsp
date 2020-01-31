@@ -100,6 +100,12 @@
                 </tr>
                 </tr>
             </table>
+            <div class="report-export-container">
+                <label class="" >
+                    <span class="glyphicon glyphicon-info-sign"></span>
+                    <strong>Email Data</strong>
+                </label>
+            </div>
             <table id="rawDataReportDataTable" class="rawDataReportDataTable table table-striped table-fixed table-bordered table-hover table-condensed">
                 <thead class="text-center datatable-header">
                 <tr>

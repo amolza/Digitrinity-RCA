@@ -45,9 +45,10 @@ public interface RawDataReportRepository extends PagingAndSortingRepository<RawD
             , @Param("customerId") List<Integer> customerId
     );
 
-    @Query(value = "SELECT ldr FROM RawDataReport ldr WHERE ((:sitesAll) is null or ldr.siteId IN (:siteids)) "
-            + " AND ((:clusterAll) is null or ldr.cluster IN (:clusters)) AND (ldr.siteType) IN (:siteTypeID)  AND ldr.tranTime >= :startDate AND " +
-            "ldr.tranTime < :endDate AND ldr.customerId IN (:customerId)")
+    @Query(value = "SELECT ldr FROM RawDataReport ldr WHERE ((:regionsAll) is null or ldr.region IN (:regions)) AND ((:zonesAll) is null or ldr.zone IN (:zones)) " +
+            " AND ((:clustersAll) is null or ldr.cluster IN (:clusters)) AND ((:sitesAll) is null or ldr.siteId IN (:siteids)) " +
+            "AND ((:siteTypesAll) is null or ldr.siteTypeName IN (:siteTypes)) AND (ldr.customerId IN (:customerId)) " +
+            "AND ldr.customerId IN (:customerId) AND ldr.tranTime >= :startDate AND ldr.tranTime < :endDate")
     Page<RawDataReport> fetchFilteredPaginatedRawDataNew(
             @Param("regions") Collection<String> regions
             ,@Param("zones") Collection<String> zones
@@ -58,9 +59,11 @@ public interface RawDataReportRepository extends PagingAndSortingRepository<RawD
             ,@Param("clustersAll") String clustersAll
             ,@Param("zonesAll") String zonesAll
             ,@Param("regionsAll") String regionsAll
-            ,@Param("offline") Integer siteStatus
             ,@Param("customerId") List<Integer> customerId
-            ,@Param("siteTypesAll") String siteTypesAll
+            ,@Param("siteTypesAll") String siteTypesAll,
+            Pageable pageable,
+            @Param("startDate") String startDate,
+            @Param("endDate") String endDate
     );
 
 

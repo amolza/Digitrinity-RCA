@@ -22,12 +22,12 @@
     <div class="row">
         <div class="col-sm-12">
             <h5 class="text-center p-2 m-2" style="background-color: #1A3E4C;color: #E4F1F6;">Power Tracker
-                Report(TEE)</h5>
+                Report(Hybrid)</h5>
         </div>
     </div>
     <div class="row"  style="background-color: white;">
         <div class="col-sm-12  mt-3" style="overflow: auto">
-            <div class="tee-export-container report-filter-export-container">
+            <div class="power-tee-export-container report-filter-export-container">
                 <table cellspacing="5" cellpadding="5" class="filter-table" id="powerTrackerDataTableFilters">
                     <tr>
                         <td><label class='control-label mr-2'
@@ -113,13 +113,14 @@
                         </td>
                     </tr>
                 </table>
-
-                <div class="report-export-container">
-                    <jsp:include page="include_export.jsp"></jsp:include>
+                <div class="hybrid-export-container report-filter-export-container">
+                    <div class="report-export-container">
+                        <jsp:include page="include_export.jsp"></jsp:include>
+                    </div>
                 </div>
             </div>
-            <table id="powerTrackerDataTable"
-                   class="powerTrackerDataTable table table-striped table-bordered table-fixed table-hover table-condensed"
+            <table id="powerHybridDataTable"
+                   class="powerHybridDataTable table table-striped table-bordered table-fixed table-hover table-condensed"
                    style="width: 100%">
                 <thead class="text-center datatable-header">
                 <tr>
@@ -130,14 +131,20 @@
                     <th style="font-size: xx-small; width:5px;">Power Source</th>
                     <th style="font-size: xx-small; width:5px;">Site Batt Volt</th>
                     <th style="font-size: xx-small; width:5px;">Batt SOC</th>
-                    <th style="font-size: xx-small; width:5px;">Total DC Load Current</th>
+                    <th style="font-size: xx-small; width:5px;">Invertor I/P Power</th>
+                    <th style="font-size: xx-small; width:5px;">Invertor O/P Power</th>
+                    <th style="font-size: xx-small; width:5px;">Batt Charging Current</th>
+                    <th style="font-size: xx-small; width:5px;">Batt Discharging Current</th>
+                    <th style="font-size: xx-small; width:5px;">DG R Amp</th>
+                    <th style="font-size: xx-small; width:5px;">DG Y Amp</th>
+                    <th style="font-size: xx-small; width:5px;">DG B Amp</th>
+                    <th style="font-size: xx-small; width:5px;">DG Batt Volt</th>
                     <th style="font-size: xx-small; width:5px;">React Input R Current</th>
                     <th style="font-size: xx-small; width:5px;">React Input Y Current</th>
                     <th style="font-size: xx-small; width:5px;">React Input B Current</th>
-                    <th style="font-size: xx-small; width:5px;">Opco 1 Load Current</th>
-                    <th style="font-size: xx-small; width:5px;">Opco 2 Load Current</th>
-                    <th style="font-size: xx-small; width:5px;">Opco 3 Load Current</th>
-                    <th style="font-size: xx-small; width:5px;">Opco 4 Load Current</th>
+                    <th style="font-size: xx-small; width:5px;">Actl R Current</th>
+                    <th style="font-size: xx-small; width:5px;">Actl Y Current</th>
+                    <th style="font-size: xx-small; width:5px;">Actl B Current</th>
                 </tr>
                 </thead>
                 <tbody class="text-center"></tbody>
@@ -149,7 +156,7 @@
 <jsp:include page="include_ftr.jsp"></jsp:include>
 <script src="${contextPath}/resources/js/util.js"
         type="text/javascript"></script>
-<script src="${contextPath}/resources/js/powertrackerteereport.js"
+<script src="${contextPath}/resources/js/powertrackerhybridreport.js"
         type="text/javascript"></script>
 </body>
 </html>

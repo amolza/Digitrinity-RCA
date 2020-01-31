@@ -23,14 +23,14 @@ $(document).ready(function () {
     });
     loadSiteStatus();
     loadRegions();
-    renderPowerTrackerTeeDataTable();
+    renderPowerTrackerDataTable();
     registerLatestReportDataOnClickEvent();
 });
 
-function renderPowerTrackerTeeDataTable() {
-    powerTrackerTable = $('#powerTrackerDataTable').DataTable({
+function renderPowerTrackerDataTable() {
+    powerTrackerTable = $('#powerHybridDataTable').DataTable({
         "ajax": {
-            "url": "../power-tracker/tee",
+            "url": "../power-tracker/hybrid",
             "type": "POST",
             "dataType": 'json',
             "contentType": "application/json",
@@ -66,34 +66,32 @@ function renderPowerTrackerTeeDataTable() {
         },
         "pagingType": "simple",
         "columns": [
-            {"data": "region"},
-            {"data": "smSiteCode"},
-            {"data": "datetime"},
-            {"data": "engineerName"},
-            {"data": "powersource"},
-            {"data": "sitebattvolt"},
-            {"data": "battSoc"},
-            {"data": "totalDcLoadCurrent"},
-            {"data": "rectInputRCurrent"},
-            {"data": "rectInputYCurrent"},
-            {"data": "rectInputBCurrent"},
-            {"data": "opco1LoadCurrent"},
-            {"data": "opco2LoadCurrent"},
-            {"data": "opco3LoadCurrent"},
-            {"data": "opco4LoadCurrent"}
+             {"data": "region"},
+               {"data": "smSiteId"},
+               {"data": "datetime"},
+               {"data": "engineerName"},
+               {"data": "powersource"},
+               {"data": "sitebattvolt"},
+               {"data": "battSoc"},
+               {"data": "inverterInputPower"},
+               {"data": "inverterOutputPower"},
+               {"data": "battChargingCurrent"},
+               {"data": "battDischargingCurrent"},
+               {"data": "dgRAmp"},
+               {"data": "dgYAmp"},
+               {"data": "dgBAmp"},
+               {"data": "dgBatVolt"},
+               {"data": "rectInputRCurrent"},
+               {"data": "rectInputYCurrent"},
+               {"data": "rectInputBCurrent"},
+               {"data": "actelRCurrent"},
+               {"data": "actelYCurrent"},
+               {"data": "actelBCurrent"}
 
-/*
-            {"data": "clusterName"},
-            {"data": "zone"},
-            {"data": "smSiteId"},
-            {"data": "sitetypeid"},
-            {"data": "devicetype"},
-            {"data": "smCustomerName"},
 
-*/
             ],
         initComplete: function () {
-            loadExportSelect('.latest-report-filter-export-container', powerTrackerTable)
+            loadExportSelect('.hybrid-export-container', powerTrackerTable)
         }
     });
     //new $.fn.dataTable.FixedHeader(latestReportTable);
@@ -265,12 +263,12 @@ function registerLatestReportReload(selectObj) {
 
         $(this).data('all', isAllSelected);
 
-        $('#latestDataReportTable').DataTable().ajax.reload();
+        $('#powerHybridDataTable').DataTable().ajax.reload();
     });
 }
 
 function registerLatestReportDataOnClickEvent() {
-    $('#latestDataReportTable tbody').on('click', 'tr', function () {
+    $('#powerHybridDataTable tbody').on('click', 'tr', function () {
 
         /*if ( $(this).hasClass('selected') ) {
            // $(this).removeClass('selected');
@@ -279,10 +277,10 @@ function registerLatestReportDataOnClickEvent() {
             latestReportTable.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
         }*/
-        latestReportTable.$('tr.selected').removeClass('selected');
+        powerTrackerTable.$('tr.selected').removeClass('selected');
         $(this).addClass('selected');
 
-        var siteId = latestReportTable.row(this).data().smSiteCode;
+        var siteId = powerTrackerTable.row(this).data().smSiteCode;
     });
 
 }

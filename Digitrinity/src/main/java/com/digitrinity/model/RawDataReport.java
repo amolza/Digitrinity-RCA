@@ -12,12 +12,23 @@ public class RawDataReport {
 	@Column(name = "Cluster")
 	private String cluster;
 
+	@Column(name="Zone")
+	private String zone;
+
+	@Column(name="Region")
+	private String region;
+
 	@Column(name = "customer_id")
 	private int customerId;
 
+	@Column(name="customer_name")
+	private String customerName;
+
 	@Column(name = "Site_id")
 	private String siteId;
-		
+	@Column(name = "sitetypeName")
+	private String siteTypeName;
+
 	@Column(name = "Updateddatetime")
 	private String updateDateTime;
 	
@@ -3384,6 +3395,14 @@ public class RawDataReport {
 		this.inverterInputVoltage6 = inverterInputVoltage6;
 	}
 
+	public String getSiteTypeName() {
+		return siteTypeName;
+	}
+
+	public void setSiteTypeName(String siteTypeName) {
+		this.siteTypeName = siteTypeName;
+	}
+
 	public Double getInverterInputCurrent6() {
 		return inverterInputCurrent6;
 	}
@@ -3918,5 +3937,29 @@ public class RawDataReport {
 
 	public void setActelFrequency(Double actelFrequency) {
 		this.actelFrequency = actelFrequency;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	public String getZone() {
+		return zone;
+	}
+
+	public void setZone(String zone) {
+		this.zone = zone;
+	}
+
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
 	}
 }

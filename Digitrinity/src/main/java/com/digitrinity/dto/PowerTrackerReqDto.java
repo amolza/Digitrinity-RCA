@@ -14,7 +14,7 @@ public class PowerTrackerReqDto {
     private List<String> zones;
     private List<String> regions;
     private List<String> deviceType;
-    private List<Integer> powerSource;
+    private List<String> powerSource;
 
     public List<String> getDeviceType() {
         return deviceType;
@@ -24,11 +24,11 @@ public class PowerTrackerReqDto {
         this.deviceType = deviceType;
     }
 
-    public List<Integer> getPowerSource() {
+    public List<String> getPowerSource() {
         return powerSource;
     }
 
-    public void setPowerSource(List<Integer> powerSource) {
+    public void setPowerSource(List<String> powerSource) {
         this.powerSource = powerSource;
     }
 
@@ -111,7 +111,7 @@ public class PowerTrackerReqDto {
     }
 
     public boolean isAllPowerSource() {
-        return this.getPowerSource().contains(-1);
+        return this.getPowerSource().contains("-1");
     }
 
     public boolean isAllDeviceType() {

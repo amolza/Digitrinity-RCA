@@ -48,7 +48,7 @@ public class RawDataReportService implements IRawDataReportService {
 				&& dataReportReqDto.isAllRegions() && dataReportReqDto.isAllZones()) {
 			reportData = rawDataReportRepository.findAll(siteType,pageRequest,startDate,endDate,customerId);
 		} else {
-			reportData = rawDataReportRepository.fetchFilteredPaginatedRawData(
+			/*reportData = rawDataReportRepository.fetchFilteredPaginatedRawData(
 					dataReportReqDto.getClusters(),
 					dataReportReqDto.getSiteId(),
 					dataReportReqDto.isAllSiteId() ? null : ALL,
@@ -57,9 +57,9 @@ public class RawDataReportService implements IRawDataReportService {
 					pageRequest,
 					startDate,
 					endDate,
-					customerId);
+					customerId);*/
 
-			rawDataReportRepository.fetchFilteredPaginatedRawDataNew(
+			reportData=	rawDataReportRepository.fetchFilteredPaginatedRawDataNew(
 					dataReportReqDto.isAllRegions()?null : dataReportReqDto.getRegions(),
 					dataReportReqDto.isAllZones() ? null : dataReportReqDto.getZones(),
 					dataReportReqDto.isAllClusters() ? null : dataReportReqDto.getClusters(),
@@ -69,11 +69,12 @@ public class RawDataReportService implements IRawDataReportService {
 					dataReportReqDto.isAllClusters() ? null : ALL,
 					dataReportReqDto.isAllZones() ? null : ALL,
 					dataReportReqDto.isAllRegions() ? null : ALL,
-					dataReportReqDto.isAllSiteStatus()?null:dataReportReqDto.getSiteStatus(),
 					customerId,
-					dataReportReqDto.isAllSiteTypes() ? null : ALL);
+					dataReportReqDto.isAllSiteTypes() ? null : ALL,
+					pageRequest,
+					startDate,
+					endDate);
 		}
-
 		return reportData;
 	}
 
