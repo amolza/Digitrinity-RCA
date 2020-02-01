@@ -1,6 +1,5 @@
 package com.digitrinity.service;
 
-import com.digitrinity.dto.EmailRawDataReportReqDto;
 import com.digitrinity.dto.RawDataReportReqDto;
 import com.digitrinity.model.RawDataReport;
 import com.digitrinity.repository.RawDataReportRepository;
@@ -102,8 +101,4 @@ public class RawDataReportService implements IRawDataReportService {
         return null;
     }
 
-    @Override
-    public Boolean saveEmailConfig(EmailRawDataReportReqDto reqDto, HttpServletRequest request) {
-        return false;
-    }
 }

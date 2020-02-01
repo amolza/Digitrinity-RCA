@@ -1,10 +1,9 @@
 package com.digitrinity.web;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.digitrinity.dto.EmailRawDataReportReqDto;
-import com.digitrinity.util.ExcelViewCreatorRawReport;
+import com.digitrinity.dto.RawDataReportReqDto;
+import com.digitrinity.formBeans.ServerSideDataTableResponse;
+import com.digitrinity.model.RawDataReport;
+import com.digitrinity.service.IRawDataReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,14 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.digitrinity.dto.RawDataReportReqDto;
-import com.digitrinity.formBeans.ServerSideDataTableResponse;
-import com.digitrinity.model.RawDataReport;
-import com.digitrinity.service.IRawDataReportService;
-import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping(value = "raw-report")
@@ -39,9 +32,4 @@ public class RawDataReportController {
 
     }
 
-    @PostMapping(path = "/email-raw-data")
-    public boolean getLatestReportDataForExcel(@RequestBody EmailRawDataReportReqDto dataReportReqDto, HttpServletRequest request, HttpServletResponse response) {
-
-    	return false;
-    }
 }
