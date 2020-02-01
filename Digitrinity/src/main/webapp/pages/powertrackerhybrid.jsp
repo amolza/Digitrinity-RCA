@@ -93,7 +93,7 @@
                             </label>
                         </td>
                         <td>
-                            <select id="powersource" name="siteStatus"
+                            <select id="powersource-select" name="siteStatus"
                                     class="selectpicker" data-live-search="true" multiple
                                     title="PowerSource" data-width="60px">
                                 <option value="-1" selected="selected">All</option>

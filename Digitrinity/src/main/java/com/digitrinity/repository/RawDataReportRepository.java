@@ -84,4 +84,5 @@ public interface RawDataReportRepository extends PagingAndSortingRepository<RawD
 
     @Query(value = "SELECT ldr FROM RawDataReport ldr WHERE (ldr.siteType IN (:siteTypeID) AND ldr.tranTime >= :startDate AND ldr.tranTime < :endDate AND ldr.customerId IN (:customerId))")
     List<RawDataReport> findAll(@Param("siteTypeID") Collection<String> siteTypes,@Param("startDate") String startDate, @Param("endDate") String endDate, @Param("customerId") List<Integer> customerId);
+
 }

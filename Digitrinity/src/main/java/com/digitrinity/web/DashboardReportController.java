@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import com.digitrinity.service.IRawDataReportService;
 import com.digitrinity.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,9 @@ public class DashboardReportController {
 
 	@Autowired
 	private ModelMapper modelMapper;
+
+	@Autowired
+	private IRawDataReportService rawDataReportService;
 
 	@Autowired
 	UserService userService;
@@ -145,7 +149,10 @@ public class DashboardReportController {
 	public List<DeviceTypeDto> getDeviceType(HttpServletRequest request) {
 		return convertDeviceTypes(dashboardReportService.fetchDeviceTypes(request));
 	}
-
+	@GetMapping(path = "/all", produces = "application/json")
+	public List<String> getDataAll(HttpServletRequest request) {
+		return rawDataReportService.fetchAll();
+	}
 	private List<DeviceTypeDto> convertDeviceTypes(List<String> deviceType) {
 		List<String> types = deviceType.stream().filter(obj -> obj != null).collect(Collectors.toList());
 		return types.stream().map( obj -> {

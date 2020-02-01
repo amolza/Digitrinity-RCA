@@ -107,7 +107,7 @@ function buildDataTableAjaxData() {
         "zones": $("#zone-select").val(),
         "regions": $("#region-select").val(),
         "deviceType": $("#device-type-select").val(),
-        "powerSource": $("#powersource").val()
+        "powerSource": $("#powersource-select").val()
     }
     return obj;
 
